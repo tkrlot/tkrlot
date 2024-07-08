@@ -3418,22 +3418,16 @@ background-attachment: fixed;
 /* Hide embeds and certain elements */
 div[class*="messageContent_f9f2ca"] div[class*="embedWrapper_"],
 div[class*="messageContent_f9f2ca"] a[class*="anchor_"][href^="https://twitter.com/"],
-div[class*="messageContent_f9f2ca"] a[href^="https://fxtwitter.com/"],
+div[class*="messageContent_f9f2ca"] a[href^="https://fxtwitter.com/"] {
+    display: none !important;
+}
+
+/*Hide author, etc for embed*/
 .embedAuthor_ad0b71,
 .embedFooter_ad0b71,
 .embedDescription_ad0b71,
 .embedThumbnail_ad0b71 {
     display: none !important;
-}
-
-
-/* Home Icon */
-.wrapper_f90abb[data-list-item-id="guildsnav___home"] .childWrapper_f90abb {
-    background: url("") no-repeat center !important;
-    background-size: cover !important;
-}
-.wrapper_f90abb[data-list-item-id="guildsnav___home"] .childWrapper_f90abb svg {
-    display: none;
 }
 
 /* Remove spaces and borders from specified Discord elements */
@@ -3444,6 +3438,15 @@ div[class*="messageContent_f9f2ca"] a[href^="https://fxtwitter.com/"],
     margin: 0 !important;
     padding: 0 !important;
     border: none !important;
+}
+
+/* Home Icon */
+.wrapper_f90abb[data-list-item-id="guildsnav___home"] .childWrapper_f90abb {
+    background: url("") no-repeat center !important;
+    background-size: cover !important;
+}
+.wrapper_f90abb[data-list-item-id="guildsnav___home"] .childWrapper_f90abb svg {
+    display: none;
 }
 
 /*Hide the date message divider*/
