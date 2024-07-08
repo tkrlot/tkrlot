@@ -3415,34 +3415,24 @@ background-attachment: fixed;
   background-position: center;
 }
 
-/*Remove the embed thumbnail*/
+/* Hide specific embed links and elements */
+div[class*="messageContent_f9f2ca"] div[class*="embedWrapper_"],
+div[class*="messageContent_f9f2ca"] a[class*="anchor_"][href^="https://twitter.com/"], [href^="https://fxtwitter.com/"],
+.embedAuthor_ad0b71,
+.embedFooter_ad0b71,
+.embedDescription_ad0b71,
 .embedThumbnail_ad0b71 {
     display: none !important;
 }
-/* Hide messages containing URLs */
-.messageContent_f9f2ca a[href^="https://"] {
-    display: none !important;
-}
-/* Hide message content and embed description */
-.embedDescription_ad0b71 {
-    display: none !important;
-}
 
-/* Hide message content and embed author */
-.embedAuthor_ad0b71,
-.embedFooter_ad0b71,
-.embedMargin_ad0b71 {
-    display: none !important;
-}
-
-
-/* Remove all space around Discord elements */
+/* Remove spaces and borders from specified Discord elements */
 .imageContent_cf58b5,
 .embedWrapper_b558d0,
 .embedMedia_ad0b71,
 .embedImage_ad0b71 {
-    padding: 0 !important;
     margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
 }
 
 /* Home Icon */
@@ -3563,11 +3553,6 @@ cursor: pointer;
 .footer_fc9dae,
 .footerSeparator_f9a4c9 {
     background-color: transparent;
-}
-/*To hide the embed color left*/
-.embed_ad0b71,
-.embedFull_ad0b71 {
-    border-color: transparent !important;
 }
 
 /* Minified Server List */
