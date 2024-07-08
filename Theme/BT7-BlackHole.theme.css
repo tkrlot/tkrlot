@@ -3416,9 +3416,9 @@ background-attachment: fixed;
 }
 
 /* Hide embeds and certain elements */
-.messageContent_f9f2ca div[class*="embedWrapper_"],
-.messageContent_f9f2ca a[class*="anchor_"][href^="https://twitter.com/"],
-.messageContent_f9f2ca a[href^="https://fxtwitter.com/"],
+div[class*="messageContent_f9f2ca"] div[class*="embedWrapper_"],
+div[class*="messageContent_f9f2ca"] a[class*="anchor_"][href^="https://twitter.com/"],
+div[class*="messageContent_f9f2ca"] a[href^="https://fxtwitter.com/"],
 .embedAuthor_ad0b71,
 .embedFooter_ad0b71,
 .embedDescription_ad0b71,
