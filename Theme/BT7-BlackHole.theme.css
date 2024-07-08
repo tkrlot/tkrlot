@@ -3737,3 +3737,11 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
  content: "Send";
 }
 
+div[class*="messageContent_f9f2ca"] div[class*="embedWrapper_"],
+div[class*="messageContent_f9f2ca"] a[class*="anchor_"][href^="https://twitter.com/"], [href^="https://fxtwitter.com/"],
+.embedAuthor_ad0b71,
+.embedFooter_ad0b71,
+.embedDescription_ad0b71,
+.embedThumbnail_ad0b71 {
+    display: none !important;
+}
