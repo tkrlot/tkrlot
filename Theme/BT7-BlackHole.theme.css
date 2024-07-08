@@ -3436,6 +3436,16 @@ div[class*="messageContent_f9f2ca"] a[href^="https://fxtwitter.com/"],
     display: none;
 }
 
+/* Remove spaces and borders from specified Discord elements */
+.imageContent_cf58b5,
+.embedWrapper_b558d0,
+.embedMedia_ad0b71,
+.embedImage_ad0b71 {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
 /*Hide the date message divider*/
 .divider_d5deea {
     display: none;
