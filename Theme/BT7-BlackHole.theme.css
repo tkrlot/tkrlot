@@ -3417,22 +3417,8 @@ background-attachment: fixed;
 
 /* Hide specific embed links and elements */
 div[class*="messageContent_f9f2ca"] div[class*="embedWrapper_"],
-div[class*="messageContent_f9f2ca"] a[class*="anchor_"][href^="https://twitter.com/"], [href^="https://fxtwitter.com/"],
-.embedAuthor_ad0b71,
-.embedFooter_ad0b71,
-.embedDescription_ad0b71,
-.embedThumbnail_ad0b71 {
+div[class*="messageContent_f9f2ca"] a[class*="anchor_"][href^="https://twitter.com/"], [href^="https://fxtwitter.com/"] {
     display: none !important;
-}
-
-/* Remove spaces and borders from specified Discord elements */
-.imageContent_cf58b5,
-.embedWrapper_b558d0,
-.embedMedia_ad0b71,
-.embedImage_ad0b71 {
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
 }
 
 /* Home Icon */
