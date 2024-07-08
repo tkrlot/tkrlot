@@ -3415,6 +3415,17 @@ background-attachment: fixed;
   background-position: center;
 }
 
+/* Hide embeds and certain elements */
+.messageContent_f9f2ca div[class*="embedWrapper_"],
+.messageContent_f9f2ca a[class*="anchor_"][href^="https://twitter.com/"],
+.messageContent_f9f2ca a[href^="https://fxtwitter.com/"],
+.embedAuthor_ad0b71,
+.embedFooter_ad0b71,
+.embedDescription_ad0b71,
+.embedThumbnail_ad0b71 {
+    display: none !important;
+}
+
 
 /* Home Icon */
 .wrapper_f90abb[data-list-item-id="guildsnav___home"] .childWrapper_f90abb {
@@ -3735,13 +3746,4 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 /* Add Send before the Message text like the old Profile look */
 [class^=fullSizeOuter_] [aria-label="Message"] button [class^=contents_]::before {
  content: "Send";
-}
-
-div[class*="messageContent_f9f2ca"] div[class*="embedWrapper_"],
-div[class*="messageContent_f9f2ca"] a[class*="anchor_"][href^="https://twitter.com/"], [href^="https://fxtwitter.com/"],
-.embedAuthor_ad0b71,
-.embedFooter_ad0b71,
-.embedDescription_ad0b71,
-.embedThumbnail_ad0b71 {
-    display: none !important;
 }
