@@ -1,0 +1,67 @@
+.scrollerInner_e2e187 {
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.1; /* Adjust overlay opacity (0 to 1) */
+
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+
+
+
+
+.inner_d0696b {
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.2; /* Adjust overlay opacity (0 to 1) */
+
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+
+
+.chat_a7d72e form,
+.chat_a7d72e .channelTextArea_d0696b,
+.innerNoAutocomplete-1WpcVO,
+.innerAutocomplete-1PN280 {
+  margin: 0;
+  min-height: 0px;
+  padding: 0;
+  border-radius: 0;
+}
+
+#app-mount .title_a7d72e, 
+#app-mount .titleCall-_b9o8P,
+#app-mount .headerBar-UHpsPw,
+#app-mount .container_e44302,
+#app-mount .header_f1629a,
+#app-mount .chat_a7d72e .channelTextArea_d0696b,
+#app-mount .friendsTable-133bsv .friendsRow-2yicud:hover,
+#app-mount .video_c8484a {
+  background: #101011 !important; /* Change background color to #101011 */
+  background-attachment: fixed;
+}
+
+#app-mount .membersWrap_cbd271::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 0%;
+    background: transparent; /* Set background to transparent */
+    background-image: var(--stars); /* Optionally keep the stars background */
+    background-position: top left;
+    background-attachment: fixed;
+}
