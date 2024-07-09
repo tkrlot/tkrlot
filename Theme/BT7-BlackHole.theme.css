@@ -3382,7 +3382,8 @@ background-attachment: fixed;
 }
 
 /*Background in my Account settings */
-.background_b69b77 {
+.background_b69b77,
+.scrollbarGhostHairline_c858ce {
   --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
   --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
   --overlay-opacity: 0.09; /* Adjust overlay opacity (0 to 1) */
@@ -3438,11 +3439,6 @@ div[class*="messageContent_f9f2ca"] a[href^="https://fxtwitter.com/"] {
     margin: 0 !important;
     padding: 0 !important;
     border: none !important;
-}
-
-/* CodBlock color transparent */
-.scrollbarGhostHairline_c858ce {
-    background-color: transparent !important;
 }
 
 /* Home Icon */
