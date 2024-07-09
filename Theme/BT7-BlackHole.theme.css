@@ -685,6 +685,7 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
   background-attachment: fixed;
 }*/
 
+/* CHANELTEXTAREA TO MAKE IT BLACK THE ISSUE*/
 #app-mount .title_a7d72e, 
 #app-mount .titleCall-_b9o8P,
 #app-mount .headerBar-UHpsPw,
@@ -693,10 +694,19 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
 #app-mount .chat_a7d72e .channelTextArea_d0696b,
 #app-mount .friendsTable-133bsv .friendsRow-2yicud:hover,
 #app-mount .video_c8484a {
-  background: #101011 !important; /* Change background color to #101011 */
-  background-attachment: fixed;
-}
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.02; /* Adjust overlay opacity (0 to 1) */
 
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
+/* END */
 
 
 .wrapper_d880dc.minimum_d880dc,
@@ -942,7 +952,8 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
 }
 
     /* 1. Embeds, Code Blocks, and Invites */
-#app-mount .markup_d6076c pre,
+   /*OLD CODE*/
+/*#app-mount .markup_d6076c pre,
 #app-mount .wrapper_b9fe76,
 #app-mount .embedInner-1-fpTo,
 #app-mount .messageGroupBlocked_e72673 .messageGroupBlockedBtn__60e77,
@@ -952,6 +963,27 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
   background-attachment: fixed;
   border-color: var(--tres)
 }
+
+/* NEW CODE */
+#app-mount .markup_f8f345 code,
+#app-mount .wrapper_b9fe76,
+#app-mount .embed_ad0b71,
+#app-mount .messageGroupBlocked_e72673 .messageGroupBlockedBtn__60e77,
+.embedFull_ad0b71,
+.textContainer_ad9cbd {
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.2; /* Adjust overlay opacity (0 to 1) */
+
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
+/*END*/
 
 .modalTextContainer_ad9cbd {
   background: var(--uno) var(--stars) top left fixed;
