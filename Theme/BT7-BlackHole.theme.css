@@ -3366,37 +3366,37 @@ background-attachment: fixed;
   }
 }
 
-/* Background for main pageWrapper and directoryContainer */
-.pageWrapper_e77fa3,
-.directoryContainer_da3f59 {
-    --black-hole-page: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
-    --stars-page: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
-    --overlay-opacity-page: 0.01; /* Adjust overlay opacity (0 to 1) */
+/*Make the shop background same as my main theme*/
+.pageWrapper_e77fa3 {
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.01; /* Adjust overlay opacity (0 to 1) */
   
     background: 
-        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity-page)), rgba(127, 127, 127, var(--overlay-opacity-page))),
-        var(--black-hole-page) center/cover fixed,
-        var(--stars-page) repeat;
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
     background-size: auto;
     background-attachment: fixed;
     background-position: center;
 }
+/*.directoryContainer_da3f59, .scrollbarGhostHairline_c858ce
 
-/* Background for specific elements like account settings and code block */
-.background_b69b77,
-.scrollbarGhostHairline_c858ce {
-    --black-hole-element: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
-    --stars-element: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
-    --overlay-opacity-element: 0.09; /* Adjust overlay opacity (0 to 1) */
+/* Background for my account settings and codeblock */
+.background_b69b77 {
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.09; /* Adjust overlay opacity (0 to 1) */
 
     background: 
-        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity-element)), rgba(127, 127, 127, var(--overlay-opacity-element))),
-        var(--black-hole-element) center/cover fixed,
-        var(--stars-element) repeat;
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
     background-size: auto;
     background-attachment: fixed;
     background-position: center;
 }
+
 
 
 /*Background for the discord home icon*/
