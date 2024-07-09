@@ -3397,19 +3397,8 @@ background-attachment: fixed;
 }
 
 /*Make the codeblocks background same as my main theme*/
-
 .scrollbarGhostHairline_c858ce {
-    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
-    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
-    --overlay-opacity: 0.01; /* Adjust overlay opacity (0 to 1) */
-  
-    background: 
-        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
-        var(--black-hole) center/cover fixed,
-        var(--stars) repeat;
-    background-size: auto;
-    background-attachment: fixed;
-    background-position: center;
+    background-color: transparent !important;
 }
 
 /* Background for my account settings and codeblock */
