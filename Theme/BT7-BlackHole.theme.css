@@ -3440,6 +3440,11 @@ div[class*="messageContent_f9f2ca"] a[href^="https://fxtwitter.com/"] {
     border: none !important;
 }
 
+/* CodBlock color transparent */
+.scrollbarGhostHairline_c858ce {
+    background-color: transparent !important;
+}
+
 /* Home Icon */
 .wrapper_f90abb[data-list-item-id="guildsnav___home"] .childWrapper_f90abb {
     background: url("") no-repeat center !important;
