@@ -3368,7 +3368,8 @@ background-attachment: fixed;
 
 /*Make the shop background same as my main theme*/
 .pageWrapper_e77fa3,
-.directoryContainer_da3f59 {
+.directoryContainer_da3f59,
+.app_bd26cc {
   --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
   --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
   --overlay-opacity: 0.01; /* Adjust overlay opacity (0 to 1) */
