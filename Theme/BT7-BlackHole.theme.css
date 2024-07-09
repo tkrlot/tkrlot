@@ -672,7 +672,8 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
   padding: 0 16px;
 }
 
-#app-mount .title_a7d72e, 
+/* OLD CODE FOR CHANELTEXTAREA TO MAKE IT BLACK THE ISSUE*/
+/*#app-mount .title_a7d72e, 
 #app-mount .titleCall-_b9o8P,
 #app-mount .headerBar-UHpsPw,
 #app-mount .container_e44302,
@@ -682,7 +683,21 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
 #app-mount .video_c8484a {
   background: var(--veil) var(--stars) top left !important;
   background-attachment: fixed;
+}*/
+
+#app-mount .title_a7d72e, 
+#app-mount .titleCall-_b9o8P,
+#app-mount .headerBar-UHpsPw,
+#app-mount .container_e44302,
+#app-mount .header_f1629a,
+#app-mount .chat_a7d72e .channelTextArea_d0696b,
+#app-mount .friendsTable-133bsv .friendsRow-2yicud:hover,
+#app-mount .video_c8484a {
+  background: #101011 !important; /* Change background color to #101011 */
+  background-attachment: fixed;
 }
+
+
 
 .wrapper_d880dc.minimum_d880dc,
 .wrapper_d880dc,
@@ -879,13 +894,23 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
 .buttons-205you {
   align-self: center;
 }
+/*OLD CODE FOR CHANNEL TEXT BAR SPACE*/
+/*.chat_a7d72e form,
+.chat_a7d72e .channelTextArea_d0696b,
+.innerNoAutocomplete-1WpcVO,
+.innerAutocomplete-1PN280 {
+  margin: 0;
+  min-height: 55px;
+  padding: 0;
+  border-radius: 0;
+}*/
 
 .chat_a7d72e form,
 .chat_a7d72e .channelTextArea_d0696b,
 .innerNoAutocomplete-1WpcVO,
 .innerAutocomplete-1PN280 {
   margin: 0;
-  min-height: 55px;
+  min-height: 0px;
   padding: 0;
   border-radius: 0;
 }
@@ -1128,7 +1153,8 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
   background-color: transparent;
 }
 
-#app-mount .membersWrap_cbd271::after {
+/* OLD CODE for member list issue */
+/*#app-mount .membersWrap_cbd271::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -1136,6 +1162,18 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
   width: 100%;
   background: var(--veil) var(--stars) top left;
   background-attachment: fixed;
+}*/
+
+#app-mount .membersWrap_cbd271::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 0%;
+    background: transparent; /* Set background to transparent */
+    background-image: var(--stars); /* Optionally keep the stars background */
+    background-position: top left;
+    background-attachment: fixed;
 }
 
 #app-mount .member-3W1lQa  {
@@ -3366,6 +3404,36 @@ background-attachment: fixed;
   }
 }
 
+/*Make the main chat background same as my main theme*/
+.scrollerInner_e2e187 {
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.1; /* Adjust overlay opacity (0 to 1) */
+
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/*Make the chat bar background same as my main theme*/
+.inner_d0696b {
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.2; /* Adjust overlay opacity (0 to 1) */
+
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
+
 /*Make the shop background same as my main theme*/
 .pageWrapper_e77fa3 {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
@@ -3396,12 +3464,7 @@ background-attachment: fixed;
     background-position: center;
 }
 
-/*Make the codeblocks background same as my main theme*/
-.scrollbarGhostHairline_c858ce {
-    background-color: transparent !important;
-}
-
-/* Background for my account settings and codeblock */
+/* Background for my account settings */
 .background_b69b77 {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
