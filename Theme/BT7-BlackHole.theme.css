@@ -3429,6 +3429,12 @@ background-attachment: fixed;
 
 /* XIV. Addon Optimization */
 
+/*DELETE Gap between the category name with the vc for bts followers */
+.containerDefault_a08117 {
+    margin: 0;
+    padding: 0;
+}
+
 /* Name, customstatus, status text, role name color*/
 .title_d1da5f,
 .customStatus_b2ca13,
