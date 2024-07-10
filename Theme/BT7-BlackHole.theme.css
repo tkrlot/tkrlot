@@ -3455,7 +3455,7 @@ background-attachment: fixed;
 
 /*Settings Button*/
 .container_b2ca13 button:nth-child(3) .lottieIcon_f73ef7{
-    --__lottieIconColor: purple !important
+    --__lottieIconColor: gray !important
 }
 
 
