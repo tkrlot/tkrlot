@@ -3569,14 +3569,23 @@ div[class*="messageContent_f9f2ca"] a[href^="https://fxtwitter.com/"] {
 }
 
 /*Hide author, etc for embed*/
-.embedAuthor_ad0b71,
-.embedFooter_ad0b71,
-.embedDescription_ad0b71,
 .embedThumbnail_ad0b71 {
     display: none !important;
 }
 
-/* Remove spaces and borders from specified Discord elements */
+/*.embedAuthor_ad0b71,
+.embedFooter_ad0b71,
+.embedDescription_ad0b71,
+.embedThumbnail_ad0b71 {
+    display: none !important;
+}*/
+
+/* Remove borders from EMBED */
+.embedWrapper_b558d0 {
+    border: none !important;
+}
+
+/* Remove spaces and borders from specified Discord elements 
 .imageContent_cf58b5,
 .embedWrapper_b558d0,
 .embedMedia_ad0b71,
@@ -3584,7 +3593,7 @@ div[class*="messageContent_f9f2ca"] a[href^="https://fxtwitter.com/"] {
     margin: 0 !important;
     padding: 0 !important;
     border: none !important;
-}
+}*/
 
 /* Home Icon */
 .wrapper_f90abb[data-list-item-id="guildsnav___home"] .childWrapper_f90abb {
