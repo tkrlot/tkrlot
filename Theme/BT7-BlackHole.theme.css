@@ -3429,6 +3429,25 @@ background-attachment: fixed;
 
 /* XIV. Addon Optimization */
 
+/*the channel name inside the connection bar left below */
+.subtext_e06aad {
+    color: #333; /* Discord's theme color (purple) */
+}
+
+/* Target the disconnected icon with Voice Connected */
+.lottieIcon_f73ef7,
+.rtcConnectionStatusConnected_c02c63 {
+    color: #333; /* Alternatively, use 'color' property for SVG fill */
+}
+
+/* Change the ping icon */
+.ping_c02c63 path {
+    fill: #333; /* Override the fill color of the path */
+}
+
+
+
+
 /*DELETE Gap between the category name with the vc for bts followers */
 .containerDefault_a08117 {
     margin: 0;
