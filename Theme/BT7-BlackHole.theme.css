@@ -3429,6 +3429,30 @@ background-attachment: fixed;
 
 /* XIV. Addon Optimization */
 
+/*Hide bd-sidebar-header and social links and premium nitro in settings*/
+.bd-sidebar-header,
+.socialLinks_c44e94,
+.premiumTab_c10c74 {
+    display: none;
+}
+
+/*Mute button when pressed*/
+.container_b2ca13 button:nth-child(1)[aria-checked="true"] .lottieIcon_f73ef7{
+    --__lottieIconColor: purple !important
+}
+/*Mute button when off*/
+.container_b2ca13 button:nth-child(1)[aria-checked="false"] .lottieIcon_f73ef7{
+    --__lottieIconColor: gray !important
+}
+/*deafen button when pressed*/
+.container_b2ca13 button:nth-child(2)[aria-checked="true"] .lottieIcon_f73ef7{
+    --__lottieIconColor: purple !important
+}
+/*deafen button when off*/
+.container_b2ca13 button:nth-child(2)[aria-checked="false"] .lottieIcon_f73ef7{
+    --__lottieIconColor: gray !important
+}
+
 /*Spotify logo track spin CD*/
 .spotifyLargeImage_f866f2,
 .assetsLargeImageSpotify_d5089b {
