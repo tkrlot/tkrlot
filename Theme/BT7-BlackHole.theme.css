@@ -3429,6 +3429,14 @@ background-attachment: fixed;
 
 /* XIV. Addon Optimization */
 
+/* Name, customstatus, status text, role name color*/
+.title_d1da5f,
+.customStatus_b2ca13,
+.statusText_d0a252,
+.roleNameOverflow_e4010c {
+    color: #333; /* Dark gray color */
+}
+
 /*Hide bd-sidebar-header and social links and premium nitro in settings*/
 .bd-sidebar-header,
 .socialLinks_c44e94,
@@ -3438,24 +3446,24 @@ background-attachment: fixed;
 
 /*Mute button when pressed*/
 .container_b2ca13 button:nth-child(1)[aria-checked="true"] .lottieIcon_f73ef7{
-    --__lottieIconColor: purple !important
+    --__lottieIconColor: #6a0dad !important; /* Dark purple color */
 }
 /*Mute button when off*/
 .container_b2ca13 button:nth-child(1)[aria-checked="false"] .lottieIcon_f73ef7{
-    --__lottieIconColor: gray !important
+    --__lottieIconColor: #333 !important; /* Dark gray color */
 }
 /*deafen button when pressed*/
-.container_b2ca13 button:nth-child(2)[aria-checked="true"] .lottieIcon_f73ef7{
-    --__lottieIconColor: purple !important
+.container_b2ca13 button:nth-child(2)[aria-checked="true"] .lottieIcon_f73ef7 {
+    --__lottieIconColor: #6a0dad !important; /* Dark purple color */
 }
 /*deafen button when off*/
 .container_b2ca13 button:nth-child(2)[aria-checked="false"] .lottieIcon_f73ef7{
-    --__lottieIconColor: gray !important
+    --__lottieIconColor: #333 !important; /* Dark gray color */
 }
 
 /*Settings Button*/
 .container_b2ca13 button:nth-child(3) .lottieIcon_f73ef7{
-    --__lottieIconColor: gray !important
+    --__lottieIconColor: #333 !important; /* Dark gray color */
 }
 
 
