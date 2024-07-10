@@ -3453,6 +3453,12 @@ background-attachment: fixed;
     --__lottieIconColor: gray !important
 }
 
+/*Settings Button*/
+.container_b2ca13 button:nth-child(3) .lottieIcon_f73ef7{
+    --__lottieIconColor: purple !important
+}
+
+
 /*Spotify logo track spin CD*/
 .spotifyLargeImage_f866f2,
 .assetsLargeImageSpotify_d5089b {
