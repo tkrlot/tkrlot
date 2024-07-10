@@ -3569,7 +3569,8 @@ div[class*="messageContent_f9f2ca"] a[href^="https://fxtwitter.com/"] {
 }
 
 /*Hide author, etc for embed*/
-.embedThumbnail_ad0b71 {
+.embedThumbnail_ad0b71,
+.embedFooter_ad0b71 {
     display: none !important;
 }
 
