@@ -3428,6 +3428,10 @@ background-attachment: fixed;
 }
 
 /* XIV. Addon Optimization */
+/* CHANGE THE PING TEXT COLOR */
+.theme-dark .tooltipGreen_b6c360 {
+    color: #333; /* Text color (white in this example) */
+}
 
 /*the channel name inside the connection bar left below */
 .subtext_e06aad {
