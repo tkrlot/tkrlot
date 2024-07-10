@@ -696,7 +696,7 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
 #app-mount .video_c8484a {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
-    --overlay-opacity: 0.02; /* Adjust overlay opacity (0 to 1) */
+    --overlay-opacity: 0.2; /* Adjust overlay opacity (0 to 1) */
 
     background: 
         linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
@@ -1197,15 +1197,22 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
 }*/
 
 #app-mount .membersWrap_cbd271::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    height: 100px;
-    width: 0%;
-    background: transparent; /* Set background to transparent */
-    background-image: var(--stars); /* Optionally keep the stars background */
-    background-position: top left;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  height: 55px;
+  width: 100%;
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.2; /* Adjust overlay opacity (0 to 1) */
+
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
     background-attachment: fixed;
+    background-position: center;
 }
 
 #app-mount .member-3W1lQa  {
@@ -1885,12 +1892,17 @@ svg[name="Activity"] {
   border-radius: 10px;
 }
 
+/*new*/
 
+#app-mount ::-webkit-scrollbar {
+    width: 16px; /* Width of the scrollbar */
+    height: 16px; /* Height of the scrollbar */
+}
 
-
-
-
-
+#app-mount ::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.2); /* Color of the scrollbar thumb */
+    border-radius: 8px; /* Rounded corners for the scrollbar thumb */
+}
 
 
 
@@ -3531,6 +3543,23 @@ background-attachment: fixed;
   background-attachment: fixed;
   background-position: center;
 }
+
+/*CHANE COLOR OF MEMBER LIST*/
+.members_cbd271 {    
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.2; /* Adjust overlay opacity (0 to 1) */
+
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/*END*/
 
 /* Hide embeds and certain elements */
 div[class*="messageContent_f9f2ca"] div[class*="embedWrapper_"],
