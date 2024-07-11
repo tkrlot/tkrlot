@@ -2484,11 +2484,11 @@ svg[name="Activity"] {
   background: var(--dnd);
 }
 
-#app-mount .tooltip_b6c360.tooltipGreen_b6c360 {
+/*#app-mount .tooltip_b6c360.tooltipGreen_b6c360 {
   background: var(--online);
 }
 
-/*#app-mount .tooltipRed_b6c360 .tooltipPointer_b6c360 {
+#app-mount .tooltipRed_b6c360 .tooltipPointer_b6c360 {
   border-top-color: var(--dnd);
 }
 
@@ -3452,7 +3452,11 @@ background-attachment: fixed;
 /*END*/
 /* CHANGE THE PING TEXT COLOR */
 .theme-dark .tooltipGreen_b6c360 {
-    color: #333; /* Text color (white in this example) */
+  color: white;
+  background-color: black;
+}
+.theme-dark .tooltipGreen_b6c360 .tooltipPointer_b6c360 {
+  border-top-color: black;
 }
 
 /*the channel name inside the connection bar left below */
