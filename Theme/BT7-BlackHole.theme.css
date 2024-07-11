@@ -3428,6 +3428,28 @@ background-attachment: fixed;
 }
 
 /* XIV. Addon Optimization */
+/* Classic Quick user actions */
+.accountProfilePopoutWrapper_b2ca13 .bannerSVGWrapper_b32cc2,
+.accountProfilePopoutWrapper_b2ca13 .avatarWrapper_f89da9,
+.accountProfilePopoutWrapper_b2ca13 .profileBadges_f89da9,
+.accountProfilePopoutWrapper_b2ca13 .userProfileInner_c69a7b:before,
+.accountProfilePopoutWrapper_b2ca13 .userPopoutOverlayBackground_c69a7b div:not(.menu_d90b3d, .menu_d90b3d *),
+.accountProfilePopoutWrapper_b2ca13 [id="account-divider-1"] {
+    display: none;
+}
+.accountProfilePopoutWrapper_b2ca13 {
+    left: 0;
+}
+.accountProfilePopoutWrapper_b2ca13 .userPopoutOverlayBackground_c69a7b {
+    margin: 0;
+    border-radius: 4px;
+}
+.accountProfilePopoutWrapper_b2ca13 > div,
+.accountProfilePopoutWrapper_b2ca13 .menu_ad5fac .submenu_d90b3d {
+    border-radius: 4px;
+    width: 220px;
+}
+/*END*/
 /* CHANGE THE PING TEXT COLOR */
 .theme-dark .tooltipGreen_b6c360 {
     color: #333; /* Text color (white in this example) */
