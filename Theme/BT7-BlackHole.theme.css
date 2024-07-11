@@ -3428,6 +3428,17 @@ background-attachment: fixed;
 }
 
 /* XIV. Addon Optimization */
+
+/* Change voice activity indicator glow color */
+.theme-dark [class*=avatarSpeaking_] {
+    box-shadow: 0 0 0 2px #333; /* Change #ff0000 to your desired border color */
+}
+
+/* Change color of username when speaking */
+.theme-dark [class*=usernameSpeaking_] {
+    color: #333; /* Replace with your desired color code */
+}
+
 /* Classic Quick user actions */
 .accountProfilePopoutWrapper_b2ca13 .bannerSVGWrapper_b32cc2,
 .accountProfilePopoutWrapper_b2ca13 .avatarWrapper_f89da9,
@@ -3657,12 +3668,12 @@ background-attachment: fixed;
 
 /*END*/
 
-/* Hide embeds and certain elements */
+/* Hide embeds and certain elements
 div[class*="messageContent_f9f2ca"] div[class*="embedWrapper_"],
 div[class*="messageContent_f9f2ca"] a[class*="anchor_"][href^="https://twitter.com/"],
 div[class*="messageContent_f9f2ca"] a[href^="https://fxtwitter.com/"] {
     display: none !important;
-}
+} */
 
 /*Hide author, etc for embed*/
 .embedThumbnail_ad0b71,
