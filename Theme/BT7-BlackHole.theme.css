@@ -2488,7 +2488,7 @@ svg[name="Activity"] {
   background: var(--online);
 }
 
-#app-mount .tooltipRed_b6c360 .tooltipPointer_b6c360 {
+/*#app-mount .tooltipRed_b6c360 .tooltipPointer_b6c360 {
   border-top-color: var(--dnd);
 }
 
@@ -2504,7 +2504,7 @@ svg[name="Activity"] {
 #app-mount .tooltipBlack-vMYxvw .tooltipPointer_b6c360,
 #app-mount .bubble-3we2di:before {
   border-top-color: var(--blurple) !important;
-}
+}*/
 
 .notice-1tZwqv {
   position: absolute;
