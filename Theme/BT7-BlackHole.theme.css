@@ -2484,7 +2484,7 @@ svg[name="Activity"] {
   background: var(--dnd);
 }
 
-/*#app-mount .tooltip_b6c360.tooltipGreen_b6c360 {
+#app-mount .tooltip_b6c360.tooltipGreen_b6c360 {
   background: var(--online);
 }
 
@@ -2504,7 +2504,7 @@ svg[name="Activity"] {
 #app-mount .tooltipBlack-vMYxvw .tooltipPointer_b6c360,
 #app-mount .bubble-3we2di:before {
   border-top-color: var(--blurple) !important;
-}*/
+}
 
 .notice-1tZwqv {
   position: absolute;
@@ -3450,14 +3450,17 @@ background-attachment: fixed;
     width: 220px;
 }
 /*END*/
+
 /* CHANGE THE PING TEXT COLOR */
 .theme-dark .tooltipGreen_b6c360 {
-  color: white;
-  background-color: black;
+  color: white !important; /* Text color */
+  background-color: black !important; /* Background color */
 }
+
 .theme-dark .tooltipGreen_b6c360 .tooltipPointer_b6c360 {
-  border-top-color: black;
+  border-top-color: black !important; /* Top border color of the pointer */
 }
+
 
 /*the channel name inside the connection bar left below */
 .subtext_e06aad {
