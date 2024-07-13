@@ -3429,6 +3429,19 @@ background-attachment: fixed;
 
 /* XIV. Addon Optimization */
 
+/* Change background and color for mention highlight */
+.mentioned_d5deea:before {
+    background-color: #333; /* Replace with your desired background color */
+    color: #333; /* Replace with your desired text color */
+}
+
+/* Change main text color for .mentioned_d5deea */
+.mentioned_d5deea {
+    background-color: #333; /* Replace with your desired main text color */
+}
+
+/*END*/
+
 /* change the links in typing chat color */
 .fakeLink_cdb578 {
     color: #333 !important; /* Changes the color to #333 and uses !important */
