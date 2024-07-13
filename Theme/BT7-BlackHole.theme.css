@@ -4098,3 +4098,12 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 [class^=fullSizeOuter_] [aria-label="Message"] button [class^=contents_]::before {
  content: "Send";
 }
+
+
+.mentioned_d5deea {
+    background-image: var(--black-hole) !important, var(--stars) !important, linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.9)) !important;
+    background-blend-mode: multiply !important, screen !important, normal !important;
+    background-size: cover !important, auto !important, cover !important;
+    background-position: center center !important, bottom right !important, center center !important;
+    background-repeat: no-repeat !important, repeat !important, repeat !important;
+}
