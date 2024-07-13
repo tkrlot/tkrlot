@@ -3429,18 +3429,7 @@ background-attachment: fixed;
 
 /* XIV. Addon Optimization */
 
-/* Change background and color for mention highlight */
-.mentioned_d5deea:before {
-    background-color: #333; /* Replace with your desired background color */
-    color: #333; /* Replace with your desired text color */
-}
 
-/* Change main text color for .mentioned_d5deea */
-.mentioned_d5deea {
-    background-color: #333; /* Replace with your desired main text color */
-}
-
-/*END*/
 
 /* change the links in typing chat color */
 .fakeLink_cdb578 {
@@ -4100,10 +4089,3 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 }
 
 
-.mentioned_d5deea {
-    background-image: var(--black-hole) !important, var(--stars) !important, linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.9)) !important;
-    background-blend-mode: multiply !important, screen !important, normal !important;
-    background-size: cover !important, auto !important, cover !important;
-    background-position: center center !important, bottom right !important, center center !important;
-    background-repeat: no-repeat !important, repeat !important, repeat !important;
-}
