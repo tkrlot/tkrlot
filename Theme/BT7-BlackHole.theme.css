@@ -3428,9 +3428,10 @@ background-attachment: fixed;
 }
 
 /* XIV. Addon Optimization */
+
 /*Hide the number of members inside vc */
 .channelInfo_f6f816 {
-    display: none
+    display: none !important;
 }
 
 /* Change the Confirmation Popuot */
