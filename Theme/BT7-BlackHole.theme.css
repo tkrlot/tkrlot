@@ -3428,6 +3428,10 @@ background-attachment: fixed;
 }
 
 /* XIV. Addon Optimization */
+/*Hide the number of members inside vc */
+.channelInfo_f6f816 {
+    display: none
+}
 
 /* Change the Confirmation Popuot */
 .bd-modal-root, .bd-modal-small, .bd-modal-footer {
