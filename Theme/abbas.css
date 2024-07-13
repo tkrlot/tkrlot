@@ -3652,11 +3652,11 @@ background-attachment: fixed;
     background-position: center;
 }
 
-/*Make the chat bar background same as my main theme*/
+/*Make the chat bar background same as my main theme
 .inner_d0696b {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
-    --overlay-opacity: 0.2; /* Adjust overlay opacity (0 to 1) */
+    --overlay-opacity: 0.2; /* Adjust overlay opacity (0 to 1) 
 
     background: 
         linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
@@ -3665,7 +3665,7 @@ background-attachment: fixed;
     background-size: auto;
     background-attachment: fixed;
     background-position: center;
-}
+}*/
 
 /*Make the shop background same as my main theme*/
 .pageWrapper_e77fa3 {
