@@ -3428,6 +3428,12 @@ background-attachment: fixed;
 }
 
 /* XIV. Addon Optimization */
+/* Change color of the message text and link */
+.messageContent_f9f2ca,
+.markup_f8f345 a {
+    color: gray !important; /* Change this to your desired text color */
+}
+
 
 /* Change the color of volume slide bar */
 .barFill_c7a159,
