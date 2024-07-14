@@ -81,9 +81,7 @@
             position: absolute;
             top: 1rem;
             left: 1rem;
-            font-size: 1.5rem;
-            color: #ffffff;
-            z-index: 1; /* Ensure it's above the background */
+            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -96,12 +94,12 @@
             <p>Hello, I'm [Your Name]. Here's a brief introduction about myself...</p>
             <a href="#" class="btn">Learn More</a>
         </div>
+        <!-- Display weather temperature -->
+        <div class="temperature" id="temperature"></div>
         <!-- Dark mode toggle button -->
         <div class="dark-mode-toggle" onclick="toggleDarkMode()">
             🌙
         </div>
-        <!-- Weather temperature -->
-        <div class="temperature" id="weather-temp">Loading...</div>
     </div>
 
     <!-- Script for toggling dark mode -->
@@ -111,17 +109,23 @@
             body.classList.toggle('dark-mode');
         }
 
-        // Function to fetch weather temperature (example)
-        function fetchWeather() {
-            // Simulated temperature (replace with actual API call)
-            const temperature = '25°C';
-
-            // Update temperature in the DOM
-            document.getElementById('weather-temp').textContent = temperature;
+        // Function to fetch weather temperature
+        async function fetchWeather() {
+            try {
+                const response = await fetch('https://api.meteosource.com/current?location=khobar&apikey=e8au1b9vq53t44dz6rvvpqfb215pszbjlwsv4agn');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                const temperatureElement = document.getElementById('temperature');
+                temperatureElement.textContent = `Temperature: ${data.temperature}°C`; // Assuming temperature is in Celsius
+            } catch (error) {
+                console.error('Error fetching weather:', error);
+            }
         }
 
-        // Call fetchWeather() when the page loads (for demonstration)
-        window.addEventListener('load', fetchWeather);
+        // Call fetchWeather when page loads
+        window.onload = fetchWeather;
     </script>
 </body>
 
