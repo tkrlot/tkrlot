@@ -2498,7 +2498,7 @@ svg[name="Activity"] {
     
 #app-mount .tooltip_b6c360,
 #app-mount .bubble-3we2di {
-  background: var(--blurple);
+  background: var(--black-hole), var(--stars) !important;
 }
     
 #app-mount .tooltipBlack-vMYxvw .tooltipPointer_b6c360,
