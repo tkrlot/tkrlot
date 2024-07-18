@@ -3443,6 +3443,11 @@ background-attachment: fixed;
     background-position: center;
 }
 
+/* Voice activity wwhen you click at the vc channel */
+.voiceEffectsActionBar_d7b7fd {
+    display: none;
+}
+
 /* change image container bg */
 .imageContainer_cf58b5 {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
