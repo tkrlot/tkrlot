@@ -3428,6 +3428,18 @@ background-attachment: fixed;
 }
 
 /* XIV. Addon Optimization */
+
+/* Change the color for the buttin when inside a vc like video camera, etc */
+.wrapper_b6e2f9 button{
+    background-color: var(--black-hole) !important; 
+}
+.wrapper_b6e2f9 div foreignObject  {
+    mask-image:none;
+}
+.wrapper_b6e2f9 .contextMenuNub_ef18ee{
+    display:none;
+}
+
 /* Change the Image container bg using grid */
 .gridContainer_b0068a {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
