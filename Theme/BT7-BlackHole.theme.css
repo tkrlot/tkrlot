@@ -937,7 +937,7 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
   display: none;
 }
 
-.gatedContent_b9693a::after {
+.gatedContent_def860::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -947,18 +947,18 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
   background-attachment: fixed;
 }
 
-.applicationStore_cecc86 .gatedContent_b9693a::after {
+.applicationStore_cecc86 .gatedContent_def860::after {
   display: none;
 }
 
     /* 1. Embeds, Code Blocks, and Invites */
    /*OLD CODE*/
 /*#app-mount .markup_f8f345 pre,
-#app-mount .wrapper_b9fe76,
+#app-mount .wrapper_a71a1c,
 #app-mount .embedInner-1-fpTo,
 #app-mount .messageGroupBlocked_e72673 .messageGroupBlockedBtn__60e77,
-.embedFull_ad0b71,
-.textContainer_ad9cbd {
+.embedFull_b0068a,
+.textContainer_d8e2d0 {
   background: var(--uno) var(--stars) top left;
   background-attachment: fixed;
   border-color: var(--tres)
@@ -966,11 +966,11 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
 
 /* NEW CODE */
 #app-mount .markup_f8f345 code,
-#app-mount .wrapper_b9fe76,
-#app-mount .embed_ad0b71,
+#app-mount .wrapper_a71a1c,
+#app-mount .embed_b0068a,
 #app-mount .messageGroupBlocked_e72673 .messageGroupBlockedBtn__60e77,
-.embedFull_ad0b71,
-.textContainer_ad9cbd {
+.embedFull_b0068a,
+.textContainer_d8e2d0 {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
     --overlay-opacity: 0.2; /* Adjust overlay opacity (0 to 1) */
@@ -985,11 +985,11 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
 }
 /*END*/
 
-.modalTextContainer_ad9cbd {
+.modalTextContainer_d8e2d0 {
   background: var(--uno) var(--stars) top left fixed;
 }
 
-.footer_ad9cbd {
+.footer_d8e2d0 {
   background-color: var(--blurple-sheer);
   border-color: var(--tres);
 }
@@ -1294,7 +1294,7 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
 .wrapper_ba0ffb,
 .wrapper_cdfd51,
 .cardFolder-3H4uH4,
-.item_e3c4bb,
+.item_d25d19,
 .fieldList_b69b77 {
   background-color: transparent;
 }
@@ -1303,7 +1303,7 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
 .accountList-305sx3,
 .connection-107AGH,
 .bumpBox_ca33de,
-.group_e3c4bb,
+.group_d25d19,
 .container_cc7b67,
 #app-mount .feature-2IUcBI,
 #app-mount .container-S9SaVf,
@@ -1311,7 +1311,7 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
   background-color: var(--blurple-sheer);
 }
 
-.group_e3c4bb {
+.group_d25d19 {
   border-color: var(--blurple-sheer);
 }
 
@@ -1363,11 +1363,11 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
   justify-content: center;
 }
 
-.mulitplePlaceholderUsername_fb03e5, 
-.placeholderAvatar_fb03e5, 
-.placeholderUsername_fb03e5,
+.mulitplePlaceholderUsername_dac468, 
+.placeholderAvatar_dac468, 
+.placeholderUsername_dac468,
 .role_deddac,
-.passthrough_e3c4bb.selected_e3c4bb,
+.passthrough_d25d19.selected_d25d19,
 .users_a5bc92 {
   background-color: var(--blurple-sheer);
 }
@@ -1411,7 +1411,7 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
 #app-mount .container-2Zlzt0,
 #app-mount .tier1Banner-1B_WXY,
 #app-mount .emptyState-2-sT0o,
-#app-mount .loading_eb1ca6,
+#app-mount .loading_e90879,
 #app-mount .userHovered-2_fT4Z:active,
 #app-mount .wrapperAudio_f316dd,
 #app-mount .guildGraphicContainer-39I_Pl,
@@ -1428,7 +1428,7 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
 
 #app-mount .inset_c0f6a6,
 .descriptionBox_c38f8d,
-.attachment_a4623d,
+.attachment_b52bef,
 .emojiContainer-1u-_sQ,
 #app-mount .wrapperAudio_f316dd,
 #app-mount .card-3_CqkU,
@@ -1459,7 +1459,7 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
 #app-mount .wrapper-3UweLa,
 #app-mount .multipleIconWrapper-1PjkRO, 
 #app-mount .section-2VKIPC,
-#app-mount .card_eb1ca6,
+#app-mount .card_e90879,
 .upsellContainer_d0de76,
 .upsellFooter_d0de76,
 .analyticsCard_d4b8cc,
@@ -1473,7 +1473,7 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
   background-attachment: fixed;
 }
 
-#app-mount .splash_eb1ca6 {
+#app-mount .splash_e90879 {
   -webkit-mask: linear-gradient(black, transparent);
   mask: linear-gradient(black, transparent);
 }
@@ -2582,7 +2582,7 @@ svg[name="Activity"] {
 }
 
   /* F. Autocomplete & Everyone Popout */
-#app-mount .autocomplete_f23da8,
+#app-mount .autocomplete_bcc24e,
 #app-mount .everyonePopout-nEbJY3 {
   background: linear-gradient(transparent, var(--blurple-sheer) 80%),var(--uno) var(--stars) top left !important;
   background-attachment: fixed;
@@ -3062,16 +3062,16 @@ background-attachment: fixed;
   background: var(--online);
 }
 
-#app-mount .phoneField_d4eb58,
+#app-mount .phoneField_f26de7,
 #app-mount .input_f89ba0 {
   background: var(--sheer) var(--stars) top left fixed;
 }
 
-#app-mount .phoneField_d4eb58 .countryButton_d4eb58 {
+#app-mount .phoneField_f26de7 .countryButton_f26de7 {
   background: var(--veil) var(--stars) top left fixed;
 }
 
-#app-mount .phoneField_d4eb58 .inputField_d4eb58 {
+#app-mount .phoneField_f26de7 .inputField_f26de7 {
   background: transparent;
 }
 
@@ -3484,7 +3484,7 @@ background-attachment: fixed;
 }
 
 /* Change background color of embed */
-.grid_ad0b71 {
+.grid_b0068a {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
     --overlay-opacity: 0.11; /* Adjust overlay opacity (0 to 1) */
@@ -3787,15 +3787,15 @@ div[class*="messageContent_f9f2ca"] a[href^="https://fxtwitter.com/"] {
 } */
 
 /*Hide author, etc for embed*/
-.embedThumbnail_ad0b71,
-.embedFooter_ad0b71 {
+.embedThumbnail_b0068a,
+.embedFooter_b0068a {
     display: none !important;
 }
 
-/*.embedAuthor_ad0b71,
-.embedFooter_ad0b71,
-.embedDescription_ad0b71,
-.embedThumbnail_ad0b71 {
+/*.embedAuthor_b0068a,
+.embedFooter_b0068a,
+.embedDescription_b0068a,
+.embedThumbnail_b0068a {
     display: none !important;
 }*/
 
@@ -3807,8 +3807,8 @@ div[class*="messageContent_f9f2ca"] a[href^="https://fxtwitter.com/"] {
 /* Remove spaces and borders from specified Discord elements 
 .imageContent_cf58b5,
 .embedWrapper_b558d0,
-.embedMedia_ad0b71,
-.embedImage_ad0b71 {
+.embedMedia_b0068a,
+.embedImage_b0068a {
     margin: 0 !important;
     padding: 0 !important;
     border: none !important;
@@ -4020,7 +4020,7 @@ cursor: pointer;
 .name_fd6364,
 .headerChildren_fd6364,
 /*.sectionDivider_c43953,*/
-.flowerStarContainer_ff7d90,
+.flowerStarContainer_c91f7d,
 .actionButtons_adcaac,
 .addButtonIcon_a08117,
 .actionIcon_f6f816,
