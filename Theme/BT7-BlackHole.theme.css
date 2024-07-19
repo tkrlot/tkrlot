@@ -3430,14 +3430,15 @@ background-attachment: fixed;
 /* XIV. Addon Optimization */
 
 /*Change the No one's around to play with Wumpus image */
-.theme-dark .friendsEmpty_a62993 .image_a3747e {
+.theme-dark .friendsEmpty_a62993, .image_a3747e {
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/6/6a/BTS%27_V_Signature.png") !important;
     opacity: 0.4; /* Adjust opacity as needed */
     background-size: cover; /* Adjust background size as needed */
 }
 
 /* To hide No one's around to play with Wumpus */
-.friendsEmpty_a62993 .text_a3747e {
+.friendsEmpty_a62993,
+.text_a3747e {
     display: none;
 }
 
