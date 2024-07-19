@@ -3440,6 +3440,11 @@ background-attachment: fixed;
     display: none;
 }
 
+/* Hide searhbar for friends DM*/
+.searchBar_f0963d {
+    display: none;
+}
+
 /* change bd buttons color */
 #app-mount .bd-button,
 .bd-button-filled,
