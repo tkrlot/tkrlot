@@ -3429,6 +3429,17 @@ background-attachment: fixed;
 
 /* XIV. Addon Optimization */
 
+/*Change the No one's around to play with Wumpus image */
+.friendsEmpty_a62993 .image_a3747e {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Park_Jimin_Signature_%28BTS%29.svg/2048px-Park_Jimin_Signature_%28BTS%29.svg.png") !important;
+    opacity: 0.4; /* Adjust opacity as needed */
+    background-size: 100% 100%; /* Adjust background size as needed */
+}
+/* To hide No one's around to play with Wumpus */
+.friendsEmpty_a62993 .text_a3747e {
+    display: none;
+}
+
 /* change bd buttons color */
 #app-mount .bd-button,
 .bd-button-filled,
