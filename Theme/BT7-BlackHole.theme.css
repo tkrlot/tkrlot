@@ -3438,19 +3438,19 @@ background-attachment: fixed;
     display: none !important; /* Change to your desired color */
 }
 
-/*Change the No one's around to play with Wumpus image */
+/*Change the No one's around to play with Wumpus image 
 .friendsEmpty_a62993,
 .image_a3747e {
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/6/6a/BTS%27_V_Signature.png") !important;
-    opacity: 0.4; /* Adjust opacity as needed */
-    background-size: 100% 100%; /* Adjust background size as needed */
-}
+    opacity: 0.4; 
+    background-size: 100% 100%;
+}*/
 
-/* To hide No one's around to play with Wumpus */
+/* To hide No one's around to play with Wumpus 
 .friendsEmpty_a62993,
 .text_a3747e {
     display: none;
-}
+}*/
 
 /* Hide searhbar for friends DM*/
 .searchBar_f0963d {
