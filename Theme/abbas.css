@@ -3429,6 +3429,11 @@ background-attachment: fixed;
 
 /* XIV. Addon Optimization */
 
+/* Hide Message actions */
+[aria-label="Message Actions"] {
+    display: none;
+}
+
 /*context menu when selected right click */
 .item_d90b3d:not(.colorDanger_d90b3d).focused_d90b3d {
     background-color: #222 !important;
