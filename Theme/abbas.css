@@ -3429,6 +3429,14 @@ background-attachment: fixed;
 
 /* XIV. Addon Optimization */
 
+/*context menu when selected right click */
+.item_d90b3d:not(.colorDanger_d90b3d).focused_d90b3d {
+    background-color: #222 !important;
+}
+.colorDefault_d90b3d:not(.hideInteraction_d90b3d):active {
+    background-color: #222 !important;
+}
+
 /* Hide chat bar buttons */
 [aria-label="Select emoji"] {
     display: none !important; /* Change to your desired color */
