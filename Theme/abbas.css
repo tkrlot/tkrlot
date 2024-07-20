@@ -4094,6 +4094,8 @@ cursor: pointer;
     display: none;
 }
 
+/* Hide the Event tab */
+.wrapper_d8bfb3:has([data-list-item-id^="channels___upcoming-events-"]){display: none}
 
 /*change the divider color below event tab*/
 .sectionDivider_c43953 {
