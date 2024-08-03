@@ -3429,6 +3429,11 @@ background-attachment: fixed;
 
 /* XIV. Addon Optimization */
 
+/* Hide the New App Chat */
+.channelAppLauncher_df39bd {
+    display: none;
+}
+
 /* Hide Message actions */
 [aria-label="Message Actions"] {
     display: none;
