@@ -3452,7 +3452,7 @@ background-attachment: fixed;
 [aria-label="Open GIF picker"],
 [aria-label="Open sticker picker"],
 [aria-label="Select emoji"],
-[aria-label="Upload a file or send invites"] {
+.attachButton_f298d4 {
     display: none !important; /* Change to your desired color */
 }
 
