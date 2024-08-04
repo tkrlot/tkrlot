@@ -1204,7 +1204,7 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
   width: 100%;
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
-    --overlay-opacity: 0.2; /* Adjust overlay opacity (0 to 1) */
+    --overlay-opacity: 0.1; /* Adjust overlay opacity (0 to 1) */
 
     background: 
         linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
@@ -1213,6 +1213,37 @@ a.selected_e9f61e .layout_e9f61e, a.channel_c91bad:hover,
     background-size: auto;
     background-attachment: fixed;
     background-position: center;
+}
+
+/* Change the transparency of the chat text bar */
+.scrollableContainer_d0696b {    
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.1; /* Adjust overlay opacity (0 to 1) */
+    --border-color: rgba(51, 51, 51, 1); /* Base color for the border */
+    --border-width: 1px; /* Border width */
+    --border-style: solid; /* Border style (e.g., solid, dashed, dotted) */
+    --border-opacity: 0.2; /* Border opacity (0 to 1) */
+    --border-radius: 6px; /* Border radius to round the corners */
+
+    /* Update border color with opacity */
+    --border-color-with-opacity: rgba(
+        51, /* Red component */
+        51, /* Green component */
+        51, /* Blue component */
+        var(--border-opacity) /* Opacity component */
+    );
+
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+    
+    border: var(--border-width) var(--border-style) var(--border-color-with-opacity);
+    border-radius: var(--border-radius); /* Apply border radius for rounded corners */
 }
 
 #app-mount .member-3W1lQa  {
@@ -3863,7 +3894,7 @@ background-attachment: fixed;
 .members_cbd271 {    
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
-    --overlay-opacity: 0.2; /* Adjust overlay opacity (0 to 1) */
+    --overlay-opacity: 0.1; /* Adjust overlay opacity (0 to 1) */
 
     background: 
         linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
@@ -3875,6 +3906,21 @@ background-attachment: fixed;
 }
 
 /*END*/
+
+/*Make the scroller base background same as my main theme*/
+.scrollerBase_c49869 {
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.12; /* Adjust overlay opacity (0 to 1) */
+
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
 
 /* Hide embeds and certain elements
 div[class*="messageContent_f9f2ca"] div[class*="embedWrapper_"],
