@@ -3451,9 +3451,12 @@ background-attachment: fixed;
 [aria-label="Send a gift"],
 [aria-label="Open GIF picker"],
 [aria-label="Open sticker picker"],
-[aria-label="Select emoji"],
-.attachButton_f298d4 {
+[aria-label="Select emoji"] {
     display: none !important; /* Change to your desired color */
+}
+/* Hide attach button in chat bar */
+[class*="attachWrapper"] {
+    display: none !important;
 }
 
 /*Change the No one's around to play with Wumpus image */
