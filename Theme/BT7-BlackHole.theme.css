@@ -3907,13 +3907,13 @@ background-attachment: fixed;
 
 /*END*/
 
-/*Make the scroller base background same as my main theme*/
+/*Make the scroller base background same as my main theme
 .scrollerBase_c49869 {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
     --overlay-opacity: 0.12; /* Adjust overlay opacity (0 to 1) */
 
-    background: 
+    /*background: 
         linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
         var(--black-hole) center/cover fixed,
         var(--stars) repeat;
