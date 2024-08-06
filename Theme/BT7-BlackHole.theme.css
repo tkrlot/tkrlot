@@ -3460,6 +3460,11 @@ background-attachment: fixed;
 
 /* XIV. Addon Optimization */
 
+/* Hide Search bar for the settings account left side */
+.searchBar_e7c031 {
+    display: none !important;
+}
+
 /* Hide the New App Chat */
 .channelAppLauncher_df39bd {
     display: none;
