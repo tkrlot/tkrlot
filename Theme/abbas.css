@@ -3429,8 +3429,7 @@ background-attachment: fixed;
 
 /* XIV. Addon Optimization */
 /* Delete message bar right side down */
-.barButtonAlt_cf58b5,
-.barButtonBase_cf58b5 {
+.jumpToPresentBar_cf58b5 {
     display: none !important;
 }
 
