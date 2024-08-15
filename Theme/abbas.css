@@ -3428,6 +3428,11 @@ background-attachment: fixed;
 }
 
 /* XIV. Addon Optimization */
+/* Hide the mod view button, etc for a member when click at their profile */
+.wrapper_cb78f1 {
+    display: none !important;
+}
+
 /* Delete message bar right side down */
 .jumpToPresentBar_cf58b5 {
     display: none !important;
