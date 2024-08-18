@@ -1251,14 +1251,14 @@ svg[name="Activity"] {
   justify-content: center;
   text-align: center;
 }
-
+/* ------------------ Scroller settings -------------- */
 #app-mount ::-webkit-scrollbar {
     width: 14px; /* Width of the scrollbar */
     height: 14px; /* Height of the scrollbar */
 }
 
 #app-mount ::-webkit-scrollbar-thumb {
-    background-color: rgba(100, 100, 100, 0.2); /* Color of the scrollbar thumb */
+    background-color: #111; /* Color of the scrollbar thumb */
     border-radius: 8px; /* Rounded corners for the scrollbar thumb */
 }
 
@@ -2750,4 +2750,174 @@ svg[name="Activity"] {
     min-width: 68px;
 }
 
+/*for search bar*/
+.toolbar_fc4f04 {
+    display: none;
+}
 
+/*To hide the server name, star nitro, the triangle*/
+.name_fd6364,
+.headerChildren_fd6364,
+.flowerStarContainer_c91f7d,
+.actionButtons_adcaac,
+.addButtonIcon_a08117,
+.actionIcon_f6f816,
+.children_fc4f04,
+.scroller_bf550a,
+.statusText_e66732,
+/*For the search bar, etc */
+.pencilIcon_e66732,
+.title_a7d72e,
+.container_fc4f04,
+.themed_fc4f04,
+.pencilContainer_c3e427 {
+    display: none;
+}
+
+/* Hide the Event tab */
+.wrapper_d8bfb3:has([data-list-item-id^="channels___upcoming-events-"]){display: none}
+
+/*change the divider color below event tab*/
+.sectionDivider_c43953 {
+  border: none !important;
+  background-color: #000006 !important;
+  border-radius: 1px;
+}
+
+/* Hide Friends tab */
+[href="/channels/@me"]{
+  display: none;
+}
+/* Hide Direct messages label */
+.privateChannelsHeaderContainer_c47fa9 {
+    display: none;
+}
+/* Hide Explore Discoverable Servers */
+div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tutorialContainer_c96c45:has(div[data-list-item-id="guildsnav___create-join-button"]) {display: none !important;}
+
+.guildSeparator_d0c57e,
+.pill_a5ad63,
+.wrapper_c4cd66 {
+    display: none;
+}
+
+.premiumIconWrapper_c3e427 {
+    display: none;
+}
+
+/* Full bio fix */
+.viewFullBio_fc5c48{display: none;}
+
+/*badge for account list transparent */
+.container_e5a42d,
+.badgeList_b69b77 {
+    background: TRANSPARENT;
+}
+
+/* Noise Cancel Button */
+.button_adca65:has(path[d^=" M0,-5 C0,-5 0,-5 0,-5 C0.5519999861717224"]){
+  display: none
+}
+
+.panel_bf1a22 {
+    display: none;
+}
+
+/* Match Status Bubble color with Profile Primary Color */
+.custom-profile-theme [class^=statusBubble_] {
+  background-color: var(--profile-gradient-primary-color);
+}
+.custom-profile-theme [class^=statusBubbleOuter_]:before {
+  background-color: var(--profile-gradient-primary-color);
+}
+.custom-profile-theme [class^=statusBubbleOuter_]:after {
+  background-color: var(--profile-gradient-primary-color);
+}
+
+/* Match Send Friend Request Button color with the Profile Color */
+.custom-profile-theme [aria-label="Send Friend Request"] button {
+ background-color: var(--profile-gradient-button-color);
+ transition: opacity .2s ease-in-out;
+}
+.custom-profile-theme [aria-label="Send Friend Request"] button:hover {
+ background-color: var(--profile-gradient-button-color);
+ opacity: 0.8;
+}
+
+/* Add Send before the Message text like the old Profile look */
+[class^=fullSizeOuter_] [aria-label="Message"] button [class^=contents_]::before {
+ content: "Send";
+}
+
+/* Change the background of the vc background for a person */
+.root_dd069c {
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.01; /* Adjust overlay opacity (0 to 1) */
+
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.background_cff728 {
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.02; /* Adjust overlay opacity (0 to 1) */
+
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
+/** END **/
+
+/* Hide the camera icon when hover over a name in vc */
+.selectedIcon_ba4b17 {
+    display: none !important;
+}
+
+/* To Hide chat icon right top when click at vc */
+[aria-label="Pop Out"],
+.chatIcon_f420ee {
+    display: none !important;
+}
+
+/* Hide the name and buttons in name in vc */
+.overlayBottom_ba4b17 {
+    display: none !important;
+}
+
+/* Hide and show hide members in the vc chat */
+[aria-label="Hide Members"] {
+    opacity: 0 !important;
+    transition: opacity 0.3s !important;
+}
+
+[aria-label="Hide Members"]:hover {
+    opacity: 1 !important;
+}
+/*END*/
+
+/* Hide Activity Button in vc */
+[aria-label="Start An Activity"],
+[aria-label="Camera Unavailable"] {
+    display: none !important;
+}
+
+/* Move the buttons in vc to left little bit */
+.wrapper_b6e2f9 {
+    transform: translateX(-100px) !important; /* Adjust -100px to your desired amount */
+}
+
+/* Change the color of vc indicator color */
+.border_ba4b17.speaking_ba4b17 {
+    box-shadow: inset 0 0 0 2px #222, inset 0 0 0 3px var(--black-500);
+}
