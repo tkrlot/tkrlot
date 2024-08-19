@@ -4362,3 +4362,9 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .border_ba4b17.speaking_ba4b17 {
     box-shadow: inset 0 0 0 2px #222, inset 0 0 0 3px var(--black-500);
 }
+
+
+/* Delete the Banner for new effects in Profiles Page */
+.container_da1432 {
+  display: none;
+}
