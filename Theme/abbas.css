@@ -3840,7 +3840,18 @@ background-attachment: fixed;
     background-position: center;
 }
 
+/* Use Dropdown for music filters, etc */
+.popout_f6639d {
+    --overlay-opacity: 0.3; /* Adjust overlay opacity (0 to 1) */
 
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
 
 /*Background for the discord home icon*/
 .listItemWrapper_dfb2f8 {
