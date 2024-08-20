@@ -4338,3 +4338,8 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .container_da1432 {
   display: none;
 }
+
+/* Delete the DM Panel for user information in right side*/
+.userPanelOuter_c69a7b {
+  display: none !important;
+}
