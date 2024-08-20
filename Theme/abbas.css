@@ -4314,3 +4314,8 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .border_ba4b17.speaking_ba4b17 {
     box-shadow: inset 0 0 0 2px #222, inset 0 0 0 3px var(--black-500);
 }
+
+/* Delete the DM Panel for user information in right side*/
+.userPanelOuter_c69a7b {
+  display: none !important;
+}
