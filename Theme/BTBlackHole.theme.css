@@ -4356,3 +4356,22 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .userPanelOuter_c69a7b {
   display: none !important;
 }
+
+/* To change the display username in left side bottom */
+.title_b97bdb {
+    color: #222 !important;
+}
+
+/* to change the avatar left side below opacity */
+.wrapper_c51b4e.avatar_b2ca13 {
+    opacity: 0.4; /* Adjust this value as needed */
+}
+
+/* to change the channel list names opacity, icons, category name and triangle change the server icon opacity  */
+.name_d8bfb3.overflow_a82120,
+.icon_d8bfb3,
+.overflow_a82120,
+.icon_a08117,
+.wrapper_f90abb {
+    opacity: 0.4; /* Adjust this value as needed */
+}
