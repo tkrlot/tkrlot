@@ -1883,7 +1883,7 @@ svg[name="Activity"] {
 }
 
 .scroller-2FKFPG::-webkit-scrollbar-thumb,
-.root_f88b1e::-webkit-scrollbar-thumb,
+.root_d1ae73::-webkit-scrollbar-thumb,
 #bd-settingspane-container .scroller-wrap .scroller::-webkit-scrollbar-thumb,
 .contentRegionScroller_c25c6d::-webkit-scrollbar-thumb,
 .scrollerBase-_bVAAt::-webkit-scrollbar-thumb {
@@ -4177,10 +4177,10 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 }
 
 /* Full bio fix */
-.viewFullBio_fc5c48{display: none;}
+.viewFullBio_abaf7d{display: none;}
 
 /*badge for account list transparent */
-.container_e5a42d,
+.container_b64375,
 .badgeList_b69b77 {
     background: TRANSPARENT;
 }
@@ -4211,7 +4211,7 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .rolePill_fa2f72,
 [class="button_b709ea button_dd4f85 lookFilled_dd4f85 colorPrimary_dd4f85 sizeSmall_dd4f85 grow_dd4f85"],
 [class="button_b709ea button_dd4f85 lookFilled_dd4f85 colorBrand_dd4f85 sizeSmall_dd4f85 grow_dd4f85"],
-[class="button_c6eb7b button_dd4f85 lookFilled_dd4f85 buttonColor_cd74cc buttonSize_c6eb7b fullWidth_dd4f85 grow_dd4f85"] {
+[class="button_c6eb7b button_dd4f85 lookFilled_dd4f85 buttonColor_f00225 buttonSize_c6eb7b fullWidth_dd4f85 grow_dd4f85"] {
   background-color: #030007 !important;
   /* Adjust other styles as needed */
 }
