@@ -3597,11 +3597,6 @@ background-attachment: fixed;
     color: #333; /* Changes the color to red using hexadecimal */
 }
 
-/*Hide the number of members inside vc */
-.channelInfo_f6f816 {
-    display: none !important;
-}
-
 /* Change the Confirmation Popuot */
 .bd-modal-root, .bd-modal-small, .bd-modal-footer {
     background-image: var(--black-hole), var(--stars);
