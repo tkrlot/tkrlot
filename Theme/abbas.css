@@ -4314,3 +4314,8 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .userPanelOuter_c69a7b {
   display: none !important;
 }
+
+ /* To hide the new image editior button right top corner */
+.hoverButtonGroup_d0395d {
+    display: none !important;
+}
