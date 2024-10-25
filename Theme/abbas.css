@@ -634,7 +634,7 @@ a.selected_d808b0 .layout_d808b0, a.channel_c91bad:hover,
 .scroller__244e5,
 .scroller_ff90b2,
 [class*="scroller-"],
-.scrollableContainer_d0696b,
+.scrollableContainer_bdf0de,
 .nowPlayingColumn_c2739c,
 .container_ee69e0,
 .container_bf550a,
@@ -678,7 +678,7 @@ a.selected_d808b0 .layout_d808b0, a.channel_c91bad:hover,
 #app-mount .headerBar-UHpsPw,
 #app-mount .container_fc4f04,
 #app-mount .header_f1629a,
-#app-mount .chat_a7d72e .channelTextArea_d0696b,
+#app-mount .chat_a7d72e .channelTextArea_a7d72e,
 #app-mount .friendsTable-133bsv .friendsRow-2yicud:hover,
 #app-mount .video_c84990 {
   background: var(--veil) var(--stars) top left !important;
@@ -691,7 +691,7 @@ a.selected_d808b0 .layout_d808b0, a.channel_c91bad:hover,
 #app-mount .headerBar-UHpsPw,
 #app-mount .container_fc4f04,
 #app-mount .header_f1629a,
-#app-mount .chat_a7d72e .channelTextArea_d0696b,
+#app-mount .chat_a7d72e .channelTextArea_a7d72e,
 #app-mount .friendsTable-133bsv .friendsRow-2yicud:hover,
 #app-mount .video_c84990 {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
@@ -716,7 +716,7 @@ a.selected_d808b0 .layout_d808b0, a.channel_c91bad:hover,
   background-attachment: fixed;
 }
 
-.scrollableContainer_d0696b .inner_d0696b{
+.scrollableContainer_bdf0de .inner_d0696b{
   margin-bottom: 0px;
 }
 
@@ -884,7 +884,7 @@ a.selected_d808b0 .layout_d808b0, a.channel_c91bad:hover,
   padding-bottom: 30px;
 }
 
-.chat_a7d72e .channelTextArea_d0696b {
+.chat_a7d72e .channelTextArea_a7d72e {
   margin: 0px 0 0 0px;
   padding: 0;
   border: none;
@@ -906,7 +906,7 @@ a.selected_d808b0 .layout_d808b0, a.channel_c91bad:hover,
 }
 /*OLD CODE FOR CHANNEL TEXT BAR SPACE*/
 /*.chat_a7d72e form,
-.chat_a7d72e .channelTextArea_d0696b,
+.chat_a7d72e .channelTextArea_a7d72e,
 .innerNoAutocomplete-1WpcVO,
 .innerAutocomplete-1PN280 {
   margin: 0;
@@ -916,7 +916,7 @@ a.selected_d808b0 .layout_d808b0, a.channel_c91bad:hover,
 }*/
 
 .chat_a7d72e form,
-.chat_a7d72e .channelTextArea_d0696b,
+.chat_a7d72e .channelTextArea_a7d72e,
 .innerNoAutocomplete-1WpcVO,
 .innerAutocomplete-1PN280 {
   margin: 0;
