@@ -716,11 +716,11 @@ a.selected_d808b0 .layout_d808b0, a.channel_c91bad:hover,
   background-attachment: fixed;
 }
 
-.scrollableContainer_bdf0de .inner_d0696b{
+.scrollableContainer_bdf0de .inner_bdf0de{
   margin-bottom: 0px;
 }
 
-.chat_a7d72e .textArea_d0696b {
+.chat_a7d72e .textArea_bdf0de {
   background-color: transparent !important;
   line-height: 1.25rem !important;
   margin-top: 8px;
@@ -895,7 +895,7 @@ a.selected_d808b0 .layout_d808b0, a.channel_c91bad:hover,
 }
 
 
-.chat_a7d72e .textArea_d0696b {
+.chat_a7d72e .textArea_bdf0de {
   background-color: transparent !important;
   line-height: 1.25rem !important;
   margin-top: 8px;
@@ -925,11 +925,11 @@ a.selected_d808b0 .layout_d808b0, a.channel_c91bad:hover,
   border-radius: 0;
 }
 
-.sansAttachButton_d0696b:not(.innerDisabled__37f59) {
+.sansAttachButton_bdf0de:not(.innerDisabled__37f59) {
   padding-left: 0px
 }
 
-.sansAttachButton_d0696b > .textArea_d0696b {
+.sansAttachButton_bdf0de > .textArea_bdf0de {
   margin-left: 16px;
 }
 
@@ -1529,7 +1529,7 @@ a.selected_d808b0 .layout_d808b0, a.channel_c91bad:hover,
 #app-mount .tierNoneContainer-3hhK3h,
 #app-mount .tierBody_da77bd,
 .detailsBlock_a206c7,
-.premiumSubscriptionAccountCredit_ca73a1,
+.premiumSubscriptionAccountCredit_b7f69f,
 .descriptionInput-3b30C8 {
   background: var(--sheer);
 }
@@ -3833,7 +3833,7 @@ background-attachment: fixed;
 }
 
 /*Make the chat bar background same as my main theme
-.inner_d0696b {
+.inner_bdf0de {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
     --overlay-opacity: 0.2; /* Adjust overlay opacity (0 to 1) 
