@@ -1521,7 +1521,7 @@ a.selected_d808b0 .layout_d808b0, a.channel_c91bad:hover,
   background-image: linear-gradient(90deg,var(--sheer),transparent);
 }
 
-#app-mount .iconCircle_e960ab,
+#app-mount .iconCircle_bd2d4e,
 #app-mount .emojiAliasInput_dc1809 .emojiInput_dc1809,
 #app-mount .mediaBarWrapper_f7877e, 
 #app-mount .mediaBarWrapper_f7877e:after, 
@@ -4377,6 +4377,6 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 }
 
 /* Hide the new Discover button in the server list below */
-.footer_f8ec41 {
+.footer_d71945 {
     display: none !important;
 }
