@@ -4321,6 +4321,6 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 }
 
 /* Hide the new Discover button in the server list below */
-.footer_d71945 {
+.footer_f8ec41 {
     display: none !important;
 }
