@@ -4295,7 +4295,6 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 /*END*/
 
 /* Hide Activity Button in vc */
-[aria-label="Start An Activity"],
 [aria-label="Camera Unavailable"] {
     display: none !important;
 }
