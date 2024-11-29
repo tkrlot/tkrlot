@@ -4326,7 +4326,6 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 /*END*/
 
 /* Hide Activity Button in vc */
-[aria-label="Start An Activity"],
 [aria-label="Camera Unavailable"] {
     display: none !important;
 }
@@ -4377,6 +4376,6 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 }
 
 /* Hide the new Discover button in the server list below */
-.footer_f8ec41 {
+.footer_d71945 {
     display: none !important;
 }
