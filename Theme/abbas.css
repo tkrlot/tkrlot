@@ -3706,7 +3706,7 @@ background-attachment: fixed;
 /* Name, customstatus, status text, role name color*/
 .title_d1da5f,
 .customStatus_b2ca13,
-.statusText_d0a252,
+.statusText_af9888,
 .roleNameOverflow_e4010c {
     color: #333; /* Dark gray color */
 }
@@ -4320,6 +4320,6 @@ div.listItem_c96c45:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 }
 
 /* Hide the new Discover button in the server list below */
-.footer_f8ec41 {
+.footer_d71945 {
     display: none !important;
 }
