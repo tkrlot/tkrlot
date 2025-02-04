@@ -3818,7 +3818,9 @@ background-attachment: fixed;
 }
 
 /*Make the main chat background same as my main theme*/
-.scrollerInner__36d07 {
+.scrollerInner__36d07,
+.container_f369db,
+.scrollerContent__36d07 {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
     --overlay-opacity: 0.1; /* Adjust overlay opacity (0 to 1) */
