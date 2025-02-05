@@ -3692,12 +3692,12 @@ background-attachment: fixed;
 }
 
 /* Change voice activity indicator glow color */
-.theme-dark [class*=avatarSpeaking_] {
+.visual-refresh [class*=avatarSpeaking_] {
     box-shadow: 0 0 0 2px #333; /* Change #ff0000 to your desired border color */
 }
 
 /* Change color of username when speaking */
-.theme-dark [class*=usernameSpeaking_] {
+.visual-refresh [class*=usernameSpeaking_] {
     color: #333; /* Replace with your desired color code */
 }
 
@@ -3725,12 +3725,12 @@ background-attachment: fixed;
 /*END*/
 
 /* CHANGE THE PING TEXT COLOR */
-.theme-dark .tooltipGreen__382e7 {
+.visual-refresh .tooltipGreen__382e7 {
   color: white !important; /* Text color */
   background-color: black !important; /* Background color */
 }
 
-.theme-dark .tooltipGreen__382e7 .tooltipPointer__382e7 {
+.visual-refresh .tooltipGreen__382e7 .tooltipPointer__382e7 {
   border-top-color: black !important; /* Top border color of the pointer */
 }
 
@@ -4135,7 +4135,7 @@ cursor: pointer;
     opacity: .5;
     filter: blur(2px);
 }
-.theme-dark .folder__48112[aria-expanded="false"] {
+.visual-refresh .folder__48112[aria-expanded="false"] {
     background-color: #474747;
 }
 .theme-light .folder__48112[aria-expanded="false"] {
