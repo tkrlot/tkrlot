@@ -3475,15 +3475,18 @@ background-attachment: fixed;
     display: none !important;
 }
 
-/* Hide the New App Chat */
-.channelAppLauncher_e6e74f {
-    display: none;
+/* Hide the New App Chat ( new bar below ) */
+.accessoryBar__74017 {
+  display: none !important;
 }
 
-/* Hide Message actions */
-[aria-label="Message Actions"] {
-    display: none;
+/* Hide Message actions forwaard, etc */
+.buttons__5126c,
+.container__040f0,
+.isHeader__040f0 {
+  display: none !important;
 }
+
 
 /*context menu when selected right click */
 .item_c1e9c4:not(.colorDanger_c1e9c4).focused_c1e9c4 {
@@ -4307,7 +4310,8 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 
 /* To Hide chat icon right top when click at vc */
 [aria-label="Pop Out"],
-.chatIcon__233f8 {
+.chatIcon__233f8,
+.controlIcon_f1ceac{
     display: none !important;
 }
 
@@ -4317,19 +4321,19 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 }
 
 /* Hide and show hide members in the vc chat */
-[aria-label="Hide Members"] {
+.actionRow__6981d {
     opacity: 0 !important;
     transition: opacity 0.3s !important;
 }
 
-[aria-label="Hide Members"]:hover {
+.actionRow__6981d:hover {
     opacity: 1 !important;
 }
 /*END*/
 
-/* Hide Activity Button in vc */
-[aria-label="Camera Unavailable"] {
-    display: none !important;
+/* Hide Activity Button in vc disabled ones like camera */
+.fauxDisabled__666fa {
+  display: none !important;
 }
 
 /* Move the buttons in vc to left little bit */
