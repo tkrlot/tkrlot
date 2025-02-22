@@ -4388,7 +4388,7 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 :root {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
-    --overlay-opacity: 0.1; /* Adjust overlay opacity (0 to 1) */
+    --overlay-opacity: 0.01; /* Adjust overlay opacity (0 to 1) */
 }
 
 /* Apply to content__37e49 */
