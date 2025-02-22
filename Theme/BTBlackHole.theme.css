@@ -4381,3 +4381,49 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .footer__214dc {
     display: none !important;
 }
+
+/* -------------------------------------- */
+
+/* Define custom variables in root if not already defined */
+:root {
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.1; /* Adjust overlay opacity (0 to 1) */
+}
+
+/* Apply to content__37e49 */
+.content__37e49 {
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat !important;
+    background-size: auto !important;
+    background-attachment: fixed !important;
+    background-position: center !important;
+}
+
+/* Maintain styling across states */
+.content__37e49:hover,
+.content__37e49:focus,
+.content__37e49:active {
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat !important;
+    background-size: auto !important;
+    background-attachment: fixed !important;
+    background-position: center !important;
+}
+/*------------------------------------------*/
+/* Hide the element */
+.panels_c48ade > .container__37e49 .flex__7c0ba {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; /* Prevents interaction when hidden */
+}
+
+/* Show on hover */
+.panels_c48ade > .container__37e49:hover .flex__7c0ba {
+    opacity: 1;
+    pointer-events: auto;
+}
