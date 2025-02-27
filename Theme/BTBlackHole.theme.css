@@ -4416,14 +4416,14 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 }
 /*------------------------------------------*/
 /* Hide the element */
-.panels_c48ade > .container__37e49 .flex__7c0ba {
+.panels_c48ade > .container__37e49 .buttons__37e49 {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     pointer-events: none; /* Prevents interaction when hidden */
 }
 
 /* Show on hover */
-.panels_c48ade > .container__37e49:hover .flex__7c0ba {
+.panels_c48ade > .container__37e49:hover .buttons__37e49 {
     opacity: 1;
     pointer-events: auto;
 }
