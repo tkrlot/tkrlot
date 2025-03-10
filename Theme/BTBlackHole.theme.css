@@ -4435,6 +4435,17 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
     display: none !important;
 }
 
+.buttonSection__1405b {
+  .staticButton_f1ceac:has([d*="M-0.6899999976158142,0.6899999976158142 C0.6679999828338623,2.0480000972747803 1.5089999437332153,3.5239999294281006 1.840000033378601,4.736000061035156 C2.187999963760376,6.011000156402588 1.8919999599456787,6.564000129699707 1.7280000448226929,6.728000164031982 C1.5640000104904175,6.892000198364258 1.0110000371932983"]) {
+    display: none;
+  }
+}
+
+[aria-label="Disconnect"],
+[aria-label="Share Your Screen"] {
+    margin: 0; /* Removes any default margin */
+    padding: 0; /* Removes any default padding */
+}
 
 [aria-label="Turn Off Microphone"],
 [aria-label="Share Your Screen"] {
