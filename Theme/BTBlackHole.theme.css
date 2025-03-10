@@ -4441,3 +4441,10 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
     margin: 0; /* Removes any default margin */
     padding: 0; /* Removes any default padding */
 }
+
+.buttonSection__1405b.experimentButtonSection__1405b {
+    background: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
