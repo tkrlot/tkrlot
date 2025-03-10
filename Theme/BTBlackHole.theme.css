@@ -4427,3 +4427,17 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
     opacity: 1;
     pointer-events: auto;
 }
+
+[aria-label="More Options"],
+[aria-label="Start An Activity"],
+[aria-label="Play Activities here"],
+.container__26d03 {
+    display: none !important;
+}
+
+
+[aria-label="Turn Off Microphone"],
+[aria-label="Share Your Screen"] {
+    margin: 0; /* Removes any default margin */
+    padding: 0; /* Removes any default padding */
+}
