@@ -4052,9 +4052,27 @@ div[class*="messageContent_c19a55"] a[href^="https://fxtwitter.com/"] {
 }
 
 /*Minifiedmemberlist*/
+/*.members_c8ffbb,
+.container_c8ffbb {
+    width: 75px;
+    transition: 0.3s ease;
+}
+.membersWrap_c8ffbb {
+    min-width: 0;
+    width: min-content;
+}
+.container_c8ffbb:hover,
+.container_c8ffbb:hover .members_c8ffbb {
+      width: 200px;
+}
+.member__9f47b {
+    max-width: unset;
+}*/
+
+/*Minifiedmemberlist*/
 .members_c8ffbb,
 .container_c8ffbb {
-    width: 64px;
+    width: 8px;
     transition: 0.3s ease;
 }
 .membersWrap_c8ffbb {
