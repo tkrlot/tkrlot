@@ -3658,11 +3658,6 @@ background-attachment: fixed;
 
 /* END */
 
-/* change the links in typing chat color */
-.fakeLink_ada32f {
-    color: #333 !important; /* Changes the color to #333 and uses !important */
-}
-
 /* Change background color of embed */
 .grid__623de {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
