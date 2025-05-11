@@ -567,12 +567,12 @@ a.selected__91a9d .layout__91a9d, a.channel__972a0:hover,
 }
 
   /* C. Guild Folders */
-#app-mount .expandedFolderBackground__48112, 
+#app-mount .folderGroupBackground__48112, 
 #app-mount .folder-1hbNCn {
   background-color: transparent;
 }
 
-#app-mount .expandedFolderBackground__48112::before {
+#app-mount .folderGroupBackground__48112::before {
   content: "";
   position: absolute;
   top: 0;
@@ -4178,7 +4178,7 @@ cursor: pointer;
     scale: 10;
 }
 .expandedFolderIconWrapper__48112::after,
-.closedFolderIconWrapper__48112::after {
+.folderPreview__48112::after {
     content: "";
     background-color: #fff;
     width: 24px;
@@ -4186,14 +4186,14 @@ cursor: pointer;
     position: absolute;
     clip-path: path("M20 7H12L10.553 5.106C10.214 4.428 9.521 4 8.764 4H3C2.447 4 2 4.447 2 5V19C2 20.104 2.895 21 4 21H20C21.104 21 22 20.104 22 19V9C22 7.896 21.104 7 20 7Z");
 }
-.closedFolderIconWrapper__48112 > .guildIcon__48112 {
+.folderPreview__48112 > .folderPreviewGuildIcon__48112 {
     opacity: .5;
     filter: blur(2px);
 }
-.theme-dark .folder__48112[aria-expanded="false"] {
+.theme-dark .hiddenVisually__27f77[aria-expanded="false"] {
     background-color: #474747;
 }
-.theme-light .folder__48112[aria-expanded="false"] {
+.theme-light .hiddenVisually__27f77[aria-expanded="false"] {
     background-color: #747474;
 }
 
