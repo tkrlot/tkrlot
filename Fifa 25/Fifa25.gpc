@@ -1,0 +1,3368 @@
+/*
+
+**Setup Instructions**:
+
+1. Enter the menu by holding (L2/LT) + Options.
+2. Access RS New Way by pressing (CROSS/A).
+3. If you want to start playing right away, you can choose "always on" by pressing the D-pad right.
+4. If you want to choose your skills manually, follow these steps:
+   - Access "always on" by pressing (CROSS/A).
+   - Navigate through directions by pressing the D-pads (left or right).
+   - Select a skill for all 8 directions by holding (L2/LT) + D-pads (left or right).
+5. Once you're done, exit all menus by tapping (CIRCLE/B).
+6. Your settings should now be saved. Enjoy!
+
+---
+*/
+
+//====================================================
+// YOUR BUTTON LAYOUT : CLASIC
+//====================================================
+define ShotBtn       = PS4_CIRCLE     ; // Shot Btn         (default B/CIRCLE 
+define PassBtn       = PS4_CROSS      ; // Short Pass Btn   (default A/CROSS)
+define PlayerRun     = PS4_L1         ; // Player Run       (default L1/LB) 
+define FinesseShot   = PS4_R1         ; // Finesse Shot     (default R1/RB)
+define PaceCtrol     = PS4_L2         ; // Protect Ball     (default L2/LT)
+define SprintBtn     = PS4_R2         ; // Sprint Btn       (default R2/RT)
+define CrossBtn      = PS4_SQUARE     ; // Cross Btn        (default X/SQUARE)
+define ThroughBall   = PS4_TRIANGLE   ; // Through Ball Btn (default Y/TRIANGLE) 
+//====================================================
+define MOVE_X        = PS4_LX;        
+define MOVE_Y        = PS4_LY;        
+define SKILL_STICK_X = PS4_RX;        
+define SKILL_STICK_Y = PS4_RY;        
+//====================================================
+//-------------------------------------------------------------- 
+// SKILLS LIST                                                   
+//-------------------------------------------------------------- 
+define None = 0;
+define F_Rainbow_PS_Skill = 1;
+define Rainbow_PS_Skill = 2;
+define Roll_Sombrero_PS_SKILL = 3;
+define STEP_OVER_FEINT_SKILL = 4;
+define REVERSE_STEP_OVER_SKILL = 5;
+define STEP_OVER_BOOST_SKILL = 6;
+define HOCUS_POCUS_SKILL = 7;
+define TRIPLE_ELASTICO_SKILL = 8;
+define ELASTICO_SKILL = 9;
+define REVERSE_ELASTICO_SKILL = 10;
+define FLAIR_Nutmeg_SKILL = 11;
+define DRAG_BACK_UNIVERSAL_SKILL = 12;
+define DRAG_TO_DRAG_SKILL = 13;
+define CRUYFF_TURN_SKILL = 14;
+define LA_CROQUETA_SKILL = 15;
+define ROULETTE_SKILL = 16;
+define FLAIR_ROULETTE_SKILL = 17;
+define FEINT_AND_EXIT_SKILL = 18;
+define FEINT_L_EXIT_R_SKILL = 19;
+define WAKA_WAKA_SKILL = 20;
+define BODY_FEINT_SKILL = 21;
+define FEINT_FORWARD_AND_TURN = 22;
+define TURN_BACK = 23;
+define DIRECTIONAL_NUTMEG_SKILL = 24;
+define FOUR_TOUCH_TURN_SKILLS = 25;
+define SKILLED_BRIDGE_SKILL = 26;
+define CANCELED_4_TOUCH_TURN_SKILL = 27;
+define Roll_Sombrero_SKILL = 28;
+define BALL_ROLL_SKILL = 29;
+define Ball_Roll_drag_SKILL = 30;
+define BALL_ROLL_CHOP_SKILL = 31;
+define BALL_ROLL_FAKE_TURN = 32;
+define BALL_ROLL_TO_SCOOP_TURN_SKILL = 33;
+define SCOOP_TURN_FAKE_SKILL = 34;
+define BALL_ROLL_STEP_OVER_SKILL = 35;
+define BALL_ROLL_CUT_180_SKILL = 36;
+define HEEL_TO_HEEL_FLICK_SKILL = 37;
+define LATERAL_HEEL_TO_HEEL_SKILL = 38;
+define DRAG_TO_HEEL = 39;
+define DIAGONAL_HEEL_CHOP_SKILL = 40;
+define HEEL_TO_BALL_ROLL_SKILL = 41;
+define BERBA_MCGEADY_SPIN_SKILL = 42;
+define ONE_FOOT_SPIN_SKILL = 43;
+define CANCELED_BERBA_SPIN_SKILL = 44;
+define CANCELED_BERBA_SPIN_WITH_DIRECTION = 45;
+define SPIN_MOVE_LEFT_RIGHT_SKILL = 46;
+define FAKE_BERBA_OPP_EXIT_SKILL = 47;
+define FAKE_BERBA_FAKE_DRAG_SKILL = 48;
+define FAKE_SHOT_SKILL = 49;
+define FAKE_PASS_SKILL = 50;
+define FAKE_DRAG_BACK_SKILL = 51;
+define FAKE_SHOT_CANCEL_SKILL = 52;
+define FAKE_RABONA_SKILL = 53;
+define JOG_OPENUP_FAKE_SHOT = 54;
+define CANCEL_SHOOT_SKILL = 55;
+define RONALDO_CHOP_SKILL = 56;
+define OKKOSHA_FLICK_SKILL = 57;
+define RAINBOW_SKILL = 58;
+define Flair_Rainbow_SKILL = 59;
+define ADVANCED_RAINBOW_SKILL = 60;
+define JUGGLING_RAINBOW_SKILL = 61;
+define DRAG_BACK_SOMBRERO_SKILL = 62;
+define SOMBRERO_FLICK_SKILL = 63;
+define JUGGLE_BACK_SOMBRERO_SKILL = 64;
+define STOP_V_DRAG_SKILL = 65;
+define REV_OR_ELASTICO_SKILL = 66;
+define STOP_REV_OR_ELASTICO_SKILL = 67;
+define DRAG_REV_OR_ELASTICO_SKILL = 68;
+define RABONA_TO_REV_ELASTICO_SKILL = 69;
+define RABONA_TO_ELASTICO_SKILL = 70;
+define STOP_LA_CROQUETA_SKILL   = 71;
+define TR_BALL_HOP_SKILL = 72; 
+define TR_Flick_Up_Heel = 73; 
+define TR_Quick_Skill = 74; 
+define TR_Flicks = 75; 
+define TR_180_Flick = 76; 
+define TR_CALF_Rainbow = 77; 
+define FL_Nutmg_L_R = 78; 
+
+
+/* Menu Variables */
+int modMenu,editMenu; 
+int modNameIdx,valNameIdx;
+
+/* Display Variables / ScreenSaver / Strings/Text  */
+int screenSaver,blankScreen;
+int displayTitle = TRUE;
+int updateDisplay;
+
+const string Toggle  [] = {"Off","On"};
+const string misc[]     = {"v1.18","LAST",""}; 
+const string AUTHOR  = "SCRIPT FC 25";
+const string VERSION = "THANKS TO ELITE";
+                        
+/* Mod Menu Variables */
+int RS_NewWay_onoff               ;// 0  RS New Way
+//--------------------------------------------------
+                        
+/* Adjustable Variables */
+int RS_Skills_Up                  ;// 0 
+int RS_Skills_UpLeft              ;// 1 
+int RS_Skills_UpRight             ;// 2 
+int RS_Skills_LEFT                ;// 3 
+int RS_Skills_RIGHT               ;// 4 
+int RS_Skills_DownL               ;// 5 
+int RS_Skills_DownR               ;// 6 
+int RS_Skills_Down                ;// 7 
+int rs_new_way_btn                ;// 8 
+//--------------------------------------------------
+                        
+//====================================================================
+define MaxAmountOfMODs = 0;
+//====================================================================
+                        
+//====================================================================
+const int16 valuesMinMax[][] = {
+//Min/Max/inc/dec             
+{      0,     78,      1,     10,    16  }, // 0  RS_Skills_Up
+{      0,     78,      1,     10,    16  }, // 1  RS_Skills_UpLeft
+{      0,     78,      1,     10,    16  }, // 2  RS_Skills_UpRight
+{      0,     78,      1,     10,    16  }, // 3  RS_Skills_LEFT
+{      0,     78,      1,     10,    16  }, // 4  RS_Skills_RIGHT
+{      0,     78,      1,     10,    16  }, // 5  RS_Skills_DownL
+{      0,     78,      1,     10,    16  }, // 6  RS_Skills_DownR
+{      0,     78,      1,     10,    16  }, // 7  RS_Skills_Down
+{      0,     21,      1,     10,    13  }  // 8  rs_new_way_btn
+}      
+      
+                    
+//====================================================================
+const int16 valRangeIdx[][] = {
+// ValRangeMin - ValRangeMax - Editables 
+{        0     ,       8     ,       1      }  // 0  RS_NewWay_onoff
+}// end of valRangeIdx 
+                    
+const uint8 toggleMax[] = {
+3  // 0  RS_NewWay_onoff
+}
+
+/*  
+==================================================================================================================
+ Const String Arrays                                                                                       
+==================================================================================================================
+*/                                                                                                                
+const string modNames[] = { "RS New Way", "" };
+const string valNames[] = { "Skill UP","Skill Up Left","Skill Up Right","Skill Left","Skill Right","Sk Down Left","Sk Down Right","Skill Down","Modifier Button", "" };
+const string PowerShootToggle_Opt [] = { "Disable","Single Button","Stand Full Power", "" };
+const string TimedFinishToggle_Opt [] = { "Disable","Use Single Btn","Standard TF","TF Full Power", "" };
+const string TimedFinesFinishToggle_Opt [] = { "Disable","Use Single Btn","Standard TFF","TFF Full Power", "" };
+const string VMSpeedToggle_Opt [] = { "Disabled","XBOX ONE","PS4/PS5","XBOX  X/S","PC", "" };
+const string RSSkillsToggle_Opt [] = { "Disabled","Always ON","DoubleTap Btn","Modifier Button", "" };
+
+const string FinesseRestriction_Opt [] = { "Disabled","Use Single Btn","Standard Fin Shot","FinShot FullPower","" };
+const string EnhancedMove_Opt [] = { "Disabled","EnhMove V. 4.0","EnhMove V. 4.1","" };
+const string ExitDirection_Opt [] = {"Right","Left",""};
+const string OneTap_DoubleTap_Opt[] ={"One Tap","Double Tap",""};
+const string InstantSkills_Opt [] = { "Disabled","Modifier RS/R3","Modifier LS/L3","Modifier XB1 PR1","Modifier XB1 PR2","Modifier XB1 PL1","Modifier XB1 PL2", "" };
+const string DribblingSens_Opt [] = { "Disabled","Dribbling Sens","Drbl+Sprint Sens", "" };
+// Trivela Standard
+const string TrivelaShotToggle_Opt[]={"Disabled","Single Btn","Trivela Restrict","Trivela FullPower",""}
+
+const string Select_btn_Opt[] = { "PS4_PS","PS4_SHARE","PS4_OPTIONS","PS4_R1","PS4_R2","PS4_R3","PS4_L1","PS4_L2","PS4_L3","PS4_UP","PS4_DOWN","PS4_LEFT","PS4_RIGHT","PS4_TRIANGLE","PS4_CIRCLE","PS4_CROSS","PS4_SQUARE","XB1_PR1","XB1_PR2","XB1_PL1","XB1_PL2","PS4_TOUCH", "" };
+//===========================================================================
+//    INITIALIZATION - INIT BLOCK
+//===========================================================================
+const string SelectSkill[] = {
+"Disable", // 0
+"F Rainbow PS", // 1
+"Rainbow PS", // 2
+"Roll Sombrero PS", // 3
+"Step Over Feint", // 4
+"Rev Step Over", // 5
+"Step Over Boost", // 6
+"Hocus Pocus", // 7
+"Triple Elastico", // 8
+"Elastico", // 9
+"Rev Elastico", // 10
+"ForwFlairNutmeg", // 11
+"DragBack Univ.", // 12
+"Drag to Drag", // 13
+"Cruyff Turn", // 14
+"La Croqueta", // 15
+"Roulette", // 16
+"Flair Roulette", // 17
+"Feint and Exit", // 18
+"Feint & Exit", // 19
+"WAKA WAKA", // 20
+"Body Feint", // 21
+"Feint & Turn", // 22
+"Turn Back", // 23
+"BackFlairNutmeg", // 24
+"Four Touch Turn", // 25
+"Skilled Bridge", // 26
+"Canc 4 Touch", // 27
+"Roll Sombrero", // 28
+"Ball Roll", // 29
+"Ball Roll Drag", // 30
+"Ball Roll Chop", // 31
+"Ball Roll Fake", // 32
+"Roll to Scoop", // 33
+"Scoop Turn Fake", // 34
+"Roll Step Over", // 35
+"BallRoll Cut 180", // 36
+"Heel2Heel Flick", // 37
+"Lat Heel2Heel", // 38
+"Drag to Heel", // 39
+"Diag Heel Chop", // 40
+"Heel to Ball", // 41
+"Berb/Mcgeady", // 42
+"1 Foot Spin", // 43
+"Canc Berba Spin", // 44
+"C Berba Spin", // 45
+"Spin Move L/R", // 46
+"Fake Berba Out", // 47
+"Fake Berba Drag", // 48
+"Fake Shot", // 49
+"Fake Pass", // 50
+"Fake Drag Back", // 51
+"Fake Shot Canc.", // 52
+"Fake Rabona", // 53
+"Jog Openup Fake", // 54
+"Cancel Shoot", // 55
+"Ronaldo Chop", // 56
+"Okocha Flick", // 57
+"Rainbow", // 58
+"Flair Rainbow", // 59
+"Adv. Rainbow", // 60
+"Juggle Rainbow", // 61
+"Drag Back Som.", // 62
+"Sombrero Flick", // 63
+"Jug Back Som.", // 64
+"Stop V Drag", // 65
+"Rev/Elastico", // 66
+"Stop-Rev/Elast.", // 67
+"Drag-Rev/Elast.", // 68
+"Rabona-Rev/Elast.", // 69
+"Rabona to Elast.", // 70
+"STOP LA CROQ.", // 71
+ "TR_BALL_HOP",
+ "TR_Flick_Up",
+ "TR_Quick",
+ "TR_L_R_Flks",
+ "TR_180",
+ "TR_CLF_RNbW",
+ "FL_Nutmg_L_R"
+
+};
+init { // init block start
+  Load();
+  //Plug And Play setup
+  // Check if variables have already been loaded from file
+  if (RS_Skills_Up == 0 && RS_Skills_UpLeft == 0 && RS_Skills_UpRight == 0 && RS_Skills_LEFT == 0 && RS_Skills_RIGHT == 0 && RS_Skills_DownL == 0 && RS_Skills_DownR == 0 && RS_Skills_Down == 0) {
+    // Variables have not been loaded, initialize them with specific values
+    RS_Skills_Up = 4;
+    RS_Skills_UpLeft = 9;
+    RS_Skills_UpRight = 10;
+    RS_Skills_LEFT = 78;
+    RS_Skills_RIGHT = 78;
+    RS_Skills_DownL = 41;
+    RS_Skills_DownR = 30;
+    RS_Skills_Down = 48;
+  }
+  slot_numb = get_slot();
+} // init block end
+main { 
+if(get_ival(PS4_L2)){
+     if(event_press(PS4_SHARE)){
+         EntireScript_On = !EntireScript_On;
+         display_MOD_status(EntireScript_On,sizeof(SCRIPT_ONOFF)- 1,SCRIPT_ONOFF[0]);
+         if(EntireScript_On) displayTitle = TRUE;
+     }
+ }
+ if(time_to_clear_screen){
+    time_to_clear_screen -= get_rtime();
+    if(time_to_clear_screen <= 0)combo_run(CLEAR_SCREEN);
+ }
+ if(EntireScript_On ) {// Script code 
+    LED_Color(SkyBlue);
+    /* Enter Mod Menu */
+    if(get_ival(PS4_L2)){ 
+        if(event_press(PS4_OPTIONS)){ 
+            modMenu = TRUE;
+            updateDisplay = TRUE;
+            displayTitle = FALSE;
+            /* If NOT in Mod Menu - Display Title Screen Instead */
+            if(!modMenu){ 
+                displayTitle = TRUE;
+            } 
+        }
+        set_val(PS4_OPTIONS,0);
+    }
+    /* If We are NOT on the Display Title - We are in The Mod Menu OR Edit Menu */
+    if(!displayTitle){ 
+        /* Mod Menu Navigation / Toggles */
+        if(modMenu || editMenu){ 
+            combo_run(rgb);
+        } 
+        if(modMenu){
+            vm_tctrl(0);    
+            /* Variables That We Can Turn On/Off Via The Menu */
+			RS_NewWay_onoff               = toggleSwitch(RS_NewWay_onoff               ,0  );// 0 
+            /* Navigate The Mod Menu */
+            if(event_press(PS4_DOWN)){ 
+                modNameIdx    = clamp(modNameIdx + 1,0,MaxAmountOfMODs);
+                updateDisplay = TRUE;
+            }
+            if(event_press(PS4_UP)){ 
+                modNameIdx    = clamp(modNameIdx - 1,0,MaxAmountOfMODs);
+                updateDisplay = TRUE;
+            }
+            /* Exit The Mod Menu and Return To Display Title */
+            if(event_press(PS4_CIRCLE)){ 
+                modMenu       = FALSE;
+                displayTitle  = FALSE;
+                updateDisplay = FALSE;
+                combo_run(MESSAGE); 
+            }
+            /* Enter The Edit Menu */
+            if(valRangeIdx[modNameIdx][2] == 1){
+                if(event_press(PS4_CROSS)){
+                    valNameIdx    = valRangeIdx[modNameIdx][0];
+                    modMenu       = FALSE;
+                    editMenu      = TRUE;
+                    updateDisplay = TRUE;
+                } 
+            } 
+            BlockButtonPress ()
+            //================================================
+            // Display MOD 
+            // display MOD : label with MOD number
+            print( 2,38,OLED_FONT_SMALL, OLED_WHITE, MOD_LABEL[0]); 
+            print_number(modNameIdx + 1 ,find_digits(modNameIdx + 1) ,28 , 38 , OLED_FONT_SMALL);
+            
+            // display Slot ; label and slot number
+            print( 84,38,OLED_FONT_SMALL, OLED_WHITE, SLOT_LABEL[0]); 
+            print_number(slot_numb ,find_digits(slot_numb) ,112 , 38 , OLED_FONT_SMALL); 
+        
+            line_oled(1,48,127,48,1,1); 
+            if(valRangeIdx[modNameIdx][2] == 0 ){
+                print( 2, 52, OLED_FONT_SMALL, 1, NO_EDIT_VARIABLE[0] ); 
+            }else{
+                print( 2, 52, OLED_FONT_SMALL, 1, PRESS_A_TO_EDIT[0] ); 
+            }
+        } 
+        /* Edit Menu Navigation / Adjustable Values */
+        if(editMenu){ 
+            vm_tctrl(0); 
+            RS_Skills_Up          = editSwitch(RS_Skills_Up        ,0 ); // edit switch function 
+            RS_Skills_UpLeft      = editSwitch(RS_Skills_UpLeft    ,1 ); // edit switch function 
+            RS_Skills_UpRight     = editSwitch(RS_Skills_UpRight   ,2 ); // edit switch function 
+            RS_Skills_LEFT        = editSwitch(RS_Skills_LEFT      ,3 ); // edit switch function 
+            RS_Skills_RIGHT       = editSwitch(RS_Skills_RIGHT     ,4 ); // edit switch function 
+            RS_Skills_DownL       = editSwitch(RS_Skills_DownL     ,5 ); // edit switch function 
+            RS_Skills_DownR       = editSwitch(RS_Skills_DownR     ,6 ); // edit switch function 
+            RS_Skills_Down        = editSwitch(RS_Skills_Down      ,7 ); // edit switch function 
+            rs_new_way_btn        = editSwitch(rs_new_way_btn      ,8 ); // edit switch function 
+            /* Navigate Edit Menu */
+            if(!get_ival(PS4_L2)){ 
+                if(event_press(PS4_RIGHT)){ 
+                    valNameIdx = clamp(valNameIdx + 1,valRangeIdx[modNameIdx][0],valRangeIdx[modNameIdx][1]);
+                    updateDisplay = TRUE;
+                }
+                if(event_press(PS4_LEFT)){ 
+                    valNameIdx = clamp(valNameIdx - 1,valRangeIdx[modNameIdx][0],valRangeIdx[modNameIdx][1]);
+                    updateDisplay = TRUE;
+                }
+            }
+            /* Exit Edit Menu - Return To Mod Menu */
+            if(event_press(PS4_CIRCLE)){ 
+                modMenu = TRUE;
+                editMenu = FALSE;
+                updateDisplay = TRUE;
+            }
+            
+            BlockButtonPress ();
+            //==============================================
+            // DIsply Edit
+            f_min = valuesMinMax[valNameIdx][0];                          
+            f_max = valuesMinMax[valNameIdx][1];  
+            //---- Edit Value
+            if(valuesMinMax[valNameIdx][4] == 0 ) {
+                // on the left: min value                                          
+                print_number(f_min ,find_digits(f_min) ,4 , 20 , OLED_FONT_SMALL); 
+                // on the right: max value                                         
+                print_number(f_max ,find_digits(f_max) ,97 , 20 , OLED_FONT_SMALL);
+            }
+        }
+        /* When We are Either In Mod Menu OR Edit Menu - Update/Refresh The Display for the OLED */
+        if(updateDisplay){ 
+            cls_oled(OLED_BLACK);  // Clear The Screen 
+            rect_oled(0, 0, OLED_WIDTH, OLED_HEIGHT, OLED_BLACK, OLED_WHITE);
+            line_oled(0,14,127 , 14, 1, 1); 
+            /* Display Val Names / Adjustble Values when In Edit Menu */
+            if(editMenu){ 
+                print(centerPosition(getStringLength(valNames[valNameIdx]) ,OLED_FONT_SMALL_WIDTH), 3  ,OLED_FONT_SMALL  , OLED_WHITE , valNames[valNameIdx]);
+                
+            }
+            /* Display Mod Names / Toggles When In Mod Menu */
+            else { 
+                print(centerPosition(getStringLength(modNames[modNameIdx]) ,OLED_FONT_SMALL_WIDTH), 3  ,OLED_FONT_SMALL , OLED_WHITE , modNames[modNameIdx]);
+            }
+            updateDisplay = FALSE; // When No Buttons are Pressed In the menu / Update Display is FALSE 
+        }
+    } 
+    /* When We ARE NOT in ModMenu or EditMenu */
+    if(!modMenu && !editMenu){
+        /* Display The Title Screen When we Are NOT in any Menu s */
+        if(displayTitle){ 
+            cls_oled(0);
+            DrawLogo(0, 0, 0);
+            displayTitle = FALSE;
+            screenSaver  = TRUE;
+            combo_run(rgb);
+            print(centerPosition(getStringLength( AUTHOR[0]) ,OLED_FONT_SMALL_WIDTH), 35  ,OLED_FONT_SMALL , OLED_WHITE , AUTHOR[0]);
+            print(centerPosition(getStringLength(VERSION[0]) ,OLED_FONT_SMALL_WIDTH), 48  ,OLED_FONT_SMALL , OLED_WHITE , VERSION[0]);
+        }
+        /* When We are Display Title , after 10 seconds activate Screen Saver (Blank Screen) To Prevent Screen Burn */
+        if(screenSaver){  
+            blankScreen += get_rtime();
+        
+            if(blankScreen >= 10000)
+            {
+                cls_oled(OLED_BLACK);
+                blankScreen = 0;
+                screenSaver = FALSE;
+            } 
+        }
+        /* This is where all mods are placed outside the menu */
+        /* Add Mods */ 
+		    //=======================================================
+        if (Get_LS_Output) {
+          if (get_ipolar(POLAR_LS,POLAR_RADIUS) > 1500) {
+            calc_zone();
+            LX = ZONE_P[zone_p][0];
+            LY = ZONE_P[zone_p][1];
+          }
+          //======================================================
+        }                                                       
+                     //===========================================================
+                     //    ON/OFF or Modifier Button
+                     //===========================================================
+          	    if(RS_NewWay_onoff){//---------------------------------------------
+                     if( RS_NewWay_onoff == AlwaysON) Skill_OnOff = TRUE;
+                      //---ON/OFF RS SKILLS - DOUBLE TAP BUTTON
+                     if( RS_NewWay_onoff == Double_Tap_Btn) {
+                          if (event_press( SelectBtn[rs_new_way_btn]) && get_brtime(SelectBtn[rs_new_way_btn])<=200){
+                             Skill_OnOff = !Skill_OnOff;
+                             f_set_notify(Skill_OnOff);
+                         }
+                         //set_val(SelectBtn[rs_new_way_btn],0); 
+                     }
+                    //===========================================================
+                    //    RS NEW WAY  
+                    //===========================================================
+                      //--- RS SKILLS ALWAYS ON
+                      if(RS_NewWay_onoff >0 && RS_NewWay_onoff < 3 && Skill_OnOff == 1 ){
+                           f_RS_New_Way();
+                      }//
+                      //---- USE MODIFIER BUTTON  
+                      else if(RS_NewWay_onoff == 3  ){
+                           if(get_ival(SelectBtn[rs_new_way_btn])){
+                               f_RS_New_Way ();
+                           }
+                           set_val(SelectBtn[rs_new_way_btn],0);
+                      }
+                  }//------------------------------------------------------
+        if (ACTIVE == Roll_Sombrero_SKILL && combo_running(Roll_Sombrero)) set_val(PaceCtrol, 100);
+        if (ACTIVE == FAKE_PASS_SKILL && combo_running(FAKE_SHOT)) set_val(SprintBtn, 100);
+        if (ACTIVE == RONALDO_CHOP_SKILL && combo_running(FAKE_SHOT)) set_val(PaceCtrol, 100);
+        if (ACTIVE == FLAIR_ROULETTE_SKILL && combo_running(ROULETTE)) set_val(PlayerRun, 100);
+        if (ACTIVE == Flair_Rainbow_SKILL && combo_running(RAINBOW)) set_val(PlayerRun, 100);
+        if (ACTIVE == Ball_Roll_drag_SKILL && combo_running(TURN_AND_SPIN)) set_val(PlayerRun, 100);
+        if (ACTIVE == FEINT_AND_EXIT_SKILL && combo_running(FEINT_EXIT)) set_val(PlayerRun, 100);
+        if (ACTIVE == DRAG_TO_HEEL && combo_running(TORNADO_SPIN)) set_val(PlayerRun, 100);
+        if (ACTIVE == BALL_ROLL_FAKE_TURN && combo_running(TURN_AND_SPIN)) set_val(PaceCtrol, 100);
+        if (ACTIVE == SPIN_MOVE_LEFT_RIGHT_SKILL && combo_running(ROULETTE)) set_val(FinesseShot, 100);
+        if (ACTIVE == FAKE_DRAG_BACK_SKILL && combo_running(FAKE_DRAG_BACK)) {
+          set_val(PlayerRun, 100);
+          set_val(FinesseShot, 100);
+        }
+    }//!modMenu && !editMenu    
+  }// Entire Script ON 
+  else LED_Color(Green); 
+} // END OF MAIN BLOCK
+
+define Y_pos = 19;
+function toggleSwitch(fVar,fIdx){ 
+    if(modNameIdx == fIdx){ 
+        if(event_press(PS4_RIGHT)){ 
+            fVar = clamp(fVar + 1,0,toggleMax[modNameIdx]);  // Max Amount of Toggles From Array
+            updateDisplay = TRUE;
+        }
+        if(event_press(PS4_LEFT)){ 
+            fVar = clamp(fVar - 1,0,toggleMax[modNameIdx]); // Max Amount of Toggles From Array
+            updateDisplay = TRUE;
+        }
+        /* Print Strings here... */ 
+        if(modNameIdx == 0 ){ 
+            print(centerPosition(getStringLength(RSSkillsToggle_Opt[RS_NewWay_onoff]) ,OLED_FONT_SMALL_WIDTH ),Y_pos  ,OLED_FONT_SMALL , OLED_WHITE ,RSSkillsToggle_Opt[RS_NewWay_onoff]);
+        }   
+        else { 
+            if(fVar == 1)
+            print(centerPosition(getStringLength(Toggle[1]),OLED_FONT_SMALL_WIDTH),Y_pos,OLED_FONT_SMALL,OLED_WHITE,Toggle[1])    
+        else
+            print(centerPosition(getStringLength(Toggle[0]),OLED_FONT_SMALL_WIDTH),Y_pos,OLED_FONT_SMALL,OLED_WHITE,Toggle[0])    
+        }
+    }
+    return fVar; 
+} 
+//============================================================
+function editSwitch(fVar,fIdx){ 
+    if(valNameIdx == fIdx){ // Which valNameIdx number we are on \\
+        if(get_ival(PS4_L2)){ // Ads 
+            if(event_press(PS4_RIGHT)){ 
+                fVar += valuesMinMax[valNameIdx][2] // Increase value by desired in Array 
+                updateDisplay = TRUE;
+            }
+            if(event_press(PS4_LEFT)){ 
+                fVar -= valuesMinMax[valNameIdx][2] // Increase value by desired in Array 
+                updateDisplay = TRUE;
+            }
+            fVar = clamp(fVar,valuesMinMax[valNameIdx][0],valuesMinMax[valNameIdx][1]);// Min and Max Value
+        }
+        /*===============================================================================================================================
+        Display Toggle Strings 
+        =================================================================================================================================
+        */
+		if(valNameIdx == 0){ 
+			print(centerPosition(getStringLength(SelectSkill[RS_Skills_Up]),OLED_FONT_SMALL_WIDTH ),Y_pos,OLED_FONT_SMALL,OLED_WHITE,SelectSkill[RS_Skills_Up]) 
+		}       
+		else if(valNameIdx == 1){ 
+			print(centerPosition(getStringLength(SelectSkill[RS_Skills_UpLeft]),OLED_FONT_SMALL_WIDTH),Y_pos,OLED_FONT_SMALL,OLED_WHITE,SelectSkill[RS_Skills_UpLeft]) 
+		}       
+		else if(valNameIdx == 2){ 
+			print(centerPosition(getStringLength(SelectSkill[RS_Skills_UpRight]),OLED_FONT_SMALL_WIDTH),Y_pos,OLED_FONT_SMALL,OLED_WHITE,SelectSkill[RS_Skills_UpRight]) 
+		}       
+		else if(valNameIdx == 3){ 
+			print(centerPosition(getStringLength(SelectSkill[RS_Skills_LEFT]),OLED_FONT_SMALL_WIDTH),Y_pos,OLED_FONT_SMALL,OLED_WHITE,SelectSkill[RS_Skills_LEFT]) 
+		}       
+		else if(valNameIdx == 4){ 
+			print(centerPosition(getStringLength(SelectSkill[RS_Skills_RIGHT]),OLED_FONT_SMALL_WIDTH),Y_pos,OLED_FONT_SMALL,OLED_WHITE,SelectSkill[RS_Skills_RIGHT]) 
+		}       
+		else if(valNameIdx == 5){ 
+			print(centerPosition(getStringLength(SelectSkill[RS_Skills_DownL]),OLED_FONT_SMALL_WIDTH),Y_pos,OLED_FONT_SMALL,OLED_WHITE,SelectSkill[RS_Skills_DownL]) 
+		}       
+		else if(valNameIdx == 6){ 
+			print(centerPosition(getStringLength(SelectSkill[RS_Skills_DownR]),OLED_FONT_SMALL_WIDTH),Y_pos,OLED_FONT_SMALL,OLED_WHITE,SelectSkill[RS_Skills_DownR]) 
+		}       
+		else if(valNameIdx == 7){ 
+			print(centerPosition(getStringLength(SelectSkill[RS_Skills_Down]),OLED_FONT_SMALL_WIDTH),Y_pos,OLED_FONT_SMALL,OLED_WHITE,SelectSkill[RS_Skills_Down]) 
+		}       
+		else if(valNameIdx == 8){ 
+			print(centerPosition(getStringLength(Select_btn_Opt[rs_new_way_btn]),OLED_FONT_SMALL_WIDTH),Y_pos,OLED_FONT_SMALL,OLED_WHITE,Select_btn_Opt[rs_new_way_btn]) 
+		}       
+        else { 
+            if(fVar == 1)
+            print(centerPosition(getStringLength(Toggle[1]),OLED_FONT_SMALL_WIDTH),Y_pos,OLED_FONT_SMALL,OLED_WHITE,Toggle[1])    
+        else
+            print(centerPosition(getStringLength(Toggle[0]),OLED_FONT_SMALL_WIDTH),Y_pos,OLED_FONT_SMALL,OLED_WHITE,Toggle[0])    
+        }
+        edit_value_help (0);    
+    }
+    return fVar;
+}
+/*
+==================================================================================================================
+Edit Values Function For Edit Menu 
+==================================================================================================================
+*/
+function editValues(fVar,fIdx){ 
+	if(valNameIdx == fIdx){ 
+		if(get_ival(PS4_L2)){ // Ads 
+			if(event_press(PS4_RIGHT)){ 
+				fVar += valuesMinMax[valNameIdx][2] // Increase value by desired in Array 
+				updateDisplay = TRUE;
+			}
+			if(event_press(PS4_LEFT)){ 
+				fVar -= valuesMinMax[valNameIdx][2] // Decrease value by desired in Array 
+                updateDisplay = TRUE;
+            }
+            if(event_press(PS4_UP)){ 
+                fVar += valuesMinMax[valNameIdx][3] // Increase value by desired in Array 
+                updateDisplay = TRUE;
+            }
+            if(event_press(PS4_DOWN)){ 
+                fVar -= valuesMinMax[valNameIdx][3] // Increase value by desired in Array 
+                updateDisplay = TRUE;
+            }
+            fVar = clamp(fVar,valuesMinMax[valNameIdx][0],valuesMinMax[valNameIdx][1]);// Min and Max Value
+        }
+        NumberToString(fVar,FindDigits(fVar));  // Display Value 
+    }
+    return fVar;
+}
+int c_c_c,n_str_,c_val;                                
+function print_number(f_val,f_digits ,print_s_x , print_s_y , f_font) { 
+                                                      
+    n_str_ = 1;  c_val = 10000;                       
+                                                      
+    if(f_val < 0) //--neg numbers                     
+    {                                                 
+         putc_oled(n_str_,45);    //--add leading "-" 
+         n_str_ += 1;                                 
+         f_val = abs(f_val);                          
+    }                                                 
+    for(c_c_c = 5; c_c_c >= 1; c_c_c--)                           
+    {                                                 
+        if(f_digits >= c_c_c)                             
+        {                                              
+            putc_oled(n_str_,ASCII_NUM[f_val / c_val]);
+            f_val = f_val % c_val;                    
+            n_str_ +=  1;                             
+                                                      
+        }                                             
+        c_val /= 10;                                  
+    }                                                 
+    puts_oled(print_s_x,print_s_y,f_font,n_str_ - 1,OLED_WHITE); // adjustable value centered in X
+} 
+
+const string NO_EDIT_VARIABLE =" No Edit Variable";
+const string PRESS_A_TO_EDIT  =" A/CROSS to Edit ";
+const string MOD_LABEL        ="MOD:";
+const string SLOT_LABEL       ="MSL:";
+int slot_numb ;
+function find_digits(f_num) {                         
+//  find_digits(value)                                
+//        return Number of Digits in Value Passed     
+                                                      
+    f_num = abs(f_num);                               
+    if(f_num / 10000 > 0) return 5;                   
+    if(f_num /  1000 > 0) return 4;                   
+    if(f_num /   100 > 0) return 3;                   
+    if(f_num /    10 > 0) return 2;                   
+                          return 1;                  
+} 
+const int8 ASCII_NUM[] =                          
+//      0  1  2  3  4  5  6  7  8  9  (column numbers)
+      {48,49,50,51,52,53,54,55,56,57};
+      
+int f_min,f_max;
+
+/*     
+======================================================
+     Logo Picture : Default ZEN Logo
+======================================================
+*/                                                    
+                               
+ const int16 BOOT_LOGO[] = { 
+ 124,
+  26,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0000,
+  0x0047,
+  0x003C,
+  0x1BF8,
+  0x60F0,
+  0x03C1,
+  0xE1F0,
+  0x03BF,
+  0xFCF8,
+  0x07FC,
+  0x03C1,
+  0xFFC7,
+  0x9F00,
+  0x3C1F,
+  0x0F00,
+  0xFBFF,
+  0x8F80,
+  0x7FE0,
+  0x781F,
+  0xFC7B,
+  0xF007,
+  0x81F8,
+  0xF03F,
+  0xBFFC,
+  0xF807,
+  0xFE07,
+  0xE1E3,
+  0xC77C,
+  0x007E,
+  0x1F8F,
+  0x0FFB,
+  0xFFCF,
+  0x807F,
+  0xF07F,
+  0x1FFC,
+  0x7F80,
+  0x07F1,
+  0xFCF1,
+  0xFF1E,
+  0x00F8,
+  0x079F,
+  0x0FF1,
+  0xFFC7,
+  0xF000,
+  0xFF1F,
+  0xEE3F,
+  0x23FC,
+  0x0F80,
+  0x78F0,
+  0xFF1F,
+  0xFCFF,
+  0x000F,
+  0xF1FF,
+  0xE3E2,
+  0x3FC0,
+  0xF807,
+  0x8F0F,
+  0xF1FC,
+  0x4FF0,
+  0x00FF,
+  0x1FFE,
+  0x3C03,
+  0xFC0F,
+  0x8079,
+  0xF3FF,
+  0xDFE0,
+  0xFF80,
+  0x3FFD,
+  0xEFE7,
+  0xC79E,
+  0x00F8,
+  0x07FF,
+  0x3FFD,
+  0xFE07,
+  0x7C03,
+  0xFFDE,
+  0xFE7C,
+  0x79E0,
+  0x0FF6,
+  0x7FF7,
+  0xE79E,
+  0xF07B,
+  0xE07E,
+  0x79E7,
+  0xF7FF,
+  0xBFFC,
+  0xFFE7,
+  0xFF3C,
+  0x79E7,
+  0xC79E,
+  0x03C3,
+  0x9E3E,
+  0x3FFB,
+  0xFFCF,
+  0xFE7F,
+  0xD3C3,
+  0x9E3E,
+  0x79F0,
+  0x3C39,
+  0xE1E3,
+  0xFFBF,
+  0xFCFF,
+  0xF010,
+  0x2C2D,
+  0xE1E2,
+  0x0102,
+  0xC2D2,
+  0x0207,
+  0x7000,
+  0x0FC1,
+  0x0000,
+  0x0010,
+  0x0820,
+  0x1000,
+  0x0120,
+  0x2002,
+  0x0002,
+  0x3010,
+  0x0040,
+  0x0120,
+  0x8201,
+  0x0400,
+  0x1006,
+  0x0020,
+  0x0020,
+  0x0100
+ 
+ } // picture 
+/*     
+======================================================
+     DrawLogo(x, y, invert)                            
+====================================================== 
+*/                                                    
+int logoX,logoX2,logoY, logoY2;                       
+int logoBit,logoOffset,logoData;                      
+                                                      
+function DrawLogo(x, y, invert) {                     
+    logoOffset = 2;                                    
+    logoBit = 16;                                           
+    for (logoY = 0; logoY < BOOT_LOGO[1]; logoY++) {         // Loop the Y axis 
+        for (logoX = 0; logoX < BOOT_LOGO[0]; logoX++) {     // Loop the X axis 
+            logoData = BOOT_LOGO[logoOffset]          
+            logoX2 = x + logoX;                       
+            logoY2 = y + logoY;                       
+            if (logoX2 < 0 || logoX2 >= 128) {        
+                logoX2 -= 128;                        
+            }                                         
+            if (logoY2 < 0 || logoY2 >= 64) {         
+                logoY2 -= 64;                         
+            }                                         
+            if (test_bit(logoData, logoBit - 1)) {     
+                pixel_oled(logoX2, logoY2, !invert);   
+            }else{                                     
+                pixel_oled(logoX2, logoY2, invert);    
+            }                                            
+            logoBit--;             // Decrement the bit flag, we are moving to the next bit 
+            if (!logoBit) {     // Check if we have just handled the last bit  
+                logoBit = 16;     // Reset the bit flag     
+                logoOffset++;     // Move to the next value 
+            }  
+        }   
+    }    
+}           
+int inc = 1, dec, color[3];
+combo rgb {
+  wait(1);
+  set_rgb(color, color[1], color[2]);
+  color[dec] -= 1; color[inc] += 1;
+  if(!color[dec]) { inc = (inc + 1) % 3; dec = (dec + 1) % 3; }
+}
+function Refresh(Value,Min,Max){  
+    if(Value > Max) 
+        return Min;         
+    if(Value < Min)
+        return Max;     
+    return Value;    
+}
+combo rumbleOn {
+set_ledx(2, 2);
+set_rumble(RUMBLE_B, 50);
+wait(150);
+reset_rumble();
+wait(100);
+set_rumble(RUMBLE_B, 50);
+wait(150);
+reset_rumble();
+reset_leds();
+}
+combo rumbleOff {                        
+set_ledx(1, 1);
+set_rumble(RUMBLE_A, 50);
+wait(300);
+reset_rumble();
+wait(400);
+reset_leds();
+}
+int stringLength;
+function getStringLength(offset) { 
+    stringLength = 0;
+    do { 
+        offset++;
+        stringLength++;
+    } while (duint8(offset));
+    return stringLength;
+ } 
+ 
+int i;
+const uint8 BlockButtons [] = {  
+  PS4_L2,PS4_OPTIONS,PS4_LEFT, PS4_RIGHT,PS4_UP,PS4_DOWN,PS4_CROSS,PS4_CIRCLE,PS4_SQUARE,PS4_TRIANGLE,PS4_L1,PS4_R1,PS4_R2}; 
+function BlockButtonPress (){  
+    for(i = 0; i < 13; i++){
+        if(get_ival(BlockButtons[i]) || event_press(BlockButtons[i])){
+            set_val(BlockButtons[i],0);
+        }    
+    }
+}
+define UP_arrow = 131; define DOWN_arrow = 132; define LEFT_arrow = 133; define RIGHT_arrow = 134; define TRIANGLE = 130; define Y = 89; define CROSS = 127; define A = 65;
+int col_char_left; 
+int col_char_right;
+int col_rec_left = 1;
+int col_rec_right = 1;
+define Y_Arrow = 36;
+const string EDIT_VALUE_TXT = "Hold LT/L2 +"; 
+
+function edit_value_help (f_part){
+    line_oled(1,48,127,48,1,1); 
+    // print text 
+    print( 2, 52, OLED_FONT_SMALL, 1, EDIT_VALUE_TXT[0] ); 
+    // print Left/ Right arrow
+    rect_oled(90, 50, 127, 60, OLED_WHITE , col_rec_left); // rectangle left (line 1)
+    //rect_oled(100, 48, OLED_FONT_SMALL_WIDTH + 2, OLED_FONT_SMALL_HEIGHT + 2, OLED_WHITE, col_rec_right); // rectangle right (line 1)
+    putc_oled(1,LEFT_arrow); 
+    puts_oled(91, 51, OLED_FONT_SMALL, 1, col_char_left);     
+    putc_oled(1,RIGHT_arrow); 
+    puts_oled(101, 51, OLED_FONT_SMALL, 1, col_char_right);
+    
+    if(f_part){
+    putc_oled(1,UP_arrow); 
+    puts_oled(111, 51, OLED_FONT_SMALL, 1, col_char_left);     
+    putc_oled(1,DOWN_arrow); 
+    puts_oled(121, 51, OLED_FONT_SMALL, 1, col_char_right);
+    }
+}
+function Load() {
+      
+		RS_NewWay_onoff                = get_pvar(SPVAR_1 ,       0,       3,       0); // 1 
+		RS_Skills_Up                   = get_pvar(SPVAR_2 ,       0,      78,       0); // 2 
+		RS_Skills_UpLeft               = get_pvar(SPVAR_3 ,       0,      78,       0); // 3 
+		RS_Skills_UpRight              = get_pvar(SPVAR_4 ,       0,      78,       0); // 4 
+		RS_Skills_LEFT                 = get_pvar(SPVAR_5 ,       0,      78,       0); // 5 
+		RS_Skills_RIGHT                = get_pvar(SPVAR_6 ,       0,      78,       0); // 6 
+		RS_Skills_DownL                = get_pvar(SPVAR_7 ,       0,      78,       0); // 7 
+		RS_Skills_DownR                = get_pvar(SPVAR_8 ,       0,      78,       0); // 8 
+		RS_Skills_Down                 = get_pvar(SPVAR_9 ,       0,      78,       0); // 9 
+		rs_new_way_btn                 = get_pvar(SPVAR_10 ,       0,      21,       8); // 10 
+}
+//=========================================================
+//  SAVE FUNCTION 
+//=========================================================
+function Save(){  
+	set_pvar(SPVAR_1 ,RS_NewWay_onoff     ); // 1 
+	set_pvar(SPVAR_2 ,RS_Skills_Up        ); // 2 
+	set_pvar(SPVAR_3 ,RS_Skills_UpLeft    ); // 3 
+	set_pvar(SPVAR_4 ,RS_Skills_UpRight   ); // 4 
+	set_pvar(SPVAR_5 ,RS_Skills_LEFT      ); // 5 
+	set_pvar(SPVAR_6 ,RS_Skills_RIGHT     ); // 6 
+	set_pvar(SPVAR_7 ,RS_Skills_DownL     ); // 7 
+	set_pvar(SPVAR_8 ,RS_Skills_DownR     ); // 8 
+	set_pvar(SPVAR_9 ,RS_Skills_Down      ); // 9 
+	set_pvar(SPVAR_10 ,rs_new_way_btn      ); // 10 
+}// end of SAVE FUNCTION
+const string EXIT_TXT1 = "SETTINGS";  
+const string EXIT_TXT2 = "WAS SAVED"; 
+combo MESSAGE {       
+    wait(20);         
+    cls_oled(0);      
+    Save();
+    print(15, 2, OLED_FONT_MEDIUM, 1, EXIT_TXT1[0]); 
+    print(10, 23, OLED_FONT_MEDIUM, 1, EXIT_TXT2[0]);
+    exit_wait = 1500;     
+    combo_run(EXIT);
+}
+int exit_wait = 1500;
+combo EXIT {     
+    wait(exit_wait);     
+    cls_oled(0); 
+    displayTitle = TRUE;     
+}            
+
+//--------------------------------------------------------------   
+define UP         = 0;  
+define UP_RIGHT   = 1;  
+define RIGHT      = 2;  
+define DOWN_RIGHT = 3;  
+define DOWN       = 4;  
+define DOWN_LEFT  = 5;  
+define LEFT       = 6;  
+define UP_LEFT    = 7;  
+int dEnd;
+                                               
+int ACTIVE;                                     
+int SKILL ;  
+int LX, LY;          // Direction of Left Stick         
+int right_on ;                            
+int w_rstick  = 50;                        
+int OnOffMods = TRUE;                            
+int Sombrero;     
+int hold_btn = 200;
+int Get_LS_Output = TRUE;
+int EntireScript_On = TRUE;
+function f_blinck ( var){  
+	if(var){               
+		BlinckColor = Green;
+	}else{                 
+		BlinckColor = Red;    
+	}                       
+	combo_run(BLINK_NOTIFY); 
+}                           
+int BlinckColor;                            
+combo BLINK_NOTIFY {        
+	LED_Color(BlinckColor);   
+	wait(300);                 
+	LED_Color(ColorOFF);        
+	wait(100);                  
+	LED_Color(BlinckColor);      
+    wait(300);                   
+    LED_Color(ColorOFF);          
+}                                 
+ const string SCRIPT_ONOFF  = "SCRIPT WAS";        
+ function display_MOD_status(f_val,f_size,f_label){  
+    if(!modMenu && !editMenu){                                           
+        // Clear OLED Screen                          
+        cls_oled(0); // will clear oled   
+        print(f_size, 3, OLED_FONT_MEDIUM ,OLED_WHITE, f_label);   
+        if( f_val ){
+            print(center_x(sizeof(ON)  - 1, OLED_FONT_LARGE_WIDTH),37,OLED_FONT_LARGE,OLED_WHITE, ON[0]);//MOD is ON
+        }
+        else{
+            print(center_x(sizeof(OFF)  - 1, OLED_FONT_LARGE_WIDTH),37,OLED_FONT_LARGE,OLED_WHITE, OFF[0]);// MOD is OFF
+        }    
+        time_to_clear_screen = 1500;
+        f_blinck(f_val);
+    } 
+}
+//=============================================== 
+//                 VIBRATE SETUP                 
+//=============================================== 
+combo vibrate {                                   
+    set_rumble(rumble_tipe, 100);                   
+    wait(300);                                       
+    reset_rumble();                                 
+    wait(100);                                       
+    set_rumble(rumble_tipe, 100);                   
+    wait(300);                                       
+    reset_rumble();                                 
+}                                                 
+//===============================================  
+//                 RUMBLE_TIPE                     
+//===============================================  
+function set_rumble_tipe ( f_val) {                  
+    if( f_val){ rumble_tipe = RUMBLE_A ; LED_OnOff = Green;}  
+    else      { rumble_tipe = RUMBLE_B ; LED_OnOff = Red  ;} 
+    combo_run(vibrate);                     
+    combo_run(LED_BLINK);                   
+}                          
+//=============================================== 
+//            LED BLINK                           
+//===============================================
+int LED_OnOff;       
+int rumble_tipe = RUMBLE_A;
+combo LED_BLINK {                                 
+    LED_Color(LED_OnOff);                           
+    wait(200);                                      
+    LED_Color(ColorOFF);                            
+    wait(100);                                      
+    LED_Color(LED_OnOff);                           
+    wait(200);                                      
+    LED_Color(ColorOFF);                             
+    wait(100);                                      
+}   
+int time_to_clear_screen = 3000;
+function center_x(f_chars,f_font) {                                                                 
+    return (OLED_WIDTH / 2) - ((f_chars * f_font) / 2); 
+} 
+const string OFF   = "OFF";       
+const string ON    = "ON";
+
+   //=======================================
+   //  DISPLAY EDIT VALUE ON THE FLY        
+   //=======================================
+function on_the_fly_display (f_string, f_print, f_val){
+    cls_oled(0);  
+    line_oled(1,18,127,18,1,1);
+    print(f_string, 0, OLED_FONT_MEDIUM, OLED_WHITE, f_print);  
+    NumberToString(f_val, FindDigits(f_val));
+    time_to_clear_screen  = 2000;
+} 
+const string EA_PING = "EA PING";   
+   
+   
+/*   
+=================================================================
+ Center X Function (Made By Batts) 
+=================================================================
+*/
+function centerPosition(f_chars,f_font) {
+    return (OLED_WIDTH / 2) - ((f_chars * f_font) / 2);
+}
+/*
+=================================================================
+  NumberToString () (Made By Batts)                                                                                                                     
+=================================================================
+*/   
+int bufferIndex;
+int charIndex,digitIndex;
+function NumberToString(f_val,f_digits) {
+    bufferIndex = 1;  
+    digitIndex = 10000;
+    if(f_val < 0) {                    //--neg numbers
+         putc_oled(bufferIndex,45);    //--add leading "-"
+         bufferIndex += 1;
+         f_val = abs(f_val);
+    } 
+    for(charIndex = 5; charIndex >= 1; charIndex--) {
+        if(f_digits >= charIndex) {
+            putc_oled(bufferIndex,(f_val / digitIndex) + 48);
+            f_val %= digitIndex;
+            bufferIndex ++; 
+            if(charIndex == 4) {
+                putc_oled(bufferIndex,44);//--add ","
+                bufferIndex ++;
+            }
+        }
+        digitIndex /= 10;
+    } 
+    puts_oled(centerPosition(bufferIndex - 1,OLED_FONT_MEDIUM_WIDTH),38,OLED_FONT_MEDIUM,bufferIndex - 1,OLED_WHITE);
+} 
+int logVal;
+function FindDigits(num) {
+   logVal = 0;
+   do {
+      num /= 10;
+      logVal++;
+   } while (num);
+   return logVal;
+}
+combo CLEAR_SCREEN {     
+    wait(20);     
+    cls_oled(0); 
+}            
+
+int OnOFF_Skills;
+int ModifierBtn;
+int dubltime;
+define ColorOFF  = 0;
+define Blue      = 1;
+define Red       = 2;
+define Green     = 3;
+define Pink      = 4;
+define SkyBlue   = 5;
+define Yellow    = 6;
+define White     = 7;
+                      
+data(                 
+  0,0,0, //0. ColorOFF
+  2,0,0, //1. Blue     
+  0,2,0, //2. Red      
+  0,0,2, //3. Green    
+  2,2,0, //4. Pink     
+  2,0,2, //5. SkyBlue 
+  0,2,2, //6. Yellow   
+  2,2,2  //7. White    
+); // end of data segment-------------- 
+// COLOR LED function        
+//-------------------------------------------------------------- 
+                                       
+int data_indx;
+function LED_Color(color) {  
+    for( data_indx = 0; data_indx < 3; data_indx++ ) {
+        set_led(data_indx,duint8 ((color * 3) + data_indx));
+    }
+}
+
+const int8 SelectBtn [] ={
+XB1_XBOX, // 0 
+XB1_VIEW, // 1 
+XB1_MENU, // 2 
+XB1_RB,   // 3 
+XB1_RT,   // 4 
+XB1_RS,   // 5 
+XB1_LB,   // 6 
+XB1_LT,   // 7 
+XB1_LS,   // 8 
+XB1_UP,   // 9 
+XB1_DOWN, // 10  
+XB1_LEFT, // 11  
+XB1_RIGHT,// 12  
+XB1_Y,    // 13 
+XB1_B,    // 14 
+XB1_A,    // 15 
+XB1_X,    // 16 
+XB1_PR1,  // 17 
+XB1_PR2,  // 18 
+XB1_PL1,  // 19 
+XB1_PL2,  // 20 
+PS4_TOUCH // 21  
+}
+
+int ShootPower;
+define AlwaysON        = 1;
+define Double_Tap_Btn  = 2;
+define Modifier_Button = 3;
+define DoubleTapL3  = 2;
+define DoubleTapR3  = 3;
+define ModifierL3   = 4;
+define ModifierR3   = 5;
+define ModifierPR1  = 6;
+define ModifierPR2  = 7;
+define ModifierPL1  = 8;
+define ModifierPL2  = 9;
+int Skill_OnOff = FALSE;
+int flick_rs;
+int temp_zone;
+function f_auto_skill_menu(){
+	//1.1. RS = LS zone  
+	if(zone_RS == zone_p){
+		right_on = FALSE;// use One Way Skills
+		if(RS_Skills_Up) run_skill_combo(RS_Skills_Up);
+		
+	}
+	
+	//1.4. RS = opposite of LS zone  
+	if(zone_RS == calc_temp_zone (zone_p + 4)){ // right_on does not matter here
+		//1.1.0. if LS --> UP (zone 0)
+		right_on = FALSE;// use One Way Skills
+		if(RS_Skills_Down) run_skill_combo(RS_Skills_Down);    
+    }
+    //-------------------
+    //1.2. RS = LS zone +1/-1
+    if(zone_RS == calc_temp_zone (zone_p + 1) ){
+        right_on = TRUE;
+        if(RS_Skills_UpRight) run_skill_combo(RS_Skills_UpRight);
+    }
+    if(zone_RS == calc_temp_zone (zone_p - 1) ){
+        right_on = FALSE;
+        if(RS_Skills_UpLeft) run_skill_combo(RS_Skills_UpLeft);
+    }
+    
+    //1.3. RS = LS zone +2/-2
+    if(zone_RS == calc_temp_zone (zone_p + 2) ){
+        right_on = TRUE;// use One Way Skills
+        if(RS_Skills_RIGHT) run_skill_combo(RS_Skills_RIGHT);
+    }
+    if(zone_RS == calc_temp_zone (zone_p - 2) ){
+        right_on = FALSE;// use One Way Skills
+        if(RS_Skills_LEFT) run_skill_combo(RS_Skills_LEFT);
+    }
+    if(zone_RS == calc_temp_zone (zone_p + 3) ){
+        right_on = TRUE;// use One Way Skills
+        if(RS_Skills_DownR) run_skill_combo(RS_Skills_DownR);
+    }
+    if(zone_RS == calc_temp_zone (zone_p - 3) ){
+        right_on = FALSE;// use One Way Skills
+        if(RS_Skills_DownL) run_skill_combo(RS_Skills_DownL);
+    }
+    
+}
+function f_RS_New_Way (){
+ 
+  if (!get_ival(XB1_RS) && !get_ival(PaceCtrol) && !get_ival(SprintBtn) && !get_ival(FinesseShot) && !get_ival(PlayerRun)) { // all Skills mode ){ 
+    if ((abs(get_ival(SKILL_STICK_X)) > 45 || abs(get_ival(SKILL_STICK_Y)) > 45) && !flick_rs) { // getting RS zones
+      flick_rs = TRUE;
+      calc_RS();
+      RS_X = ZONE_P[zone_RS][0];
+      RS_Y = ZONE_P[zone_RS][1];
+      f_auto_skill_menu();
+    }
+    set_val(SKILL_STICK_X, 0);
+    set_val(SKILL_STICK_Y, 0);
+  }
+  //--- reset when RS is release
+  if (abs(get_ival(SKILL_STICK_X)) < 20 && abs(get_ival(SKILL_STICK_Y)) < 20) {
+    flick_rs = FALSE;
+  }
+}
+
+function run_skill_combo( f_skill){
+
+  if (f_skill == FAKE_SHOT_SKILL) {
+    ACTIVE = FAKE_SHOT_SKILL;
+    combo_run(FAKE_SHOT);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == HEEL_TO_HEEL_FLICK_SKILL) {
+    ACTIVE = HEEL_TO_HEEL_FLICK_SKILL;
+    combo_run(HEELtoHEEL);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == Roll_Sombrero_SKILL) {
+    ACTIVE = Roll_Sombrero_SKILL;
+    combo_run(Roll_Sombrero);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == RAINBOW_SKILL) {
+    ACTIVE = RAINBOW_SKILL;
+    combo_run(RAINBOW);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == DRAG_BACK_SOMBRERO_SKILL) {
+    Sombrero = TRUE;
+    combo_run(DRAG_BACK);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == FAKE_PASS_SKILL) {
+    ACTIVE = FAKE_PASS_SKILL;
+    combo_run(FAKE_SHOT);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == DRAG_BACK_UNIVERSAL_SKILL) {
+    Sombrero = FALSE;
+    combo_run(DRAG_BACK);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == STEP_OVER_FEINT_SKILL) {
+    ACTIVE = STEP_OVER_FEINT_SKILL;
+    combo_run(STEP_OVER_FEINT);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == DRAG_TO_DRAG_SKILL) {
+    ACTIVE = DRAG_TO_DRAG_SKILL;
+    combo_run(DRAG_TO_DRAG);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == HOCUS_POCUS_SKILL) {
+    ACTIVE = HOCUS_POCUS_SKILL;
+    combo_run(HOCUS_POCUS);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == TRIPLE_ELASTICO_SKILL) {
+    ACTIVE = TRIPLE_ELASTICO_SKILL;
+    combo_run(TRIPLE_ELASTICO);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == ELASTICO_SKILL) {
+    ACTIVE = ELASTICO_SKILL;
+    combo_run(ELASTICO);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == REVERSE_ELASTICO_SKILL) {
+    ACTIVE = REVERSE_ELASTICO_SKILL;
+    combo_run(REVERSE_ELASTICO);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == CRUYFF_TURN_SKILL) {
+    ACTIVE = CRUYFF_TURN_SKILL;
+    combo_run(CRUYFF_TURN);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == LA_CROQUETA_SKILL) {
+    ACTIVE = LA_CROQUETA_SKILL;
+    combo_run(LA_CROQUETA);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == RONALDO_CHOP_SKILL) {
+    ACTIVE = RONALDO_CHOP_SKILL;
+    combo_run(FAKE_SHOT);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == ROULETTE_SKILL) {
+    ACTIVE = ROULETTE_SKILL;
+    combo_run(ROULETTE);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == FLAIR_ROULETTE_SKILL) {
+    ACTIVE = FLAIR_ROULETTE_SKILL;
+    combo_run(ROULETTE);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == BALL_ROLL_SKILL) {
+    ACTIVE = BALL_ROLL_SKILL;
+    combo_run(BALL_ROLL);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == BERBA_MCGEADY_SPIN_SKILL) {
+    ACTIVE = BERBA_MCGEADY_SPIN_SKILL;
+    combo_run(TURN_AND_SPIN);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == Flair_Rainbow_SKILL) {
+    ACTIVE = Flair_Rainbow_SKILL;
+    combo_run(RAINBOW);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == Ball_Roll_drag_SKILL) {
+    ACTIVE = Ball_Roll_drag_SKILL;
+    combo_run(TURN_AND_SPIN);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == FLAIR_Nutmeg_SKILL) {
+    ACTIVE = FLAIR_Nutmeg_SKILL;
+    combo_run(FLAIR_Nutmeg);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == F_Rainbow_PS_Skill) {
+    ACTIVE = F_Rainbow_PS_Skill;
+    combo_run(LA_F_RAINBOW_PS_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == BALL_ROLL_CHOP_SKILL) {
+    ACTIVE = BALL_ROLL_CHOP_SKILL;
+    combo_run(BALL_ROLL_CHOP);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == FEINT_AND_EXIT_SKILL) {
+    ACTIVE = FEINT_AND_EXIT_SKILL;
+    combo_run(FEINT_EXIT);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == FEINT_L_EXIT_R_SKILL) {
+    ACTIVE = FEINT_L_EXIT_R_SKILL;
+    combo_run(FEINT_EXIT);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == LATERAL_HEEL_TO_HEEL_SKILL) {
+    ACTIVE = LATERAL_HEEL_TO_HEEL_SKILL;
+    combo_run(LATERAL_HEELtoHEEL);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == WAKA_WAKA_SKILL) {
+    ACTIVE = WAKA_WAKA_SKILL;
+    combo_run(WAKA_WAKA);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == BODY_FEINT_SKILL) {
+    ACTIVE = BODY_FEINT_SKILL;
+    combo_run(BODY_FEINT);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == DRAG_TO_HEEL) {
+    ACTIVE = DRAG_TO_HEEL;
+    combo_run(TORNADO_SPIN);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == BALL_ROLL_FAKE_TURN) {
+    ACTIVE = BALL_ROLL_FAKE_TURN;
+    combo_run(TURN_AND_SPIN);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == FEINT_FORWARD_AND_TURN) {
+    ACTIVE = FEINT_FORWARD_AND_TURN;
+    combo_run(FEINT_FORWARD);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == TURN_BACK) {
+    ACTIVE = TURN_BACK;
+    combo_run(TURN_BACK);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == Rainbow_PS_Skill) {
+    ACTIVE = Rainbow_PS_Skill;
+    combo_run(Rainbow_PS);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == ONE_FOOT_SPIN_SKILL) {
+    ACTIVE = ONE_FOOT_SPIN_SKILL;
+    combo_run(ONE_FOOT_SPIN);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == REVERSE_STEP_OVER_SKILL) {
+    ACTIVE = REVERSE_STEP_OVER_SKILL;
+    combo_run(REVERSE_STEP_OVER);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == FAKE_DRAG_BACK_SKILL) {
+    ACTIVE = FAKE_DRAG_BACK_SKILL;
+    combo_run(FAKE_DRAG_BACK);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == Roll_Sombrero_PS_SKILL) {
+    ACTIVE = Roll_Sombrero_PS_SKILL;
+    combo_run(ROLL_SOMB_PS);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == STEP_OVER_BOOST_SKILL) {
+    ACTIVE = STEP_OVER_BOOST_SKILL;
+    combo_run(BOOSTED_STEPOVER);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == CANCEL_SHOOT_SKILL) {
+    ACTIVE = CANCEL_SHOOT_SKILL;
+    combo_run(CANCEL_SHOOT);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == DIRECTIONAL_NUTMEG_SKILL) {
+    ACTIVE = DIRECTIONAL_NUTMEG_SKILL;
+    combo_run(NUTMEG_SKILL);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == CANCELED_BERBA_SPIN_SKILL) {
+    ACTIVE = CANCELED_BERBA_SPIN_SKILL;
+    combo_run(CANCELED_TURN_AND_SPIN);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == CANCELED_BERBA_SPIN_WITH_DIRECTION) {
+    ACTIVE = CANCELED_BERBA_SPIN_WITH_DIRECTION;
+    combo_run(CANCELED_TURN_AND_SPIN);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == BALL_ROLL_TO_SCOOP_TURN_SKILL) {
+    ACTIVE = BALL_ROLL_TO_SCOOP_TURN_SKILL;
+    combo_run(BALL_ROLL_SCOOP_TURN);
+    Get_LS_Output = FALSE;
+  }
+
+  if (f_skill == FOUR_TOUCH_TURN_SKILLS) {
+    ACTIVE = FOUR_TOUCH_TURN_SKILLS;
+    combo_run(FOUR_TOUCH_TURN_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == SKILLED_BRIDGE_SKILL) {
+    ACTIVE = SKILLED_BRIDGE_SKILL;
+    combo_run(SKILLED_BRIDGE_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == SCOOP_TURN_FAKE_SKILL) {
+    ACTIVE = SCOOP_TURN_FAKE_SKILL;
+    combo_run(SCOOP_TURN_FAKE);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == BALL_ROLL_STEP_OVER_SKILL) {
+    ACTIVE = BALL_ROLL_STEP_OVER_SKILL;
+    combo_run(BALL_ROLL_STEP_OVER_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == CANCELED_4_TOUCH_TURN_SKILL) {
+    ACTIVE = CANCELED_4_TOUCH_TURN_SKILL;
+    combo_run(CANCEL_FOUR_TOUCH_TURN_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == FAKE_SHOT_CANCEL_SKILL) {
+    ACTIVE = FAKE_SHOT_CANCEL_SKILL;
+    combo_run(FAKE_SHOT_CANCEL_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == OKKOSHA_FLICK_SKILL) {
+    ACTIVE = OKKOSHA_FLICK_SKILL;
+    combo_run(OKKOSHA_FLICK_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == ADVANCED_RAINBOW_SKILL) {
+    ACTIVE = ADVANCED_RAINBOW_SKILL;
+    combo_run(ADVANCED_RAINBOW_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == STOP_LA_CROQUETA_SKILL) {
+    ACTIVE = STOP_LA_CROQUETA_SKILL;
+    combo_run(STOP_LA_CROQUETA_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == JUGGLING_RAINBOW_SKILL) {
+    ACTIVE = JUGGLING_RAINBOW_SKILL;
+    combo_run(JUGGLING_RAINBOW_cmb);
+    Get_LS_Output = FALSE;
+  }
+
+  if (f_skill == STOP_V_DRAG_SKILL) {
+    ACTIVE = STOP_V_DRAG_SKILL;
+    combo_run(STOP_V_DRAG_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == REV_OR_ELASTICO_SKILL) {
+    ACTIVE = REV_OR_ELASTICO_SKILL;
+    combo_run(REV_OR_ELASTICO_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == STOP_REV_OR_ELASTICO_SKILL) {
+    ACTIVE = STOP_REV_OR_ELASTICO_SKILL;
+    combo_run(STOP_REV_OR_ELASTICO_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == DRAG_REV_OR_ELASTICO_SKILL) {
+    ACTIVE = DRAG_REV_OR_ELASTICO_SKILL;
+    combo_run(DRAG_REV_OR_ELASTICO_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == FAKE_RABONA_SKILL) {
+    ACTIVE = FAKE_RABONA_SKILL;
+    combo_run(FAKE_RABONA_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == RABONA_TO_REV_ELASTICO_SKILL) {
+    ACTIVE = RABONA_TO_REV_ELASTICO_SKILL;
+    combo_run(RABONA_TO_REV_ELASTICO_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == RABONA_TO_ELASTICO_SKILL) {
+    ACTIVE = RABONA_TO_ELASTICO_SKILL;
+    combo_run(RABONA_TO_ELASTICO_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == SOMBRERO_FLICK_SKILL) {
+    ACTIVE = SOMBRERO_FLICK_SKILL;
+    combo_run(SOMBRERO_FLICK_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == JUGGLE_BACK_SOMBRERO_SKILL) {
+    ACTIVE = JUGGLE_BACK_SOMBRERO_SKILL;
+    combo_run(JUGGLE_BACK_SOMBRERO_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == FAKE_BERBA_OPP_EXIT_SKILL) {
+    ACTIVE = FAKE_BERBA_OPP_EXIT_SKILL;
+    combo_run(FAKE_BARBA_OPP_EXIT_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == DIAGONAL_HEEL_CHOP_SKILL) {
+    ACTIVE = DIAGONAL_HEEL_CHOP_SKILL;
+    combo_run(DIAGONAL_HEEL_CHOP_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == FAKE_BERBA_FAKE_DRAG_SKILL) {
+    ACTIVE = FAKE_BERBA_FAKE_DRAG_SKILL;
+    combo_run(FAKE_BARBA_TO_FAKE_DRAG_cmb);
+    Get_LS_Output = FALSE;
+  }
+
+  if (f_skill == BALL_ROLL_CUT_180_SKILL) {
+    ACTIVE = BALL_ROLL_CUT_180_SKILL;
+    combo_run(BAL_ROLL_CUT_180_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == HEEL_TO_BALL_ROLL_SKILL) {
+    ACTIVE = HEEL_TO_BALL_ROLL_SKILL;
+    combo_run(HEEL_to_BALL_ROLL_cmb);
+    Get_LS_Output = FALSE;
+  }
+
+  if (f_skill == JOG_OPENUP_FAKE_SHOT) {
+    ACTIVE = JOG_OPENUP_FAKE_SHOT;
+    combo_run(JOG_OPENUP_FAKE_SHOT_cmb);
+    Get_LS_Output = FALSE;
+  }
+  if (f_skill == SPIN_MOVE_LEFT_RIGHT_SKILL) {
+    ACTIVE = SPIN_MOVE_LEFT_RIGHT_SKILL;
+    combo_run(ROULETTE);
+    Get_LS_Output = FALSE;
+  }
+  
+    if (f_skill == TR_BALL_HOP_SKILL) {
+    ACTIVE = TR_BALL_HOP_SKILL;
+    combo_run(TR_BALL_HOP);
+    Get_LS_Output = FALSE;
+  }
+  
+      if (f_skill == TR_Flick_Up_Heel) {
+    ACTIVE = TR_Flick_Up_Heel;
+    combo_run(TR_Flick_Up);
+    Get_LS_Output = FALSE;
+  }
+ 
+       if (f_skill == TR_Quick_Skill) {
+    ACTIVE = TR_Quick_Skill;
+    combo_run(TR_Quick);
+    Get_LS_Output = FALSE;
+  }
+
+       if (f_skill == TR_Flicks) {
+    ACTIVE = TR_Flicks;
+    combo_run(TR_Flicks_L_R);
+    Get_LS_Output = FALSE;
+  }
+  
+         if (f_skill == TR_180_Flick) {
+    ACTIVE = TR_180_Flick;
+    combo_run(TR_180);
+    Get_LS_Output = FALSE;
+  }
+  
+           if (f_skill == TR_CALF_Rainbow) {
+    ACTIVE = TR_CALF_Rainbow;
+    combo_run(TR_CALF);
+    Get_LS_Output = FALSE;
+  }
+
+           if (f_skill == FL_Nutmg_L_R) {
+    ACTIVE = FL_Nutmg_L_R;
+    combo_run(FL_Nutmg_LR);
+    Get_LS_Output = FALSE;
+  }
+}
+
+int RumblePower = 100;
+int Vibrate_type;
+combo NOTIFY_cmb {
+    set_rumble(Vibrate_type,100);
+    wait(300);
+    reset_rumble();
+    wait(20);
+}
+
+function f_set_notify (f_val){
+    if(f_val)Vibrate_type = RUMBLE_A;
+    else     Vibrate_type = RUMBLE_B;
+    combo_run(NOTIFY_cmb);
+}
+function set_right_or_left () {
+    right_on = FALSE; 
+    if (zone_p == 4 || zone_p == 3 || zone_p == 7 ) { 
+        right_on = TRUE; 
+    } /// 
+}
+int time_to_dblclick = 300
+int tap;
+combo ONE_TAP {                                    
+    tap = TRUE;                                    
+    wait(time_to_dblclick); // wait for second tap 
+    tap = FALSE;                                  
+}                                              
+int start;
+combo FL_Nutmg_LR { 
+LA(0,0);
+set_val(FinesseShot,100);
+set_val(PlayerRun,100);
+RA_L_R();
+wait(350);
+Get_LS_Output = TRUE;
+}
+
+combo DRIBBLING_SKILL_cmb {
+  set_val(FinesseShot, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(20);
+  set_val(FinesseShot, 100);
+  LA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(375);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(20);
+  set_val(FinesseShot, 0);
+  set_val(SprintBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(800);
+  start = FALSE;
+  Get_LS_Output = TRUE;
+}
+combo BOOSTED_STEPOVER {
+  if (right_on) dEnd = zone_p + 1;
+  else dEnd = zone_p - 1;
+  calc_relative_xy(dEnd);
+  RA_UP();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_L_R();
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(1000);
+  Get_LS_Output = TRUE;
+}
+
+combo FOUR_TOUCH_TURN_cmb {
+  set_val(PaceCtrol, 100);
+  RA_DOWN(); // down                  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  set_val(PaceCtrol, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(30);
+  set_val(PaceCtrol, 100);
+  RA_DOWN(); // down                  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+
+combo SKILLED_BRIDGE_cmb {
+  set_val(PaceCtrol, 100);
+  RA_UP();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  set_val(PaceCtrol, 100);
+  RA_ZERO();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  set_val(PaceCtrol, 100);
+  RA_DOWN();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+
+combo SCOOP_TURN_FAKE {
+  RA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(280);
+  LA_L_R()
+  set_val(ShotBtn, 100);
+  set_val(PaceCtrol, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  LA_L_R()
+  set_val(PaceCtrol, 100);
+  set_val(ShotBtn, 100);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  LA_L_R()
+  set_val(PaceCtrol, 100);
+  set_val(ShotBtn, 0);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(250);
+  LA_L_R()
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300);
+  Get_LS_Output = TRUE;
+}
+
+///////////////////////////////////////////////////////////////////
+// 1. Fake Shot           ////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+combo FAKE_SHOT {
+  set_val(ShotBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  set_val(ShotBtn, 100);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  set_val(ShotBtn, 0);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  Get_LS_Output = TRUE;
+}
+
+///////////////////////////////////////////////////////////////////
+// 2.  Heel to Heel ///////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+combo HEELtoHEEL {
+  RA_UP(); // up                     
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_ZERO(); // ZERO                   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_DOWN(); // down                  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+
+combo Roll_Sombrero {
+  RA_L_R(); // down                  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300);
+  set_val(PS4_R3,100);
+  vm_tctrl(0);wait(60);
+  vm_tctrl(0);wait(60);
+call(HEELtoHEEL);
+}
+
+///////////////////////////////////////////////////////////////////
+// 3. RAINBOW   //////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+combo RAINBOW {
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_UP(); // up   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+combo FLAIR_Nutmeg {
+LA(0,0);
+set_val(PlayerRun,100);
+set_val(FinesseShot,100);
+RA_UP();
+vm_tctrl(0);wait(60);
+vm_tctrl(0);wait(60);
+}
+
+combo DRAG_BACK {
+  set_val(MOVE_X, inv(LX));
+  set_val(MOVE_Y, inv(LY));
+  set_val(FinesseShot, 100);
+  set_val(PlayerRun, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  set_val(MOVE_X, inv(LX));
+  set_val(MOVE_Y, inv(LY));
+  set_val(FinesseShot, 100);
+  set_val(PlayerRun, 100);
+  if (Sombrero) set_val(PS4_R3, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  Get_LS_Output = TRUE;
+}
+
+//////////////////////////////////////////////////////////////
+// 2. STEP OVER  /////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+combo STEP_OVER_FEINT {
+  RA_UP(); // up   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_L_R(); // <-/->   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  //vm_tctrl(0);vm_tctrl(0);wait(300);
+  Get_LS_Output = TRUE;
+}
+/////////////////////////////// 
+// Drag to Drag       
+combo DRAG_TO_DRAG {
+  LA(0, 0);
+  set_val(PaceCtrol, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  LA(0, 0);
+  set_val(PaceCtrol, 100);
+  set_val(ShotBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  LA(0, 0);
+  set_val(PaceCtrol, 100);
+  set_val(ShotBtn, 100);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(80);
+  LA(0, 0);
+  set_val(PaceCtrol, 100);
+  set_val(ShotBtn, 0);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  Get_LS_Output = TRUE;
+}
+combo HOCUS_POCUS {
+  RA_DOWN(); // Down    
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  right_on = FALSE;
+  RA_L_R(); // L    
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  right_on = TRUE;
+  RA_L_R(); // R    
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+combo TRIPLE_ELASTICO {
+  RA_DOWN(); // Down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  right_on = TRUE;
+  RA_L_R(); // R  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  right_on = FALSE;
+  RA_L_R(); // L   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+combo ELASTICO {
+  right_on = TRUE;
+  RA_L_R(); // R 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_DOWN(); // down
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  right_on = FALSE;
+  RA_L_R(); // L 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+combo REVERSE_ELASTICO {
+  right_on = FALSE;
+  RA_L_R(); // R  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_DOWN(); // down
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  right_on = TRUE;
+  RA_L_R(); // L 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+combo ELASTICO_SHOP_cmb {
+  set_val(FinesseShot, 100);
+  RA_L_R(); // R  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  set_val(FinesseShot, 100);
+  RA_DOWN(); // down
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  right_on = !right_on;
+  set_val(FinesseShot, 100);
+  RA_L_R(); // L 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+combo BAL_ROLL_CUT_180_cmb {
+  set_val(PlayerRun, 100);
+  RA_DOWN(); // down
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  set_val(PlayerRun, 100);
+  RA_ZERO(); // zero
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  set_val(PlayerRun, 100);
+  RA_DOWN(); // down
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+///////////////////////////////
+// 1. Cruyff Turn      
+combo CRUYFF_TURN {
+  set_val(ShotBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  LA(inv(LX), inv(LY));
+  set_val(ShotBtn, 100);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(80);
+  LA(inv(LX), inv(LY));
+  set_val(ShotBtn, 0);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  Get_LS_Output = TRUE;
+}
+combo LA_CROQUETA {
+  set_val(PlayerRun, 100);
+  RA_L_R(); // <-/-> 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(500); //            
+  Get_LS_Output = TRUE;
+}
+combo ROULETTE {
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_L_R(); // <-/->
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_UP(); // up   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+///////////////////////////////
+// Ball Roll   
+function RA_L_UR() {
+  // If right_on is true, rotate right
+
+  if (right_on == TRUE) {
+    //angle_rotation = 90
+    if (angle_rotation > 0) {
+      angle_rotation--
+    }
+
+    set_polar(POLAR_RS, (LS_Angle + angle_rotation), 32767)
+  }
+  // If right_on is false, rotate left
+  else if (right_on == FALSE) {
+    if (angle_rotation > 0) {
+      angle_rotation--
+    }
+
+    set_polar(POLAR_RS, (LS_Angle - angle_rotation), 32767)
+  }
+}
+
+combo BALL_ROLL {
+  RA_L_R(); // Left or Right 
+  set_val(SprintBtn, 0);
+  sensitivity(PS4_LX, 50, 40);
+  sensitivity(PS4_LY, 60, 40);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(310);
+  sensitivity(PS4_LX, 50, 150);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  Get_LS_Output = TRUE;
+}
+//////////////////////////////////////////////////////   
+// 20. Berba / Mcgeady Spin  / 21. Bolasie Flick + R1 / 32 Ball Roll Fake Turn L2 + Berba Spin 
+combo TURN_AND_SPIN {
+  if (ACTIVE == BALL_ROLL_FAKE_TURN) hold_btn = 200; //  Ball Roll Fake Turn L2 
+  else hold_btn = 1;
+  vm_tctrl(0);
+  vm_tctrl(0);wait(hold_btn);
+  RA_UP(); // up   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_ZERO(); // ZERO  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_L_R(); // Left or Right 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+////////////////////////////////////
+//  Tornado Spin + L1    
+combo TORNADO_SPIN {
+  RA_DOWN(); // down  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_ZERO(); // ZERO  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_L_R(); //  <-/-> 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+/////////////////////////////// 
+//25.  Ball Roll Chop           
+combo BALL_ROLL_CHOP {
+  RA_L_R(); // Left or Right 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300);
+  RA_ZERO(); // ZERO         
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_OPP(); // Left or Right
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300);
+  Get_LS_Output = TRUE;
+}
+combo FEINT_EXIT {
+  RA_OPP();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_DOWN(); // down           
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_L_R(); //  <-/->         
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+////////////////////////////////////////////////////////////// 
+//28. LATERAL HEEL to HEEL /////////////////////////////////// 
+////////////////////////////////////////////////////////////// 
+// + L1   PlayerRun                  
+combo LATERAL_HEELtoHEEL {
+  set_val(PlayerRun, 100);
+  RA_OPP();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60); //            
+  set_val(PlayerRun, 100);
+  RA_ZERO();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60); //            
+  set_val(PlayerRun, 100);
+  RA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60); //           
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300);
+  Get_LS_Output = TRUE;
+}
+combo WAKA_WAKA {
+  RA_OPP(); // L       
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  LA(0, 0);
+  RA_UP(); // up  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+
+  LA(0, 0);
+  RA_L_R() // L     
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  right_on = !right_on;
+  LA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(1000);
+  Get_LS_Output = TRUE;
+}
+
+combo BODY_FEINT {
+  RA_L_R(); // R 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  RA_ZERO();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(80);
+  LA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(600);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(600);
+  Get_LS_Output = TRUE;
+}
+combo FEINT_FORWARD {
+  LA(0, 0);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  LA(0, 0);
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  LA(0, 0);
+  RA_ZERO(); // ZERO 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  LA(0, 0);
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+combo TURN_BACK {
+  set_val(FinesseShot, 100);
+  set_val(PlayerRun, 100);
+  RA_DOWN();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(80);
+  Get_LS_Output = TRUE;
+}
+int ps_ping = TRUE; /// 
+int PS_ACC;
+int ps_power = 260;
+int PowerShotPing = 0;
+combo TIMED_PS_FULL_POWER_cmb {
+  set_val(PlayerRun, 100);
+  set_val(FinesseShot, 100);
+  set_val(ShotBtn, 100);
+  wait(ps_power); 
+}
+combo Rainbow_PS {
+  LS_BlockOutput = TRUE;
+  set_val(PaceCtrol, 100);
+  LA(0,0);
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+    LA(0,0);
+  set_val(PaceCtrol, 100);
+  RA_ZERO(); // Zero 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+    LA(0,0);
+  set_val(PaceCtrol, 100);
+  RA_UP(); // up   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+    LA(0,0);
+  set_val(PaceCtrol, 100);
+  vm_tctrl(0);wait(400);
+  vm_tctrl(0);wait(400);
+  call(TIMED_PS_FULL_POWER_cmb);
+  vm_tctrl(0);
+  LA(LX, LY);
+  vm_tctrl(0);wait(800);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+combo ONE_FOOT_SPIN {
+  RA_DOWN(); // down       
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_ZERO(); // ZERO      
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_L_R(); //  <-/->    
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  set_val(PS4_L2, 100);
+  set_val(PS4_R2, 100);
+  //LA_L_R();                 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300); // 800            
+  Get_LS_Output = TRUE;
+}
+
+//////////////////////////////////////////////////////////////
+// 37. REVERSE STEP OVER  ///////////////////////////
+//////////////////////////////////////////////////////////////
+combo REVERSE_STEP_OVER {
+  RA_L_R(); // <-/->   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_UP(); // up   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+combo FAKE_DRAG_BACK {
+  LA(inv(LX), inv(LY));
+  vm_tctrl(0);
+  vm_tctrl(0);wait(200); //350  
+  right_on = FALSE;
+  LA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(50); //120         
+  right_on = !right_on;
+  LA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(540);
+  Get_LS_Output = TRUE;
+}
+
+combo ROLL_SOMB_PS {
+call(Roll_Sombrero);
+vm_tctrl(0);wait(100);
+call(TIMED_PS_FULL_POWER_cmb);
+vm_tctrl(0);
+LA(LX, LY);
+vm_tctrl(0);wait(800);
+LS_BlockOutput = FALSE;
+Get_LS_Output = TRUE;
+ 
+
+}
+combo CANCEL_SHOOT {
+  set_val(ShotBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(290);
+  set_val(PS4_L2, 100);
+  set_val(PS4_R2, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300);
+  Get_LS_Output = TRUE;
+}
+combo NUTMEG_SKILL {
+  set_val(FinesseShot, 100);
+  set_val(PlayerRun, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(20);
+  set_val(FinesseShot, 100);
+  set_val(PlayerRun, 100);
+  if (right_on) dEnd = zone_p + 4;
+  else {
+    dEnd = zone_p - 4;
+  }
+  calc_relative_xy(dEnd);
+  RA(move_lx, move_ly);
+  set_val(SprintBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  Get_LS_Output = TRUE;
+}
+combo CANCELED_TURN_AND_SPIN {
+  RA_UP(); // up   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_ZERO(); // ZERO  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_L_R(); // Left or Right 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  if (ACTIVE == CANCELED_BERBA_SPIN_WITH_DIRECTION) LA_L_R();
+  set_val(PaceCtrol, 100);
+  set_val(SprintBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(200);
+  if (ACTIVE == CANCELED_BERBA_SPIN_WITH_DIRECTION) LA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300);
+  Get_LS_Output = TRUE;
+}
+combo BALL_ROLL_SCOOP_TURN {
+  LS_BlockOutput = TRUE;
+  RA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(250);
+  RA_ZERO();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(50):
+    right_on = !right_on;
+  if (right_on) dEnd = zone_p - 2;
+  else dEnd = zone_p + 2;
+  calc_relative_xy(dEnd);
+  LA(move_lx, move_ly);
+  LS_BlockOutput = TRUE;
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(45);
+  set_val(ShotBtn, 100);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(45);
+  LA(move_lx, move_ly);
+  set_val(ShotBtn, 100);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(45);
+  LA(move_lx, move_ly);
+  set_val(ShotBtn, 0);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(45);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(500);
+  Get_LS_Output = TRUE;
+}
+combo BALL_ROLL_STEP_OVER_cmb {
+  RA_L_R(); //  <-/->  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300);
+  RA_UP();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  Get_LS_Output = TRUE;
+}
+combo CANCEL_FOUR_TOUCH_TURN_cmb {
+  set_val(PaceCtrol, 100);
+  RA_DOWN(); // down  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  set_val(PaceCtrol, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(30);
+  set_val(PaceCtrol, 100);
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  LA(0, 0);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(400);
+  set_val(PS4_L2, 100);
+  set_val(PS4_L1, 100);
+  set_val(PS4_R1, 100);
+  set_val(PS4_R2, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  Get_LS_Output = TRUE;
+}
+combo FAKE_SHOT_CANCEL_cmb {
+  set_val(ShotBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  set_val(ShotBtn, 100);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  set_val(ShotBtn, 0);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(140);
+  set_val(PS4_L2, 100);
+  set_val(PS4_R2, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  Get_LS_Output = TRUE;
+}
+
+combo OKKOSHA_FLICK_cmb {
+  set_val(PlayerRun, 100);
+  RA_UP(); // <-/-> 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300); //            
+  Get_LS_Output = TRUE;
+}
+combo ADVANCED_RAINBOW_cmb {
+  LA(LX, LY);
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  RA_ZERO(); // Zero 
+  LA(LX, LY);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  RA_UP();
+  LA(LX, LY); // up   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(320);
+  LA(LX, LY);
+  RA_ZERO(); // Zero   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(220);
+  LA(LX, LY);
+  RA_UP();
+  LA(LX, LY); // up   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  Get_LS_Output = TRUE;
+}
+
+combo STOP_LA_CROQUETA_cmb {
+  LS_BlockOutput = TRUE;
+  call(STOP_PLAYER_cmb);
+  call(LA_CROQUETA);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+
+combo LA_F_RAINBOW_PS_cmb {
+  set_val(PaceCtrol, 100);
+  call(STOP_LA_CROQUETA_cmb);
+  LA(0,0);
+  vm_tctrl(0);wait(300);
+  LA(LX, 0);
+  set_val(FinesseShot, 100);
+  vm_tctrl(0);wait(100);
+  LA(0,0);
+  vm_tctrl(0);wait(200);
+  LS_BlockOutput = TRUE;
+  LA(0,0);
+  set_val(PlayerRun, 100);
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  LA(0,0);
+  set_val(PlayerRun, 100);
+  RA_ZERO(); // Zero 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  LA(0,0);
+  set_val(PlayerRun, 100);
+  RA_UP(); // up   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  LA(0,0);
+  set_val(PaceCtrol, 100);
+  vm_tctrl(0);wait(400);
+  vm_tctrl(0);wait(400);
+  call(TIMED_PS_FULL_POWER_cmb);
+  vm_tctrl(0);
+  LA(LX, LY);
+  vm_tctrl(0);wait(800);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+
+combo JUGGLING_RAINBOW_cmb {
+  LS_BlockOutput = TRUE;
+  call(STOP_PLAYER_cmb);
+  vm_tctrl(0);
+  LA(0, 0);
+  call(JUGGLING_cmb);
+  call(JUGGLING_cmb);
+  call(JUGGLING_cmb);
+  call(JUGGLING_cmb);
+  call(JUGGLING_cmb);
+  set_val(PaceCtrol, 100);
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  set_val(PaceCtrol, 100);
+  RA_ZERO(); // Zero 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  set_val(PaceCtrol, 100);
+  RA_UP(); // up   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  set_val(PaceCtrol, 100);
+  vm_tctrl(0);wait(600);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+////24 skills //
+combo JUGGLING_RAINBOW_PS_cmb {
+  LS_BlockOutput = TRUE;
+  call(STOP_PLAYER_cmb);
+  vm_tctrl(0);
+  LA(0, 0);
+  call(JUGGLING_cmb);
+  call(JUGGLING_cmb);
+  call(JUGGLING_cmb);
+  call(JUGGLING_cmb);
+  call(JUGGLING_cmb);
+  set_val(PaceCtrol, 100);
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  set_val(PaceCtrol, 100);
+  RA_ZERO(); // Zero 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  set_val(PaceCtrol, 100);
+  RA_UP(); // up   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  set_val(PaceCtrol, 100);
+  vm_tctrl(0);wait(600);
+  call(TIMED_PS_FULL_POWER_cmb);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(800);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+
+combo FLAIR_RAINBOW_PS_cmb {
+  LS_BlockOutput = TRUE;
+  set_val(PlaterRun, 100);
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  set_val(PlaterRun, 100);
+  RA_ZERO(); // Zero 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  set_val(PlaterRun, 100);
+  RA_UP(); // up   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  set_val(PaceCtrol, 100);
+  vm_tctrl(0);wait(600);
+  call(TIMED_PS_FULL_POWER_cmb);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(800);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+combo STOP_NEYMAR_ROLL_cmb {
+  LS_BlockOutput = TRUE;
+  call(STOP_PLAYER_cmb);
+  RA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(200);
+  RA_L_R();
+  LA(LX, LY);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(125);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+combo STOP_V_DRAG_cmb {
+  LS_BlockOutput = TRUE;
+  call(STOP_PLAYER_cmb);
+  set_val(SprintBtn, 100);
+  vm_tctrl(0);
+  LA(0,0);
+  vm_tctrl(0);wait(200);
+  set_val(ShotBtn, 100);
+  set_val(SprintBtn, 100);
+  vm_tctrl(0);
+  LA(0,0);
+  vm_tctrl(0);wait(30);
+  LA_L_R();
+  set_val(SprintBtn, 100);
+  set_val(ShotBtn, 100);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(30);
+  LA_L_R();
+  set_val(SprintBtn, 100);
+  set_val(ShotBtn, 0);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(30);
+  LA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(400);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+
+combo REV_OR_ELASTICO_cmb {
+  LS_BlockOutput = TRUE;
+  RA_OPP(); // down  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_DOWN(); // down  
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_L_R(); //  <-/->   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+combo STOP_REV_OR_ELASTICO_cmb {
+  LS_BlockOutput = TRUE;
+  call(STOP_PLAYER_cmb);
+  call(FEINT_EXIT);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+
+combo DRAG_REV_OR_ELASTICO_cmb {
+  LS_BlockOutput = TRUE;
+  zone_saver();
+  call(DRAG_BACK);
+  LA(0,0);
+  vm_tctrl(0);wait(60);
+  call(STOP_PLAYER_cmb);
+  vm_tctrl(0);
+  LA(0,0);
+  RA_OPP();
+  vm_tctrl(0);
+  LA(0,0);
+  vm_tctrl(0);wait(w_rstick);
+  RA_DOWN(); // down  
+  vm_tctrl(0);
+  LA(0,0);
+  vm_tctrl(0);wait(w_rstick);
+  LA(0,0);
+  RA_L_R(); //  <-/->   
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  LA(0,0);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(600);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+
+combo FAKE_RABONA_cmb {
+  LA(inv(LX), inv(LY));
+  set_val(PaceCtrol, 100);
+  set_val(ShotBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  LA(inv(LX), inv(LY));
+  set_val(PaceCtrol, 100);
+  set_val(ShotBtn, 100);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  LA(inv(LX), inv(LY));
+  set_val(PaceCtrol, 100);
+  set_val(ShotBtn, 0);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  LA(0, 0);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300);
+  Get_LS_Output = TRUE;
+}
+
+combo RABONA_TO_REV_ELASTICO_cmb {
+  LS_BlockOutput = TRUE;
+  zone_saver();
+  call(FAKE_RABONA_cmb);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  // NOW player is at zone_p+2 ( example : if he was running up , after fake rabona he face right ).
+  // now I will perform reverse - elastico  manually to fit face right .
+  // LX,LY values still for running (UP) ,, so we will make the rotation for RA Functions instead of using +2 zone_p method.
+  //1//
+  RA_UP(); // original elastico is (RA_OPP())
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  //2//
+  right_on = FALSE; //ALWAYS to player back which is left direction in our case (REV-ELASTico) // original elastico is (RA_DOWN())
+  RA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  //3//
+  RA_DOWN() // original elastico is (RA_L_R())
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(400);
+  //RA functions rotation done
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+
+combo RABONA_TO_ELASTICO_cmb {
+  LS_BlockOutput = TRUE;
+  zone_saver();
+  call(FAKE_RABONA_cmb);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  // NOW player is at zone_p+2 ( example : if he was running up , after fake rabona he face right ).
+  // now I will perform reverse - elastico  manually to fit face right .
+  // LX,LY values still for running (UP) ,, so we will make the rotation for RA Functions instead of using +2 zone_p method.
+  //1//
+  RA_DOWN(); // original elastico is (RA_OPP())                
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  //2//
+  right_on = FALSE; //ALWAYS to player back which is left direction in our case (REV-ELASTico) // original elastico is (RA_DOWN())
+  RA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  //3//
+  RA_UP() // original elastico is (RA_L_R())
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(400);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+combo SOMBRERO_FLICK_cmb {
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  LA(0, 0);
+  RA_UP();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  LA(0, 0);
+  RA_ZERO()
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  LA(0, 0);
+  RA_UP()
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  LA(0, 0);
+  RA_ZERO()
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  LA(0, 0);
+  RA_DOWN();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  LA(0, 0);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+combo JUGGLE_BACK_SOMBRERO_cmb {
+  LS_BlockOutput = TRUE;
+  call(STOP_PLAYER_cmb);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  call(JUGGLING_cmb);
+  call(JUGGLING_cmb);
+  set_val(PaceCtrol, 100);
+  set_val(FinesseShot, 100);
+  LA(inv(LX), inv(LY));
+  vm_tctrl(0);
+  vm_tctrl(0);wait(400);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+
+combo FAKE_BARBA_OPP_EXIT_cmb {
+  LS_BlockOutput = TRUE;
+  LA(LX, LY);
+  RA_UP();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  LA(LX, LY);
+  RA_ZERO();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  LA(LX, LY);
+  RA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  set_val(PaceCtrol, 100);
+  set_val(SprintBtn, 100);
+  LA(inv(LX), inv(LY));
+  vm_tctrl(0);
+  vm_tctrl(0);wait(600);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+combo DIAGONAL_HEEL_CHOP_cmb {
+
+  if (right_on) dEnd = zone_p + 3;
+  else dEnd = zone_p - 3;
+  calc_relative_xy(dEnd);
+  LA(move_lx, move_ly);
+  set_val(ShotBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  LA(move_lx, move_ly);
+  set_val(ShotBtn, 100);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(80);
+  LA(move_lx, move_ly);
+  set_val(ShotBtn, 0);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300);
+  Get_LS_Output = TRUE;
+}
+combo FAKE_BARBA_TO_FAKE_DRAG_cmb {
+  LA(LX, LY);
+  LS_BlockOutput = TRUE;
+  set_val(XB1_LS, 100);
+  RA_UP();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  LA(LX, LY);
+  RA_ZERO();
+  set_val(XB1_LS, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  LA(LX, LY);
+  RA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  set_val(PaceCtrol, 100);
+  set_val(SprintBtn, 100);
+  if (right_on) dEnd = zone_p + 4;
+  else dEnd = zone_p - 4;
+  calc_relative_xy(dEnd);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(220);
+  if (right_on) dEnd = zone_p + 4;
+  else dEnd = zone_p - 4;
+  calc_relative_xy(dEnd);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  if (right_on) dEnd = zone_p + 1;
+  else dEnd = zone_p - 1;
+  calc_relative_xy(dEnd);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(600);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+
+combo HEEL_to_BALL_ROLL_cmb {
+  LS_BlockOutput = TRUE;
+  set_val(PlayerRun, 100);
+  RA_UP();
+  LA(0, 0); // up     
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  set_val(PlayerRun, 100);
+  RA_ZERO(); // ZERO 
+  LA(0, 0);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  set_val(PlayerRun, 100);
+  LA(0, 0);
+  RA_DOWN(); // down 
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  if (right_on) dEnd = zone_p + 1;
+  else dEnd = zone_p - 1;
+  calc_relative_xy(dEnd);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(200);
+  LS_BlockOutput = FALSE;
+  Get_LS_Output = TRUE;
+}
+combo STUTTER_FEINT_cmb {
+  set_val(PaceCtrol, 100); // hold L2
+  RA_L_R(); // lef/right                    
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  right_on = !right_on;
+  set_val(PaceCtrol, 100); // hold L2
+  RA_L_R(); // lef/right                    
+  vm_tctrl(0);
+  vm_tctrl(0);wait(w_rstick);
+  Get_LS_Output = TRUE;
+}
+
+combo RS_SWITCH {
+  vm_tctrl(0);
+  vm_tctrl(0);wait(45);
+  set_val(PS4_RX, 0);
+  set_val(PS4_RY, 0);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(160);
+}
+
+combo JOG_OPENUP_FAKE_SHOT_cmb {
+  set_val(PlayerRun, 100);
+  set_val(CrossBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(40);
+  set_val(PlayerRun, 100);
+  set_val(CrossBtn, 100);
+  set_val(PassBtn, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  set_val(PlayerRun, 100);
+  set_val(CrossBtn, 0);
+  set_val(PassBtn, 100);
+  LA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  set_val(PlayerRun, 100);
+  LA_L_R();
+  vm_tctrl(0);
+  vm_tctrl(0);wait(300);
+  Get_LS_Output = TRUE;
+}
+
+//TR Combos //
+combo TR_BALL_HOP {
+  set_val(PS4_R3,100);
+  if (right_on) dEnd = zone_p + 1;
+  else dEnd = zone_p - 1;
+  calc_relative_xy(dEnd);
+  LA(move_lx, move_ly);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  LS_BlockOutput = TRUE;
+  vm_tctrl(0);wait(400);
+  Get_LS_Output = TRUE;
+  }
+  
+  combo TR_Flick_Up {
+  call(STOP_PLAYER_cmb);
+  vm_tctrl(0);
+  LA(0,0);
+  vm_tctrl(0);wait(60);
+  vm_tctrl(0);
+  set_val(PS4_R3,100);
+  if (right_on) dEnd = zone_p + 1;
+  else dEnd = zone_p - 1;
+  calc_relative_xy(dEnd);
+  LA(move_lx, move_ly);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  LA(move_lx, move_ly);
+  LS_BlockOutput = TRUE;
+  vm_tctrl(0);
+  vm_tctrl(0);wait(400);
+  Get_LS_Output = TRUE;
+  }
+  
+  combo TR_Quick {
+  call(STOP_PLAYER_cmb);
+  LA(0,0);
+  set_val(PaceCtrol,100);
+  set_val(SprintBtn,100);
+  vm_tctrl(0);wait(750);
+  }
+  
+  combo TR_Flicks_L_R {
+  set_val(PS4_R3,100);
+  if (right_on) dEnd = zone_p + 2;
+  else dEnd = zone_p - 2;
+  calc_relative_xy(dEnd);
+  LA(move_lx, move_ly);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  LS_BlockOutput = TRUE;
+  vm_tctrl(0);wait(400);
+  Get_LS_Output = TRUE;
+  }
+  
+  combo TR_180 {
+  set_val(PaceCtrol,100);
+    set_val(PS4_R3,100);
+  if (right_on) dEnd = zone_p ;
+  else dEnd = zone_p;
+  calc_relative_xy(dEnd);
+  LA(move_lx, move_ly);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  set_val(PaceCtrol,100);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  LS_BlockOutput = TRUE;
+  vm_tctrl(0);wait(400);
+  Get_LS_Output = TRUE;
+  }
+  
+  combo TR_CALF { 
+  call(STOP_PLAYER_cmb);
+    set_val(PaceCtrol,100);
+    set_val(PS4_R3,100);
+  if (right_on) dEnd = zone_p ;
+  else dEnd = zone_p;
+  calc_relative_xy(dEnd);
+  LA(move_lx, move_ly);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(70);
+  set_val(PaceCtrol,100);
+  LA(move_lx, move_ly);
+  vm_tctrl(0);
+  LS_BlockOutput = TRUE;
+  vm_tctrl(0);wait(400);
+  Get_LS_Output = TRUE;
+  }
+  
+  
+  
+  
+combo STOP_PLAYER_cmb {
+  zone_saver();
+  LA(0, 0);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(20);
+  LA(0, 0);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  LA(0, 0);
+  set_val(SprintBtn, 100);
+  LA(0, 0);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(60);
+  LA(0, 0);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(150);
+  Get_LS_Output = TRUE;
+}
+
+function zone_saver() {
+  dEnd = zone_p
+  calc_relative_xy(dEnd);
+  LX = move_lx;
+  LY = move_ly;
+}
+
+combo JUGGLING_cmb {
+  set_val(PaceCtrol, 100);
+  set_val(FinesseShot, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  set_val(PaceCtrol, 100);
+  vm_tctrl(0);
+  vm_tctrl(0);wait(100);
+  Get_LS_Output = TRUE;
+}
+int LS_BlockOutput;
+///////////////////////////////////////////////////
+// ZONE FUNCTION
+const int ZONE_P[][] = {
+  //  X,    Y
+  {
+    0,
+    -100
+  }, // 0 UP
+  {
+    70,
+    -70
+  }, // 1 Up-Right
+  {
+    100,
+    0
+  }, // 2 Right
+  {
+    70,
+    70
+  }, // 3 Down right
+  {
+    0,
+    100
+  }, // 4 Down
+  {
+    -100,
+    100
+  }, // 5 Down Left
+  {
+    -100,
+    0
+  }, // 6 Left
+  {
+    -70,
+    -70
+  } // 7 Left Up
+};
+
+int move_lx, move_ly, zone_p;
+int RS_X, RS_Y, zone_RS;
+int rs_val = 35;
+int polar_LS;
+
+int zoneRange = 50;
+
+const int order[] = {
+  2,
+  1,
+  0,
+  7,
+  6,
+  5,
+  4,
+  3
+};
+int index;
+int sector;
+
+function calc_zone() {
+  polar_LS = get_ipolar(POLAR_LS, POLAR_ANGLE);
+  index = ((polar_LS + 22) % 360) / 45;
+  zone_p = order[index];
+  return zone_p;
+}
+int polar_angle;
+
+function calc_RS() {
+  polar_angle = get_ipolar(POLAR_RS, POLAR_ANGLE);
+  index = ((polar_angle + 22) % 360) / 45;
+  zone_RS = order[index];
+  return zone_RS;
+}
+
+function calc_temp_zone(user_zone) {
+  temp_zone = user_zone;
+  if (temp_zone < 0) temp_zone = 8 - abs(user_zone);
+  else if (temp_zone >= 8) temp_zone = user_zone - 8
+  return temp_zone;
+}
+
+function calc_relative_xy(d) {
+  if (d < 0) d = 8 - abs(d);
+  else if (d >= 8) d = d - 8;
+  move_lx = ZONE_P[d][0]; // X
+  move_ly = ZONE_P[d][1]; // Y
+}
+//--------------------------------------------------------------
+//      Analog Functions                                        
+//--------------------------------------------------------------
+int LS_Sens_Corect;
+
+function RA(xx, yy) {
+  set_val(SKILL_STICK_X, xx);
+  set_val(SKILL_STICK_Y, yy);
+}
+
+function LA(x, y) {
+  set_val(MOVE_X, x);
+  set_val(MOVE_Y, y);
+}
+
+function LA_L_R() {
+  if (right_on) { // right      
+    set_val(MOVE_X, inv(LY));
+    set_val(MOVE_Y, LX);
+  } else { //  left       
+    set_val(MOVE_X, LY);
+    set_val(MOVE_Y, inv(LX));
+  }
+}
+
+function RA_L_R() {
+  if (right_on) { // right          
+    set_val(SKILL_STICK_X, inv(LY));
+    set_val(SKILL_STICK_Y, LX);
+  } else { //  left               
+    set_val(SKILL_STICK_X, LY);
+    set_val(SKILL_STICK_Y, inv(LX));
+  }
+}
+
+function RA_OPP() {
+  if (!right_on) { // right             
+    set_val(SKILL_STICK_X, inv(LY));
+    set_val(SKILL_STICK_Y, LX);
+  } else { //  left               
+    set_val(SKILL_STICK_X, LY);
+    set_val(SKILL_STICK_Y, inv(LX));
+  }
+}
+
+function RA_UP() {
+  set_val(SKILL_STICK_X, LX);
+  set_val(SKILL_STICK_Y, LY);
+}
+
+function RA_DOWN() {
+  set_val(SKILL_STICK_X, inv(LX));
+  set_val(SKILL_STICK_Y, inv(LY));
+}
+
+function RA_ZERO() {
+  set_val(SKILL_STICK_X, 0);
+  set_val(SKILL_STICK_Y, 0);
+}
+ ú¹‹º»¹‰½‰ÏùÏü¹
