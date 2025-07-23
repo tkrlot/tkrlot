@@ -4539,4 +4539,10 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
   display: none;
 }
  
- 
+ /* Transparent background for ping indicators */
+.ping__06d62,
+.largePing__06d62 {
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
