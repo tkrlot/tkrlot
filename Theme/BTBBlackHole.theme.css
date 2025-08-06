@@ -4555,3 +4555,16 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .container__4bbc6 {
     display: none !important;
 }
+
+/* Strong gray + dim effect on User Settings */
+[aria-label="User Settings"] {
+    filter: grayscale(100%) brightness(0.4) !important;
+    opacity: 0.4 !important;
+    transition: filter 0.2s ease, opacity 0.2s ease;
+}
+
+/* Slightly clearer on hover */
+[aria-label="User Settings"]:hover {
+    filter: grayscale(100%) brightness(0.6) !important;
+    opacity: 0.6 !important;
+}
