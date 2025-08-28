@@ -594,7 +594,7 @@ a.selected__91a9d .layout__91a9d, a.channel__972a0:hover,
 
 /* V. Pages */
   /* A. Main Areas */
-.chat_f75fb0,
+/*.chat_f75fb0,
 #app-mount .activityFeed-28jde9,
 #app-mount .activityFeed-1C0EmJ,
 #app-mount .gameLibrary-TTDw4Y,
@@ -606,6 +606,45 @@ a.selected__91a9d .layout__91a9d, a.channel__972a0:hover,
 .threadSidebar-1o3BTy {
   background-color: transparent !important;
   margin-bottom: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+}*/
+
+/* Stop the *entire* Discord app from scrolling */
+html,
+body {
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Keep main app view fixed in place */
+#app-mount {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Restore scrolling inside the chat itself */
+.chat_f75fb0 {
+  overflow-y: auto !important;
+  height: 100% !important;
+}
+
+/* Keep your original style tweaks */
+.chat_f75fb0,
+#app-mount .activityFeed-28jde9,
+#app-mount .activityFeed-1C0EmJ,
+#app-mount .gameLibrary-TTDw4Y,
+#app-mount .container-3gCOGc,
+#app-mount .applicationStore_f07d62,
+#app-mount .pageWrapper_a3a4ce,
+#app-mount .root-1BQpZw,
+#app-mount .container__133bf,
+.threadSidebar-1o3BTy {
+  background-color: transparent !important;
+  margin-bottom: -55px;
   margin-right: 10px;
   border-radius: 10px;
 }
