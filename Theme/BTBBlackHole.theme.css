@@ -4607,3 +4607,8 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
     filter: grayscale(100%) brightness(0.6) !important;
     opacity: 0.6 !important;
 }
+
+/* Remove Server Boosts tab */
+.basicChannelRowLink__2ea32 {
+  display: none !important;
+}
