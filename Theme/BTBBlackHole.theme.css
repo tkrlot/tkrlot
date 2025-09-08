@@ -4612,3 +4612,7 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .basicChannelRowLink__2ea32 {
   display: none !important;
 }
+/* Remove the search bar new one in the middle */
+.searchBar__97492 {
+    display: none !important;
+}
