@@ -1128,7 +1128,7 @@ body {
   font-size: 11px;
 }
 
-#app-mount  .chat_f75fb0 .jumpToPresentBar__0f481 .spinner__0b5bb {
+#app-mount  .chat_f75fb0 .jumpToPresentBar__0f481 .spinner__46696 {
   margin-left: 20px !important;
   margin-top: 10px;
   padding-right: 15px;
@@ -1385,8 +1385,8 @@ body {
 #app-mount .tierHeaderLocked_a36dee,
 #app-mount .tierBody_a36dee,
 #app-mount .guildHeader-3nh5RK,
-.wrapper__0d1ef,
-.wrapper_d852db,
+.wrapper_f61d60,
+.wrapper_f61d60,
 .cardFolder-3H4uH4,
 .item__344e6,
 .fieldList__1fed1 {
@@ -3524,7 +3524,7 @@ background-attachment: fixed;
 /* XIV. Addon Optimization */
 
 /* Hide the mod view button, etc for a member when click at their profile */
-.wrapper_da5890 {
+.wrapper__6c798 {
     display: none !important;
 }
 
@@ -3794,7 +3794,7 @@ background-attachment: fixed;
 
 
 /*the channel name inside the connection bar left below */
-.subtext__339d0 {
+.subtext_beaa93 {
     color: #333; /* Discord's theme color (purple) */
 }
 
