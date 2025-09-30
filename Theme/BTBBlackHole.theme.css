@@ -4616,3 +4616,10 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .searchBar__97492 {
     display: none !important;
 }
+
+/* Change the new VC timer color */
+.icon__2ea32,
+.iconLive_c69b6d,
+.tabularNumbers__4bd52 {
+    color: #4d4d4d !important; /* darker gray */
+}
