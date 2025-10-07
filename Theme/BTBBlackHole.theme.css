@@ -181,7 +181,7 @@
 
 .icon_f34534,
 .recentsIcon_c99c29 {
-    display: none;
+    display: none !important;
 }
 
 
