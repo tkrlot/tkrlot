@@ -179,7 +179,6 @@
   display: none;
 }
 
-.defaultColor__4bd52,
 .icon_f34534,
 .recentsIcon_c99c29 {
     display: none;
@@ -4622,4 +4621,9 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .iconLive_c69b6d,
 .tabularNumbers__4bd52 {
     color: #4d4d4d !important; /* darker gray */
+}
+
+/* Force ping number text to gray */
+.defaultColor__4bd52 {
+    color: #808080 !important;   /* standard gray */
 }
