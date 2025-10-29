@@ -1384,8 +1384,8 @@ body {
 #app-mount .tierHeaderLocked_a36dee,
 #app-mount .tierBody_a36dee,
 #app-mount .guildHeader-3nh5RK,
-.wrapper_d852db,
-.wrapper_d852db,
+.wrapper__6c798,
+.wrapper__6c798,
 .cardFolder-3H4uH4,
 .item__344e6,
 .fieldList__1fed1 {
@@ -2569,32 +2569,32 @@ svg[name="Activity"] {
 }
 
   /* E. Tooltips & Notices */
-.tooltip__382e7 {
+.tooltip_c36707 {
   border-radius: 5px !important;
 }
 
-#app-mount .tooltip__382e7.tooltipRed__382e7 {
+#app-mount .tooltip_c36707.tooltipRed_c36707 {
   background: var(--dnd);
 }
 
-#app-mount .tooltip__382e7.tooltipGreen__382e7 {
+#app-mount .tooltip_c36707.tooltipGreen_c36707 {
   background: var(--online);
 }
 
-#app-mount .tooltipRed__382e7 .tooltipPointer__382e7 {
+#app-mount .tooltipRed_c36707 .tooltipPointer_c36707 {
   border-top-color: var(--dnd);
 }
 
-#app-mount .tooltipGreen__382e7 .tooltipPointer__382e7 {
+#app-mount .tooltipGreen_c36707 .tooltipPointer_c36707 {
   border-top-color: var(--online);
 }
     
-#app-mount .tooltip__382e7,
+#app-mount .tooltip_c36707,
 #app-mount .bubble-3we2di {
   background: var(--black-hole), var(--stars) !important;
 }
     
-#app-mount .tooltipBlack-vMYxvw .tooltipPointer__382e7,
+#app-mount .tooltipBlack-vMYxvw .tooltipPointer_c36707,
 #app-mount .bubble-3we2di:before {
   border-top-color: #111 !important;
 }
@@ -2658,19 +2658,19 @@ svg[name="Activity"] {
 
 /* tropix's fade in tooltip anim */
     
-.layerContainer-2v_Sit .tooltip__382e7.tooltipRight__382e7 {
+.layerContainer-2v_Sit .tooltip_c36707.tooltipRight_c36707 {
   animation: fadeFromRight 200ms
 }
 
-.layerContainer-2v_Sit .tooltip__382e7.tooltipBottom__382e7 {
+.layerContainer-2v_Sit .tooltip_c36707.tooltipBottom_c36707 {
   animation: fadeFromBottom 200ms
 }
 
-.layerContainer-2v_Sit .tooltip__382e7[class*="tooltipLeft-"] {
+.layerContainer-2v_Sit .tooltip_c36707[class*="tooltipLeft-"] {
   animation: fadeFromLeft 200ms
 }
 
-.layerContainer-2v_Sit .tooltip__382e7.tooltipTop__382e7{
+.layerContainer-2v_Sit .tooltip_c36707.tooltipTop_c36707{
   animation: fadeFromTop 200ms;
 }
 
@@ -3523,7 +3523,7 @@ background-attachment: fixed;
 /* XIV. Addon Optimization */
 
 /* Hide the mod view button, etc for a member when click at their profile */
-.wrapper_d852db {
+.wrapper__6c798 {
     display: none !important;
 }
 
@@ -3782,12 +3782,12 @@ background-attachment: fixed;
 /*END*/
 
 /* CHANGE THE PING TEXT COLOR */
-.theme-dark .tooltipGreen__382e7 {
+.theme-dark .tooltipGreen_c36707 {
   color: white !important; /* Text color */
   background-color: black !important; /* Background color */
 }
 
-.theme-dark .tooltipGreen__382e7 .tooltipPointer__382e7 {
+.theme-dark .tooltipGreen_c36707 .tooltipPointer_c36707 {
   border-top-color: black !important; /* Top border color of the pointer */
 }
 
