@@ -1384,8 +1384,8 @@ body {
 #app-mount .tierHeaderLocked_a36dee,
 #app-mount .tierBody_a36dee,
 #app-mount .guildHeader-3nh5RK,
-.wrapper__6c798,
-.wrapper__6c798,
+.wrapper_d852db,
+.wrapper_d852db,
 .cardFolder-3H4uH4,
 .item__344e6,
 .fieldList__1fed1 {
@@ -3523,7 +3523,7 @@ background-attachment: fixed;
 /* XIV. Addon Optimization */
 
 /* Hide the mod view button, etc for a member when click at their profile */
-.wrapper__6c798 {
+.wrapper_d852db {
     display: none !important;
 }
 
