@@ -166,7 +166,7 @@
 #app-mount .layers__960e4,
 #app-mount .layers__960e4,
 .privateChannels__35e86,
-.container_c48ade,
+.container__5e434,
 #app-mount .layer__960e4 ,
 #app-mount .layer__960e4,
 .bg__960e4,
@@ -244,7 +244,7 @@
 
 .container-PNkimc,
 .animatedContainer_f37cb1,
-.sidebar_c48ade,
+.sidebar__5e434,
 .scrollableContainer-38zsVD,
 .channels-Ie2l6A {
   background-color: transparent;
@@ -347,7 +347,7 @@ background-color: var(--background-secondary) !important;
   color: #111;
 }
 
-.panels_c48ade .container__37e49 {
+.panels__5e434 .container__37e49 {
   border-top: 1px solid var(--tres);
 }
 
@@ -356,7 +356,7 @@ background-color: var(--background-secondary) !important;
 .container-1UB9sr,
 .payment_e9cb00,
 .expandedInfo_e9cb00,
-.panels_c48ade {
+.panels__5e434 {
   background-color: transparent !important;
 }
 
@@ -444,16 +444,16 @@ a.selected__91a9d .layout__91a9d, a.channel__972a0:hover,
 
 /* IV. Guilds Area */
   /* A. Guilds Header */
-#app-mount .guilds_c48ade {
+#app-mount .guilds__5e434 {
   background-color: transparent;
   overflow: visible;
 }
 
-#app-mount .platform-osx .guilds_c48ade {
+#app-mount .platform-osx .guilds__5e434 {
   margin-top: 60px;
 }
 
-.guilds_c48ade .scroller_ef3116::-webkit-scrollbar {
+.guilds__5e434 .scroller_ef3116::-webkit-scrollbar {
   display: none;
 }
 
@@ -462,7 +462,7 @@ a.selected__91a9d .layout__91a9d, a.channel__972a0:hover,
   background-color: transparent !important;
 }
 
-#app-mount .guilds_c48ade .scroller_ef3116 .tutorialContainer__1f388 .listItem__650eb .svg_cc5dd2 {
+#app-mount .guilds__5e434 .scroller_ef3116 .tutorialContainer__1f388 .listItem__650eb .svg_cc5dd2 {
   height: 100% !important;
   width: 100% !important;
 }
@@ -471,7 +471,7 @@ a.selected__91a9d .layout__91a9d, a.channel__972a0:hover,
   padding: 0px;
 }
 
-.guilds_c48ade .scroller_ef3116>.listItem__650eb:first-child .pill-2uzAFe,
+.guilds__5e434 .scroller_ef3116>.listItem__650eb:first-child .pill-2uzAFe,
 .homeIcon-FuNwkv path {
   display: none;
 }
@@ -484,7 +484,7 @@ a.selected__91a9d .layout__91a9d, a.channel__972a0:hover,
   background-color: transparent;
 }
 
-#app-mount .guilds_c48ade .scroller_ef3116 .tutorialContainer__1f388 .listItem__650eb .wrapper_cc5dd2 .childWrapper_a6ce15 {
+#app-mount .guilds__5e434 .scroller_ef3116 .tutorialContainer__1f388 .listItem__650eb .wrapper_cc5dd2 .childWrapper_a6ce15 {
   background-color: transparent;
 }
 
@@ -502,7 +502,7 @@ a.selected__91a9d .layout__91a9d, a.channel__972a0:hover,
   width: 100% !important;
 }
 
-#app-mount .guilds_c48ade .scroller_ef3116 .tutorialContainer__1f388 .listItem__650eb .wrapper_cc5dd2.selected_ae80f7 .homeIcon-FuNwkv {
+#app-mount .guilds__5e434 .scroller_ef3116 .tutorialContainer__1f388 .listItem__650eb .wrapper_cc5dd2.selected_ae80f7 .homeIcon-FuNwkv {
   background-color: #111 !important;
 }
 
@@ -1277,7 +1277,7 @@ body {
 
 /* Change the transparency of the chat text bar */
 .scrollableContainer__74017,
-.sidebar_c48ade,
+.sidebar__5e434,
 .bar_c38106 {    
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
@@ -4070,16 +4070,16 @@ div[class*="messageContent_c19a55"] a[href^="https://fxtwitter.com/"] {
 
 
 /* Minified Channel List */
-/*.sidebar_c48ade {
+/*.sidebar__5e434 {
   transition-duration: 0.75s;
   transition-property: width;
 }
-.sidebar_c48ade:not(:hover) {
+.sidebar__5e434:not(:hover) {
   width: 1px;
 }
-.sidebar_c48ade:not(:hover) .containerDefault_c69b6d .children__29444,
-.sidebar_c48ade:not(:hover) .containerDefault__29444 .children__2ea32,
-.sidebar_c48ade:not(:hover) .header_f37cb1 > :not(div) {
+.sidebar__5e434:not(:hover) .containerDefault_c69b6d .children__29444,
+.sidebar__5e434:not(:hover) .containerDefault__29444 .children__2ea32,
+.sidebar__5e434:not(:hover) .header_f37cb1 > :not(div) {
   display: none;
 }
 
@@ -4149,13 +4149,13 @@ cursor: pointer;
 }
 
 /* Hide User buttons until hover */
-.panels_c48ade > .container__37e49 .flex__7c0ba > :not(:last-child) {
+.panels__5e434 > .container__37e49 .flex__7c0ba > :not(:last-child) {
     opacity: 0% !important;
     width: 0px;
     transition: all 0.2s ease-in-out;
 }
 
-.panels_c48ade > .container__37e49:hover .flex__7c0ba > :not(:last-child) {
+.panels__5e434 > .container__37e49:hover .flex__7c0ba > :not(:last-child) {
     opacity: 100% !important;
     width: 32px;
 }
@@ -4177,27 +4177,27 @@ cursor: pointer;
 }
 
 /* Minified Server List */
-.wrapper_ef3116.guilds_c48ade {
+.wrapper_ef3116.guilds__5e434 {
     opacity: 0;
     transition: opacity 200ms ease;
 }
-.wrapper_ef3116.guilds_c48ade:hover {
+.wrapper_ef3116.guilds__5e434:hover {
     opacity: 1;
 }
 /*Width*/
-.wrapper_ef3116.guilds_c48ade {
+.wrapper_ef3116.guilds__5e434 {
     width: 1px;
     min-width: 1px;
     transition-property: width, min-width;
     transition: 400ms ease;
 }
-.wrapper_ef3116.guilds_c48ade:hover{
+.wrapper_ef3116.guilds__5e434:hover{
     width: 70px;
     min-width: 68px;
 }
 
 /* Default Panel State */
-.panels_c48ade {
+.panels__5e434 {
     width: 240px; /* Normal panel width when visible */
     min-width: 238px;
     opacity: 1;
@@ -4205,7 +4205,7 @@ cursor: pointer;
 }
 
 /* Hide Panel on Server List Hover */
-.wrapper_ef3116.guilds_c48ade:hover ~ .panels_c48ade {
+.wrapper_ef3116.guilds__5e434:hover ~ .panels__5e434 {
     width: 0;
     min-width: 0;
     opacity: 0;
@@ -4511,14 +4511,14 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 }
 /*------------------------------------------*/
 /* Hide the element */
-.panels_c48ade > .container__37e49 .buttons__37e49 {
+.panels__5e434 > .container__37e49 .buttons__37e49 {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     pointer-events: none; /* Prevents interaction when hidden */
 }
 
 /* Show on hover */
-.panels_c48ade > .container__37e49:hover .buttons__37e49 {
+.panels__5e434 > .container__37e49:hover .buttons__37e49 {
     opacity: 1;
     pointer-events: auto;
 }
@@ -4555,11 +4555,11 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
     box-shadow: none !important;
 }
 
-.panels_c48ade {
+.panels__5e434 {
     border: none !important;
 }
 
-.sidebar_c48ade::after {
+.sidebar__5e434::after {
     background: transparent !important;
 }
 
