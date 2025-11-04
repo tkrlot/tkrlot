@@ -1,6 +1,6 @@
 ! Title: Hide YouTube Shorts
 ! Description: Hide all traces of YouTube shorts videos on YouTube
-! Version: 2025.8.31
+! Version: 2025.11.4
 
 ! YT Homepage - Hide the Shorts section
 youtube.com##[is-shorts]
