@@ -165,7 +165,7 @@
 #app-mount .app__160d8, 
 #app-mount .layers__960e4,
 #app-mount .layers__960e4,
-.privateChannels__35e86,
+.privateChannels_e6b769,
 .container__5e434,
 #app-mount .layer__960e4 ,
 #app-mount .layer__960e4,
@@ -416,7 +416,7 @@ background-color: var(--background-secondary) !important;
 }
 
   /* D. Private Channels */
-.searchBar__35e86 {
+.searchBar_e6b769 {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -425,14 +425,14 @@ background-color: var(--background-secondary) !important;
   background: transparent;
 }
 
-.searchBar__35e86 {
+.searchBar_e6b769 {
   background-color: transparent;
   border-color: var(--tres);
 }
 
-.privateChannels__35e86 .searchBar__35e86 .searchBarInner-1_Tg2R,
+.privateChannels_e6b769 .searchBar_e6b769 .searchBarInner-1_Tg2R,
 a.selected__91a9d .layout__91a9d, a.channel__972a0:hover,
-.searchBar__35e86 .searchBarComponent__35e86 {
+.searchBar_e6b769 .searchBarComponent__35e86 {
   background: var(--veil) var(--stars) top left;
   background-attachment: fixed;
 }
@@ -1384,8 +1384,8 @@ body {
 #app-mount .tierHeaderLocked_a36dee,
 #app-mount .tierBody_a36dee,
 #app-mount .guildHeader-3nh5RK,
-.wrapper_d852db,
-.wrapper_d852db,
+.wrapper__6c798,
+.wrapper__6c798,
 .cardFolder-3H4uH4,
 .item__344e6,
 .fieldList__1fed1 {
@@ -1432,7 +1432,7 @@ body {
 .attachment_fc8177, 
 .avatar_fc8177, 
 .blob_fc8177,
-.role_fa0dd2:hover,
+.role_afdfcc:hover,
 .container_d8f25b:hover,
 .total__260e1,
 .iconBadge__03991 {
@@ -1555,7 +1555,7 @@ body {
 #app-mount .card_e90879,
 .upsellContainer__73000,
 .upsellFooter__73000,
-.analyticsCard__5931c,
+.analyticsCard__0dfec,
 .developerPortalCtaWrapper__540ed,
 .container-2w0lh0,
 .header-2Y0-A-,
@@ -2360,13 +2360,13 @@ svg[name="Activity"] {
   animation: popoutanim 300ms cubic-bezier(.4, 0, 0, 1), opacity 100ms ease 100ms backwards;
 }
 
-#app-mount .messagesPopoutWrap__45690,
+#app-mount .messagesPopoutWrap_e8b59c,
 .container__2692d {
   background: var(--quatro) var(--stars) top left !important;
   background-attachment: fixed;
 }
 
-#app-mount .messagesPopout__45690 {
+#app-mount .messagesPopout_e8b59c {
   background: transparent;
 }
 
@@ -2389,13 +2389,13 @@ svg[name="Activity"] {
   left: 0px;
 }
 
-#app-mount .header__45690,
+#app-mount .header_e8b59c,
 #app-mount .themedPopout-25DgLi .footer-SRC48P {
   background: var(--veil) var(--stars) top left !important;
   background-attachment: fixed;
 }
 
-#app-mount .messageGroupWrapper__45690 {
+#app-mount .messageGroupWrapper_e8b59c {
   background: var(--sheer) var(--stars) top left !important;
   background-attachment: fixed;
   border-color: var(--quatro);
@@ -2412,12 +2412,12 @@ svg[name="Activity"] {
   border-color: var(--quatro);
 }
 
-#app-mount .messageGroupWrapper__45690:hover .actionButtons_e131a9 {
+#app-mount .messageGroupWrapper_e8b59c:hover .actionButtons_e131a9 {
   background-color: var(--veil);
   box-shadow: 0 0 6px 4px var(--veil);
 }
 
-#app-mount .jumpButton__45690 {
+#app-mount .jumpButton_e8b59c {
   background-color: var(--veil);
 }
 
@@ -2791,7 +2791,7 @@ svg[name="Activity"] {
   background-color: #111;
 }
 
-#app-mount .searchBar__35e86.searchBarLight-1NxoDG {
+#app-mount .searchBar_e6b769.searchBarLight-1NxoDG {
   background: transparent;
 }
 
@@ -2800,7 +2800,7 @@ svg[name="Activity"] {
   background-color: var(--veil);
 }
 
-#app-mount .searchBar__35e86.searchBarLight-1NxoDG .searchBarInner-1_Tg2R {
+#app-mount .searchBar_e6b769.searchBarLight-1NxoDG .searchBarInner-1_Tg2R {
   background: var(--veil);
 }
 
@@ -3028,29 +3028,29 @@ svg[name="Activity"] {
 }
 
   /* B. Upload Modal */
-.uploadModal_dbca3c,
+.uploadModal_b78547,
 #app-mount .addGamePopout_cc46f0,
 #app-mount .inner-1JeGVc .container_ac6cb0,
 #app-mount .keyboardShortcutsModal_f061f6,
-#app-mount .uploadModalIn_dbca3c .uploadDropModal_dbca3c .bgScale_dbca3c,
+#app-mount .uploadModalIn_b78547 .uploadDropModal_b78547 .bgScale_b78547,
 #app-mount .modalRoot-2fww1y {
   background: linear-gradient(#111, transparent 80%), var(--quatro) var(--stars) top left !important;
   background-attachment: fixed;
   border-radius: 10px;
 }
 
-.uploadModal_dbca3c .inner_dbca3c,
-.uploadModal_dbca3c .inner_dbca3c .file_dbca3c .icon_dbca3c.image_dbca3c {
+.uploadModal_b78547 .inner_b78547,
+.uploadModal_b78547 .inner_b78547 .file_b78547 .icon_b78547.image_b78547 {
   border-color: var(--sheer)
 }
 
-.uploadModal_dbca3c .inner_dbca3c .file_dbca3c .icon_dbca3c.image_dbca3c:hover {
+.uploadModal_b78547 .inner_b78547 .file_b78547 .icon_b78547.image_b78547:hover {
   width: 93%;
   height: 160%;
   margin-top: -95px;
 }
 
-.uploadModal_dbca3c .footer_dbca3c,
+.uploadModal_b78547 .footer_b78547,
 .ctaSection-3LqbxQ,
 .formSection-23ecNl {
   background: transparent;
@@ -3059,7 +3059,7 @@ svg[name="Activity"] {
 .lookInverted_a299dc.colorBrand__201d5,
 /* #app-mount .checked_f525d3, */
 .theme-brand .inner-zqa7da,
-.uploadModal_dbca3c .inner_dbca3c .file_dbca3c .icon_dbca3c.image_dbca3c,
+.uploadModal_b78547 .inner_b78547 .file_b78547 .icon_b78547.image_b78547,
 #app-mount .resultFocused-3aIoYe,
 .usagePill-P-Cmcv,
 .channelsWrapper-51IUFR, 
@@ -3115,7 +3115,7 @@ background-attachment: fixed;
 }
 
   /* D. Messages Modal, Games Download Modal, Screenshare */
-#app-mount .message__89466,
+#app-mount .message_fd14e0,
 #app-mount .tiles-2aXG_k {
   background: var(--sheer) var(--stars) top left !important;
   background-attachment: fixed;
@@ -3170,11 +3170,11 @@ background-attachment: fixed;
 
   /* F. Reactions Modal & Server Invite Modal */
 #app-mount .sidebar-1-SQro,
-#app-mount  .reactors_cc2dff {
+#app-mount  .reactors_b7f4b4 {
   background: linear-gradient(#111, transparent 80%), var(--sheer) var(--stars) top left fixed;
 }
 
-#app-mount #app-mount .reactors_cc2dff {
+#app-mount #app-mount .reactors_b7f4b4 {
   background: linear-gradient(#111, transparent 80%);
 }
 
@@ -3523,7 +3523,7 @@ background-attachment: fixed;
 /* XIV. Addon Optimization */
 
 /* Hide the mod view button, etc for a member when click at their profile */
-.wrapper_d852db {
+.wrapper__6c798 {
     display: none !important;
 }
 
@@ -3585,7 +3585,7 @@ background-attachment: fixed;
 }
 
 /* Hide searhbar for friends DM*/
-.searchBar__35e86 {
+.searchBar_e6b769 {
     display: none;
 }
 
@@ -4457,9 +4457,9 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 }
 
 /* to change the channel list names opacity, icons, category name and triangle change the server icon opacity  */
-.name__2ea32.overflow__82b15,
+.name__2ea32.overflow_b0dfc2,
 .icon__2ea32,
-.overflow__82b15,
+.overflow_b0dfc2,
 .icon__29444,
 .wrapper__6e9f8 {
     opacity: 0.4; /* Adjust this value as needed */
