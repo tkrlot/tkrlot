@@ -1384,8 +1384,8 @@ body {
 #app-mount .tierHeaderLocked_a36dee,
 #app-mount .tierBody_a36dee,
 #app-mount .guildHeader-3nh5RK,
-.wrapper__4106a,
-.wrapper__4106a,
+.wrapper__0d1ef,
+.wrapper__0d1ef,
 .cardFolder-3H4uH4,
 .item__344e6,
 .fieldList__1fed1 {
@@ -3523,7 +3523,7 @@ background-attachment: fixed;
 /* XIV. Addon Optimization */
 
 /* Hide the mod view button, etc for a member when click at their profile */
-.wrapper__4106a {
+.wrapper__0d1ef {
     display: none !important;
 }
 
@@ -4621,4 +4621,9 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .iconLive_c69b6d,
 .tabularNumbers__4bd52 {
     color: #4d4d4d !important; /* darker gray */
+}
+
+/* Remove the apps buutton in chatbar */
+.button_e6e74f {
+    display: none !important;
 }
