@@ -4627,3 +4627,20 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .button_e6e74f {
     display: none !important;
 }
+
+/* the new Settings tab */
+.scroller__6131a,
+.container__8a031,
+.contentHeader_e9e3ed {
+    --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
+    --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
+    --overlay-opacity: 0.09; /* Adjust overlay opacity (0 to 1) */
+
+    background: 
+        linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
+        var(--black-hole) center/cover fixed,
+        var(--stars) repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
