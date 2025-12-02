@@ -4646,3 +4646,7 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
     background-position: center;
 }
 
+/* Remove the EMOJI buutton in chatbar */
+.emojiButtonNormal__04eed  {
+    display: none !important;
+}
