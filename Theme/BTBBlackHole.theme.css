@@ -4258,7 +4258,8 @@ cursor: pointer;
 .title_f75fb0,
 .container__9293f,
 .themed__9293f,
-.pencilContainer_c3e427 {
+.pencilContainer_c3e427,
+..inviteButton_f37cb1 {
     display: none;
 }
 
@@ -4645,8 +4646,3 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
     background-position: center;
 }
 
-
-/* Hide new invite button */
-.inviteButton_f37cb1 {
-    display: none !important;
-}
