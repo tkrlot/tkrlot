@@ -4644,3 +4644,9 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
     background-attachment: fixed;
     background-position: center;
 }
+
+
+/* Hide new invite button */
+.inviteButton_f37cb1 {
+    display: none !important;
+}
