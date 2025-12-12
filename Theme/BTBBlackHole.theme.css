@@ -3749,7 +3749,7 @@ background-attachment: fixed;
 }
 
 /* Change voice activity indicator glow color */
-.theme-dark [class*=avatarSpeaking_] {
+.theme-dark [class*=avatarSpeaking__] {
     box-shadow: 0 0 0 2px #333; /* Change #ff0000 to your desired border color */
 }
 
