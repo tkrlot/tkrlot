@@ -3749,8 +3749,8 @@ background-attachment: fixed;
 }
 
 /* Change voice activity indicator glow color */
-.theme-dark .avatarSpeaking__07f91 {
-    box-shadow: 0 0 0 2px #333; /* Change #333 to your desired border color */
+.theme-dark, .theme-darker {
+  --status-speaking: #333 !important; 
 }
 
 /* Change color of username when speaking */
