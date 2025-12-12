@@ -1384,8 +1384,8 @@ body {
 #app-mount .tierHeaderLocked_a36dee,
 #app-mount .tierBody_a36dee,
 #app-mount .guildHeader-3nh5RK,
-.wrapper__0d1ef,
-.wrapper__0d1ef,
+.wrapper__6c798,
+.wrapper__6c798,
 .cardFolder-3H4uH4,
 .item__344e6,
 .fieldList__1fed1 {
@@ -3523,7 +3523,7 @@ background-attachment: fixed;
 /* XIV. Addon Optimization */
 
 /* Hide the mod view button, etc for a member when click at their profile */
-.wrapper__0d1ef {
+.wrapper__6c798 {
     display: none !important;
 }
 
@@ -3682,7 +3682,7 @@ background-attachment: fixed;
 }
 
 /* Use Dropdown for music filters, etc */
-.popout__3f413 {
+.popout_a16aea {
     --overlay-opacity: 0.3; /* Adjust overlay opacity (0 to 1) */
 
     background: 
@@ -4565,9 +4565,9 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 }
 
 /* Target text or child elements directly */
-.select__3f413 span,
-.select__3f413 div,
-.select__3f413 * {
+.select_a16aea span,
+.select_a16aea div,
+.select_a16aea * {
     display: inline-block !important; /* Force child elements to show */
     visibility: visible !important; /* Ensure text is visible */
     opacity: 0.5 !important; /* Prevent transparency */
