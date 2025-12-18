@@ -3754,8 +3754,8 @@ background-attachment: fixed;
 }
 
 /* Change color of username when speaking */
-.theme-dark [class*=usernameSpeaking_] {
-    color: #333; /* Replace with your desired color code */
+.theme-dark ._07f9193042954787-usernameSpeaking {
+    color: #333 !important;
 }
 
 /* Classic Quick user actions */
