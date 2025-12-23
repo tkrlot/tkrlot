@@ -581,50 +581,71 @@ client.on(Events.InteractionCreate, async (interaction) => {
         await interaction.showModal(modal);
         return;
       }
+// Verify embed block (replace existing verifyemb handler with this)
+if (commandName === 'verifyemb') {
+  if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
+    return interaction.reply({ content: 'Admin permissions required.', flags: 64 });
+  }
 
-      // /verifyemb (DO NOT TOUCH logic; keep text same; color unified)
-      if (commandName === 'verifyemb') {
-        if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-          return interaction.reply({ content: 'Admin permissions required.', flags: 64 });
-        }
+  const descriptionText = [
+    '**How verification works**',
+    '',
+    '1. Click **Verify Invoice** below.',
+    '2. Enter your invoice ID from our [Store](https://ice.sell.app/) when prompted (example: `2711846`).',
+    '3. The bot will check the invoice status with our Store and, if eligible, assign the Customer role automatically.',
+    '',
+    '**What qualifies**',
+    '- Only completed/paid invoices are accepted. Typical accepted statuses: PAID, COMPLETED, FULFILLED, SUCCESS.',
+    '',
+    '**What to expect**',
+    '- If verification succeeds you will receive a confirmation message and the role will be added to your account.',
+    '- If verification fails, the bot will explain why (invalid invoice, unpaid status, or already used).',
+    '',
+    '**Privacy & storage**',
+    '- Invoice IDs are stored only to prevent reuse and to reassign roles if you rejoin the server.',
+    '- No personal payment details are stored by this bot; only the invoice identifier and verification metadata are kept.',
+    '',
+    '**Troubleshooting**',
+    '- Double-check the invoice ID you enter (no extra spaces).',
+    '- If the invoice is recent, allow a few minutes for payment processing before verifying.',
+    '- If you see "already used", contact staff with proof of purchase so they can investigate.',
+    '',
+    '**Need help?**',
+    '- If verification fails or you need manual assistance, please open a ticket or contact a staff member with your invoice ID and order details.',
+    '',
+    'By verifying you confirm you own the invoice and agree to server staff reviewing verification records if needed.'
+  ].join('\n');
 
-        const descriptionText = [
-          'Click the button below to verify your Sell.app invoice and receive your role.',
-          '',
-          'How it works: Click Verify → enter your invoice ID → if paid you will receive the role.',
-          '',
-          'Privacy: Invoice IDs are stored securely for verification and reassigning roles on rejoin.',
-        ].join('\n');
+  const embed = new EmbedBuilder()
+    .setTitle('🔒 Invoice Verification')
+    .setDescription(descriptionText)
+    .setColor(EMBED_COLOR);
 
-        const embed = new EmbedBuilder()
-          .setTitle('🔒 Invoice Verification')
-          .setDescription(descriptionText)
-          .setColor(EMBED_COLOR);
+  const button = new ButtonBuilder()
+    .setCustomId('verify_invoice_button')
+    .setLabel('Verify Invoice')
+    .setStyle(ButtonStyle.Primary)
+    .setEmoji('🔎');
 
-        const button = new ButtonBuilder()
-          .setCustomId('verify_invoice_button')
-          .setLabel('Verify Invoice')
-          .setStyle(ButtonStyle.Primary)
-          .setEmoji('🔎');
+  const row = new ActionRowBuilder().addComponents(button);
 
-        const row = new ActionRowBuilder().addComponents(button);
+  try {
+    await interaction.channel.send({ embeds: [embed], components: [row] });
+    await interaction.reply({
+      content: '✅ Verification embed sent to this channel.',
+      flags: 64,
+    });
+  } catch (err) {
+    logError('Failed to send verification embed', err);
+    await interaction.reply({
+      content: '❌ Failed to send verification embed. Check bot permissions.',
+      flags: 64,
+    });
+  }
 
-        try {
-          await interaction.channel.send({ embeds: [embed], components: [row] });
-          await interaction.reply({
-            content: '✅ Verification embed sent to this channel.',
-            flags: 64,
-          });
-        } catch (err) {
-          logError('Failed to send verification embed', err);
-          await interaction.reply({
-            content: '❌ Failed to send verification embed. Check bot permissions.',
-            flags: 64,
-          });
-        }
+  return;
+}
 
-        return;
-      }
 
       // /updates (improved: 2 optional images; special title)
       if (commandName === 'updates') {
