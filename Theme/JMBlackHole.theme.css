@@ -4650,3 +4650,8 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .emojiButtonNormal__04eed  {
     display: none !important;
 }
+
+/* Remove the TOP left Arrows for Back page and next page */
+.backForwardButtons__63abb  {
+    display: none !important;
+}
