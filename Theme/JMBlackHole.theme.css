@@ -4655,3 +4655,8 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .backForwardButtons__63abb  {
     display: none !important;
 }
+/* Remove the Gray from above the chatbar */
+.chatGradient__36d07,
+.chatGradientBase__36d07 {
+    display: none !important;
+}
