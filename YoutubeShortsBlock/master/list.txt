@@ -33,3 +33,5 @@ www.youtube.com##ytd-horizontal-card-list-renderer:has(yt-formatted-string#title
 ! YT Bottom - Explore more topics
 www.youtube.com##ytd-rich-section-renderer.ytd-rich-grid-renderer.style-scope > .ytd-rich-section-renderer.style-scope
 
+www.youtube.com##ytd-guide-section-renderer.ytd-guide-renderer.style-scope:nth-of-type(3)
+www.youtube.com##ytd-guide-section-renderer.ytd-guide-renderer.style-scope:nth-of-type(4)
