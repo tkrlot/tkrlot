@@ -30,3 +30,5 @@ www.youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton.y
 www.youtube.com##ytd-guide-section-renderer.ytd-guide-renderer.style-scope:nth-of-type(2)
 ! YT Middle - Search related places
 www.youtube.com##ytd-horizontal-card-list-renderer:has(yt-formatted-string#title:has-text(Search related places))
+! YT Bottom - Explore more topics
+www.youtube.com##ytd-rich-section-renderer.ytd-rich-grid-renderer.style-scope > .ytd-rich-section-renderer.style-scope
