@@ -1,76 +1,35 @@
 ! Title: Hide YouTube Shorts
-! Description: Hide all traces of YouTube Shorts videos on YouTube
-! Version: 2026.7.2
-! Author: V
+! Description: Hide all traces of YouTube shorts videos on YouTube
+! Version: 2026.8.2
 
-! ------------------------------------------------------------
-! HOMEPAGE
-! ------------------------------------------------------------
-
-! YT Homepage - Hide Shorts shelves & entries
+! YT Homepage - Hide the Shorts section
 youtube.com##[is-shorts]
-youtube.com##ytd-reel-shelf-renderer
-
-! ------------------------------------------------------------
-! LEFT MENU / NAV
-! ------------------------------------------------------------
-
-! YT Menu - Hide Shorts button
-www.youtube.com###guide [title="Shorts"]
-www.youtube.com##.ytd-mini-guide-entry-renderer[title="Shorts"]
-
-! ------------------------------------------------------------
-! SEARCH RESULTS
-! ------------------------------------------------------------
-
-! YT Search - Hide individual Shorts videos
+! YT Menu - Hide the Shorts button
+www.youtube.com###guide [title="Shorts"], .ytd-mini-guide-entry-renderer[title="Shorts"]
+! YT Search - Hide Shorts
 www.youtube.com##ytd-search ytd-video-renderer [overlay-style="SHORTS"]:upward(ytd-video-renderer)
-
-! YT Search - Hide Shorts shelves (grid layout)
-www.youtube.com##ytd-search grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton
-
-! ------------------------------------------------------------
-! CHANNEL PAGES
-! ------------------------------------------------------------
-
-! YT Channels - Hide Shorts tab
-www.youtube.com##ytd-browse[page-subtype="channels"] [role="tab"]:has-text(Shorts)
-
-! YT Channels - Hide Shorts shelves
+! YT Search and Channels - Hide the Shorts sections
 www.youtube.com##ytd-reel-shelf-renderer
-
-! ------------------------------------------------------------
-! SUBSCRIPTIONS
-! ------------------------------------------------------------
-
-! YT Subscriptions - Grid View Shorts
+! YT Channels - Hide the Shorts tab
+www.youtube.com##ytd-browse[page-subtype="channels"] [role="tab"]:nth-of-type(3):has-text(Shorts)
+! YT Subscriptions - Hide Shorts - Grid View
 www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-grid-video-renderer [overlay-style="SHORTS"]:upward(ytd-grid-video-renderer)
-
-! YT Subscriptions - List View Shorts
+! YT Subscriptions - Hide Shorts - List View
 www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-video-renderer [overlay-style="SHORTS"]:upward(ytd-item-section-renderer)
-
-! YT Subscriptions - New Layout Shorts
+! YT Subscriptions - New Layout - Hide Shorts
 www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer [overlay-style="SHORTS"]:upward(ytd-rich-item-renderer)
-
-! ------------------------------------------------------------
-! SIDEBAR / RELATED VIDEOS
-! ------------------------------------------------------------
-
-! YT Sidebar - Hide Shorts videos
+! YT Sidebar - Hide Shorts
 www.youtube.com###related ytd-compact-video-renderer [overlay-style="SHORTS"]:upward(ytd-compact-video-renderer)
-
-! YT Sidebar / Search sidebar - Hide Shorts shelves
-www.youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton
-
-! ------------------------------------------------------------
-! EXPLORE / PROMO SECTIONS
-! ------------------------------------------------------------
-
-! YT Explore tab (left menu block)
+! YT Sidebar - Hide Shorts2 ( when search list shows up )
+www.youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton.ytd-item-section-renderer.ytGridShelfViewModelHost:nth-of-type(1)
+! YT Sidebar - Hide Shorts2 ( when search list shows up )
+www.youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton.ytd-item-section-renderer.ytGridShelfViewModelHost:nth-of-type(2)
+! YT Sidebar - Hide Shorts3 ( when search list shows up )
+www.youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton.ytd-item-section-renderer.ytGridShelfViewModelHost:nth-of-type(3)
+! YT Sidebar - Explore Tab for youtube
 www.youtube.com##ytd-guide-section-renderer.ytd-guide-renderer.style-scope:nth-of-type(2)
-
 ! YT Middle - Search related places
 www.youtube.com##ytd-horizontal-card-list-renderer:has(yt-formatted-string#title:has-text(Search related places))
-
 ! YT Bottom - Explore more topics
 www.youtube.com##ytd-rich-section-renderer.ytd-rich-grid-renderer.style-scope > .ytd-rich-section-renderer.style-scope
+
