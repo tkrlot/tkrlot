@@ -4660,3 +4660,9 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .chatGradientBase__36d07 {
     display: none !important;
 }
+
+/* Remove the boost level new update */
+.container__0d0f9,
+.containerWithMargin__0d0f9 {
+    display: none !important;
+}
