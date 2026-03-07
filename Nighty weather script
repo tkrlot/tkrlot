@@ -1,0 +1,259 @@
+import time
+from datetime import datetime, timezone, timedelta
+import os
+import json
+import requests
+
+# Configuration - edit these values directly in the script
+API_KEY = ""  # Your WeatherAPI key here (get from https://www.weatherapi.com/)
+CITY = "Seoul"  # Your city name
+UTC_OFFSET = 9.0  # UTC offset for your timezone (e.g., 9.0 for Seoul)
+TIME_FORMAT = "12"  # Options: "12" (12-hour), "12s" (with seconds), "24" (24-hour), "24s" (with seconds)
+TEMP_UNIT = "C"  # "C" for Celsius, "F" for Fahrenheit
+TEMP_PRECISION = "int"  # "int" for whole numbers, "1dec" for one decimal place
+CACHE_DURATION = 300  # Cache refresh interval in seconds (minimum 300, e.g., 300=5min, 900=15min)
+SHOW_DATE = False  # True to show date with time, False otherwise
+
+def NightyWeather():
+    RETRIES = 4
+    SCRIPT_DATA_DIR = f"{getScriptsPath()}/scriptData"
+    CACHE_PATH = f"{SCRIPT_DATA_DIR}/NightyWeatherCache.json"
+    os.makedirs(SCRIPT_DATA_DIR, exist_ok=True)
+
+    class Cache:
+        """Manages cache for robustness and future extensions."""
+        def __init__(self):
+            self.data = self.load()
+        def load(self):
+            if not os.path.exists(CACHE_PATH):
+                return self._default()
+            try:
+                with open(CACHE_PATH, "r", encoding="utf-8") as f:
+                    cache = json.load(f)
+                    timestamp = cache.get("timestamp", 0)
+                    if not isinstance(timestamp, (int, float)) or timestamp < 0:
+                        print("Invalid cache timestamp. Resetting.", type="WARNING")
+                        return self._default()
+                    # Ensure required keys exist
+                    for k, v in self._default().items():
+                        if k not in cache:
+                            cache[k] = v
+                    return cache
+            except json.JSONDecodeError:
+                print("Corrupted JSON in cache. Resetting.", type="ERROR")
+                return self._default()
+            except Exception:
+                print("Corrupted cache. Resetting.", type="ERROR")
+                return self._default()
+        def _default(self):
+            return {
+                "data": None,
+                "timestamp": 0,
+                "call_count": 0,
+                "call_limit_warning_shown": False
+            }
+        def save(self):
+            # Atomic write to reduce corruption risk
+            tmp_path = CACHE_PATH + ".tmp"
+            with open(tmp_path, "w", encoding="utf-8") as f:
+                json.dump(self.data, f, indent=2)
+            os.replace(tmp_path, CACHE_PATH)
+
+    cache = Cache()
+
+    def reset_cache():
+        cache.data["data"] = None
+        cache.data["timestamp"] = 0
+        cache.data["call_count"] = 0
+        cache.data["call_limit_warning_shown"] = False
+        cache.save()
+
+    if not API_KEY or not CITY:
+        print("Please set API_KEY and CITY in the script code.", type="ERROR")
+        return  # Exit if not configured
+
+    # ---------------------------
+    # Robust fetch implementation (HTTPS only)
+    # ---------------------------
+    def fetch_weather_data():
+        """
+        Fetch current weather from WeatherAPI with retries, backoff, and caching.
+        Always uses HTTPS. Returns parsed JSON on success or cached data on failure.
+        """
+        try:
+            if not API_KEY or not CITY:
+                return None
+            current_time = datetime.now(timezone.utc).timestamp()
+            cache_duration = max(CACHE_DURATION, 300)
+            # Use cached data if still fresh
+            if cache.data.get("data") and (current_time - cache.data.get("timestamp", 0)) < cache_duration:
+                return cache.data["data"]
+            # If cache is older than 24h, reset to avoid stale state
+            if cache.data.get("timestamp") and (current_time - cache.data.get("timestamp", 0)) > 86400:
+                print("Cache expired (24h). Resetting.", type="INFO")
+                reset_cache()
+            url = "https://api.weatherapi.com/v1/current.json"
+            params = {"key": API_KEY, "q": CITY, "aqi": "no"}
+            session = requests.Session()
+            backoff_base = 2
+            connect_timeout = 5  # seconds
+            read_timeout = 10  # seconds
+            last_exception = None
+            for attempt in range(1, RETRIES + 1):
+                try:
+                    resp = session.get(
+                        url,
+                        params=params,
+                        timeout=(connect_timeout, read_timeout)
+                    )
+                    if resp.status_code == 429:
+                        wait_time = backoff_base ** attempt
+                        print(f"Rate limit hit (429). Retrying in {wait_time}s...", type="WARNING")
+                        time.sleep(wait_time)
+                        last_exception = requests.exceptions.RetryError("429 rate limited")
+                        continue
+                    resp.raise_for_status()
+                    data = resp.json()
+                    if isinstance(data, dict) and "error" in data:
+                        msg = data["error"].get("message", "Unknown API error")
+                        print(f"WeatherAPI error: {msg}", type="ERROR")
+                        return cache.data.get("data")
+                    cache.data["data"] = data
+                    cache.data["timestamp"] = current_time
+                    cache.data["call_count"] = cache.data.get("call_count", 0) + 1
+                    if cache.data["call_count"] > 900000 and not cache.data.get("call_limit_warning_shown"):
+                        print("Nearing 1M call limit. Adjust cache or upgrade. 📊", type="WARNING")
+                        cache.data["call_limit_warning_shown"] = True
+                    cache.save()
+                    return data
+                except requests.exceptions.ConnectTimeout as e:
+                    last_exception = e
+                    wait_time = backoff_base ** attempt
+                    print(
+                        f"Connect timed out. Retrying in {wait_time}s... "
+                        f"(attempt {attempt}/{RETRIES})",
+                        type="WARNING"
+                    )
+                    time.sleep(wait_time)
+                except requests.exceptions.ReadTimeout as e:
+                    last_exception = e
+                    wait_time = backoff_base ** attempt
+                    print(
+                        f"Read timed out. Retrying in {wait_time}s... "
+                        f"(attempt {attempt}/{RETRIES})",
+                        type="WARNING"
+                    )
+                    time.sleep(wait_time)
+                except requests.exceptions.HTTPError as e:
+                    status = getattr(e.response, "status_code", None)
+                    if status == 401:
+                        print("Invalid API key.", type="ERROR")
+                        return cache.data.get("data")
+                    if 400 <= (status or 0) < 500:
+                        print(f"HTTP error {status}. Not retrying.", type="ERROR")
+                        return cache.data.get("data")
+                    last_exception = e
+                    wait_time = backoff_base ** attempt
+                    print(
+                        f"Server error {status}. Retrying in {wait_time}s... "
+                        f"(attempt {attempt}/{RETRIES})",
+                        type="WARNING"
+                    )
+                    time.sleep(wait_time)
+                except requests.exceptions.RequestException as e:
+                    last_exception = e
+                    wait_time = backoff_base ** attempt
+                    print(
+                        f"Request failed: {e}. Retrying in {wait_time}s... "
+                        f"(attempt {attempt}/{RETRIES})",
+                        type="WARNING"
+                    )
+                    time.sleep(wait_time)
+            if last_exception:
+                print(f"Fetch failed after {RETRIES} attempts: {last_exception}", type="ERROR")
+            else:
+                print(f"Fetch failed after {RETRIES} attempts.", type="ERROR")
+            return cache.data.get("data")
+        except Exception as e:
+            print(f"Fetch error: {str(e)}", type="ERROR")
+            return cache.data.get("data")
+
+    # ---------------------------
+    # Helper getters
+    # ---------------------------
+    def get_weather_temp():
+        data = fetch_weather_data()
+        if not data or "current" not in data:
+            return "N/A"
+        temp_unit = TEMP_UNIT
+        temp_key = "temp_f" if temp_unit == "F" else "temp_c"
+        temp_precision = TEMP_PRECISION
+        raw_temp = data["current"].get(temp_key)
+        if raw_temp is None:
+            return "N/A"
+        if temp_precision == "int":
+            temp = int(round(raw_temp))
+        else:
+            temp = round(raw_temp, 1)
+        return f"{temp:.{0 if temp_precision == 'int' else 1}f}°{temp_unit}"
+
+    def get_city():
+        return CITY or "Unknown"
+
+    def get_time():
+        try:
+            utc_offset = float(UTC_OFFSET)
+            utc_offset = max(min(utc_offset, 14), -14)
+            time_format = TIME_FORMAT
+            show_date = SHOW_DATE
+            utc_now = datetime.now(timezone.utc)
+            target_time = utc_now + timedelta(seconds=utc_offset * 3600)
+            if time_format == "12":
+                fmt = "%I:%M %p"
+            elif time_format == "12s":
+                fmt = "%I:%M:%S %p"
+            elif time_format == "24":
+                fmt = "%H:%M"
+            elif time_format == "24s":
+                fmt = "%H:%M:%S"
+            else:
+                fmt = "%I:%M %p"
+            time_str = target_time.strftime(fmt)
+            if time_format.startswith("12"):
+                if time_str.startswith("0"):
+                    time_str = time_str[1:]
+                if time_str.startswith("00:"):
+                    time_str = "12:" + time_str[3:]
+            if show_date:
+                date_str = target_time.strftime("%b %d")
+                time_str += f" - {date_str}"
+            return time_str
+        except Exception as e:
+            print(f"Time error: {str(e)}", type="ERROR")
+            return datetime.now(timezone.utc).strftime("%I:%M %p")
+
+    def get_weather_state():
+        data = fetch_weather_data()
+        return data["current"]["condition"]["text"].lower() if data and "current" in data else "unknown"
+
+    def get_weather_icon():
+        data = fetch_weather_data()
+        if data and "current" in data:
+            icon_url = data["current"]["condition"].get("icon")
+            if icon_url:
+                if icon_url.startswith("//"):
+                    icon_url = "https:" + icon_url
+                elif icon_url.startswith("/"):
+                    icon_url = "https://api.weatherapi.com" + icon_url
+                return icon_url.replace("64x64", "128x128")
+        return ""
+
+    addDRPCValue("weatherTemp", get_weather_temp)
+    addDRPCValue("city", get_city)
+    addDRPCValue("time", get_time)
+    addDRPCValue("weatherState", get_weather_state)
+    addDRPCValue("weathericon", get_weather_icon)
+    print("NightyWeather running 🌤️", type="SUCCESS")
+
+# Call the function to initialize
+NightyWeather()
