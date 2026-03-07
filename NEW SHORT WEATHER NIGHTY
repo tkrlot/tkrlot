@@ -1,0 +1,113 @@
+import time
+from datetime import datetime, timezone, timedelta
+import requests
+
+def NightyWeather():
+    # ────────────────────────────────────────────────
+    #          Change these values as needed
+    # ────────────────────────────────────────────────
+    API_KEY        = "18f4909568ec442da5e210931260603"
+    CITY           = "Seoul"
+    UTC_OFFSET     = 9.0           # Korea = +9
+    TIME_FORMAT    = "12"          # "12", "12s", "24", "24s"
+    TEMP_UNIT      = "C"           # "C" or "F"
+    TEMP_PRECISION = "int"         # "int" or "1dec"
+    CACHE_SECONDS  = 300           # 5 minutes
+    SHOW_DATE      = False         # show " - Oct 22" etc.
+    # ────────────────────────────────────────────────
+
+    cache = {"data": None, "timestamp": 0}
+
+    def fetch():
+        now = datetime.now(timezone.utc).timestamp()
+        if cache["data"] and now - cache["timestamp"] < CACHE_SECONDS:
+            return cache["data"]
+
+        try:
+            url = "https://api.weatherapi.com/v1/current.json"
+            r = requests.get(
+                url,
+                params={"key": API_KEY, "q": CITY, "aqi": "no"},
+                timeout=(5, 10)
+            )
+            r.raise_for_status()
+            data = r.json()
+
+            if "error" in data:
+                print("API error:", data["error"].get("message", "unknown"), type="ERROR")
+                return cache["data"]
+
+            cache["data"] = data
+            cache["timestamp"] = now
+            return data
+
+        except Exception as e:
+            print("Fetch failed:", str(e), type="ERROR")
+            return cache["data"]
+
+    def temp():
+        data = fetch()
+        if not data or "current" not in data:
+            return "N/A"
+        key = "temp_f" if TEMP_UNIT == "F" else "temp_c"
+        t = data["current"].get(key)
+        if t is None:
+            return "N/A"
+        if TEMP_PRECISION == "int":
+            return f"{int(round(t))}°{TEMP_UNIT}"
+        return f"{round(t, 1)}°{TEMP_UNIT}"
+
+    def city():
+        return CITY or "Unknown"
+
+    def time_str():
+        try:
+            offset = max(min(UTC_OFFSET, 14), -14) * 3600
+            now = datetime.now(timezone.utc) + timedelta(seconds=offset)
+
+            fmt = {
+                "12":  "%I:%M %p",
+                "12s": "%I:%M:%S %p",
+                "24":  "%H:%M",
+                "24s": "%H:%M:%S"
+            }.get(TIME_FORMAT, "%I:%M %p")
+
+            s = now.strftime(fmt)
+
+            # Clean up leading zero in 12-hour mode
+            if TIME_FORMAT.startswith("12"):
+                s = s.lstrip("0").replace(" 0", " ")
+                if s.startswith(":"): s = "12" + s
+
+            if SHOW_DATE:
+                s += " - " + now.strftime("%b %d")
+
+            return s
+        except:
+            return datetime.now().strftime("%I:%M %p")
+
+    def state():
+        data = fetch()
+        if data and "current" in data:
+            return data["current"]["condition"]["text"].lower()
+        return "unknown"
+
+    def icon():
+        data = fetch()
+        if data and "current" in data:
+            url = data["current"]["condition"].get("icon", "")
+            if url.startswith("//"):
+                url = "https:" + url
+            return url.replace("64x64", "128x128")
+        return ""
+
+    # Register all five DRPC values
+    addDRPCValue("weatherTemp",   temp)
+    addDRPCValue("city",          city)
+    addDRPCValue("time",          time_str)
+    addDRPCValue("weatherState",  state)
+    addDRPCValue("weathericon",   icon)
+
+    print(f"NightyWeather → {CITY}  🌤️", type="SUCCESS")
+
+NightyWeather()
