@@ -3557,6 +3557,7 @@ background-attachment: fixed;
 
 /* Hide chat bar buttons */
 [aria-label="Send a gift"],
+[aria-label="Give a Gift"],
 [aria-label="Open GIF picker"],
 [aria-label="Open sticker picker"],
 [aria-label="Add Emoji"] {
