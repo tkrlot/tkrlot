@@ -1,6 +1,6 @@
 ! Title: Hide YouTube Shorts
 ! Description: Hide all traces of YouTube shorts videos on YouTube
-! Version: 2026.8.2
+! Version: 2026.6.10
 
 ! YT Homepage - Hide the Shorts section
 youtube.com##[is-shorts]
@@ -21,14 +21,14 @@ www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer
 ! YT Sidebar - Hide Shorts
 www.youtube.com###related ytd-compact-video-renderer [overlay-style="SHORTS"]:upward(ytd-compact-video-renderer)
 ! YT Sidebar - Hide Shorts2 ( when search list shows up )
-www.youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton.ytd-item-section-renderer.ytGridShelfViewModelHost:nth-of-type(1)
-! YT Sidebar - Hide Shorts2 ( when search list shows up )
-www.youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton.ytd-item-section-renderer.ytGridShelfViewModelHost:nth-of-type(2)
-! YT Sidebar - Hide Shorts3 ( when search list shows up )
-www.youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton.ytd-item-section-renderer.ytGridShelfViewModelHost:nth-of-type(3)
+##grid-shelf-view-model.ytd-item-section-renderer.ytGridShelfViewModelHost:nth-of-type(1)
+! YT Sidebar - Hide Shorts2 ( main youtube page )
+##ytd-rich-section-renderer.ytd-rich-grid-renderer.style-scope:nth-of-type(1)
 ! YT Sidebar - Explore Tab for youtube
-www.youtube.com##ytd-guide-section-renderer.ytd-guide-renderer.style-scope:nth-of-type(2)
+##ytd-guide-section-renderer.ytd-guide-renderer.style-scope:nth-of-type(2)
 ! YT Middle - Search related places
 www.youtube.com##ytd-horizontal-card-list-renderer:has(yt-formatted-string#title:has-text(Search related places))
 ! YT Bottom - Explore more topics
-www.youtube.com##ytd-rich-section-renderer.ytd-rich-grid-renderer.style-scope > .ytd-rich-section-renderer.style-scope
+##ytd-rich-section-renderer.ytd-rich-grid-renderer.style-scope:nth-of-type(4)
+! YT Middle - People also Search for
+##ytd-horizontal-card-list-renderer.ytd-item-section-renderer.style-scope
