@@ -1091,7 +1091,7 @@ body {
 }
 
 
-.smallCarousel__03498 {
+.smallCarousel_cbfa93 {
   background: var(--sheer);
   border-radius: 5px;
 }
@@ -1376,7 +1376,7 @@ body {
 #app-mount .body_fedacc,
 #app-mount .news-2GDtLJ,
 #app-mount .wrapper_f316dd,
-#app-mount .embedContainer__03498,
+#app-mount .embedContainer_cbfa93,
 #app-mount .carousel-2WxMes,
 #app-mount .paginationItem-2lUq0s,
 #app-mount .info-3NKfPL,
@@ -1388,11 +1388,11 @@ body {
 .wrapper__4106a,
 .cardFolder-3H4uH4,
 .item__344e6,
-.fieldList__1fed1 {
+.fieldList_a9178b {
   background-color: transparent;
 }
 
-.background__1fed1,
+.background_a9178b,
 .accountList-305sx3,
 .connection-107AGH,
 .bumpBox_cacd02,
@@ -1416,7 +1416,7 @@ body {
 .addMemberRow__01dab.selectedRow__01dab,
 .reaction_f8896c,
 .container-7Unqij,
-.accountProfileCard__1fed1 {
+.accountProfileCard_a9178b {
   background-color: var(--sheer);
 }
 
@@ -1536,7 +1536,7 @@ body {
   border-radius: 3px;
 }
 
-#app-mount .card__4bb93:before {
+#app-mount .card_b846e5:before {
   background: linear-gradient(to right, #111, var(--veil));
 }
 
@@ -1623,7 +1623,7 @@ body {
   background-attachment: fixed;
 }
 
-#app-mount .nowPlaying_cc46f0 {
+#app-mount .nowPlaying_b53c4e {
   background: var(--online-sheer) var(--stars) top left fixed;
 }
 
@@ -1656,8 +1656,8 @@ body {
   border-radius: 0;
 }
 
-#app-mount .nowPlaying_cc46f0 .gameNameInput_cc46f0:focus, 
-#app-mount .nowPlaying_cc46f0 .gameNameInput_cc46f0:hover,
+#app-mount .nowPlaying_b53c4e .gameNameInput_b53c4e:focus, 
+#app-mount .nowPlaying_b53c4e .gameNameInput_b53c4e:hover,
 #app-mount .tierHeaderLocked_a36dee,
 #app-mount .guildGraphicBackground-wbfC17, 
 #app-mount .guildGraphicContainer-_IAetM,
@@ -1706,7 +1706,7 @@ body {
   background: linear-gradient(to right, transparent, var(--online-sheer)),var(--uno) var(--stars) top left fixed;
 }
 
-#app-mount .purchaseUnitOperatingSystem_f28827,
+#app-mount .purchaseUnitOperatingSystem__347b4,
 #app-mount .background_c44edb {
   color: #111;
 }
@@ -1976,7 +1976,7 @@ svg[name="Activity"] {
 }
 
 .scroller-2FKFPG::-webkit-scrollbar-thumb,
-.root_af8192::-webkit-scrollbar-thumb,
+.root_ccf174::-webkit-scrollbar-thumb,
 #bd-settingspane-container .scroller-wrap .scroller::-webkit-scrollbar-thumb,
 .contentRegionScroller__23e6b::-webkit-scrollbar-thumb,
 .scrollerBase-_bVAAt::-webkit-scrollbar-thumb {
@@ -2423,9 +2423,9 @@ svg[name="Activity"] {
 
   /* C. Search Popout & Results */
 #app-mount .container__55c99,
-.searchResultsWrap_a9e706,
-.searchResult__02a39.expanded-ovgtuV,
-.searchHeader_f3b986 {
+.searchResultsWrap_a98f3b,
+.searchResult__80bf8.expanded-ovgtuV,
+.searchHeader_ae7890 {
   background: var(--quatro) var(--stars) top left fixed;
 }
 
@@ -2439,12 +2439,12 @@ svg[name="Activity"] {
   background-color: var(--veil);
 }
 
-.searchResultGroup_c68065 {
+.searchResultGroup_a7e67f {
   background: var(--veil);
   border-radius: 5px 5px 0 0;
 }
 
-.searchResult__02a39 {
+.searchResult__80bf8 {
   border-radius: 0;
   margin: 0px;
   border-bottom: 5px solid var(--sheer);
@@ -2457,7 +2457,7 @@ svg[name="Activity"] {
   border-radius: 5px 5px 0 0;
 }
 
-#app-mount .searchResult__02a39:before {
+#app-mount .searchResult__80bf8:before {
   background-image: linear-gradient(0deg,transparent,var(--sheer));
 }
 
@@ -2465,7 +2465,7 @@ svg[name="Activity"] {
   background-color: var(--veil);
 }
 
-#app-mount .searchResult__02a39 .searchResultMessage-1fxgXh.hit-1fVM9e {
+#app-mount .searchResult__80bf8 .searchResultMessage-1fxgXh.hit-1fVM9e {
   background: var(--sheer);
   box-shadow: 0 0 10px 6px var(--sheer);
   border-color: rgb(0, 0, 0);
@@ -2506,7 +2506,7 @@ svg[name="Activity"] {
   color: rgb(255, 255, 255);
 }
 
-#app-mount .searchResult__02a39:after {
+#app-mount .searchResult__80bf8:after {
   background: linear-gradient(180deg,transparent,var(--sheer));
 }
 
@@ -3937,7 +3937,7 @@ background-attachment: fixed;
 }
 
 /* Background for my account settings */
-.background__1fed1,
+.background_a9178b,
 .contentRegionScroller__23e6b,
 .sidebar__23e6b,
 .sidebarRegionScroller__23e6b.thin_d125d2.scrollerBase_d125d2.fade_d125d2 {
@@ -3957,7 +3957,7 @@ background-attachment: fixed;
 
 
 /*Background for the discord home icon*/
-.listItemWrapper_dfb2f8 {
+.listItemWrapper__91816 {
   --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
   --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
   --overlay-opacity: 0.01; /* Adjust overlay opacity (0 to 1) */
@@ -4120,7 +4120,7 @@ div[class*="messageContent_c19a55"] a[href^="https://fxtwitter.com/"] {
 }
 
 /*minidfied searchbar*/
-#app-mount .searchBar__97492{
+#app-mount .searchBar_c322aa{
 width: 28px;
 background: transparent;
 color: var(--interactive-normal);
@@ -4128,7 +4128,7 @@ color: var(--interactive-normal);
 -o-transition: .25s;
 transition: .25s;
 }
-#app-mount .open__97492  .searchBar__97492{
+#app-mount .open_c322aa  .searchBar_c322aa{
 width: 200px;
 -webkit-transition: .25s;
 -o-transition: .25s;
@@ -4303,7 +4303,7 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 
 /*badge for account list transparent */
 .container__8061a,
-.badgeList__1fed1 {
+.badgeList_a9178b {
     background: TRANSPARENT;
 }
 
@@ -4591,7 +4591,7 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
     background:transparent !important;
 }
 /* hide the nameplate */
-.container__4bbc6 {
+.container_df39b2 {
     display: none !important;
 }
 
@@ -4613,7 +4613,7 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
   display: none !important;
 }
 /* Remove the search bar new one in the middle */
-.searchBar__97492 {
+.searchBar_c322aa {
     display: none !important;
 }
 
