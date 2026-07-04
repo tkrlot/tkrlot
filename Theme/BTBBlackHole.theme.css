@@ -1278,6 +1278,8 @@ body {
 /* Change the transparency of the chat text bar */
 .scrollableContainer__74017,
 .sidebar__5e434,
+.member__5d473,
+.member_c8ffbb
 .bar_c38106 {    
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
@@ -4649,4 +4651,38 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 /* Remove the EMOJI buutton in chatbar */
 .emojiButtonNormal__04eed  {
     display: none !important;
+
+:root {
+    --guildbar-scale: 1.20;
+}
+/* -- Fix server icons size -- */
+/* Target non-server icons on the left bar */
+.scroller_ef3116 > div:not(.stack_dbd263) {
+    padding-top:8px;
+    scale: var(--guildbar-scale);
+}
+/* Fix server icons size and add some padding */
+.tutorialContainer__1f388 ~.stack_dbd263
+.listItem__650eb > :nth-child(2) {
+    scale: var(--guildbar-scale);
+    margin: 3px 0;
+}
+/* Make folders take all space they need */
+ul.stack_dbd263{
+    height: auto !important;
+}
+/* Increase width of the folder background */
+.folderGroupBackground__48112 {
+    transform: scaleX(calc(var(--guildbar-scale) * 0.95));
+}
+
+/* Remove the TOP left Arrows for Back page and next page */
+.backForwardButtons__63abb  {
+    display: none !important;
+}
+/* Remove the Gray from above the chatbar */
+.chatGradient__36d07,
+.chatGradientBase__36d07 {
+    display: none !important;
+}
 }
