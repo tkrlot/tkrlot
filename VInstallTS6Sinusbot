@@ -84,6 +84,7 @@ Usage:
   bash V remove         Remove services and installed folders
   bash V status         Show service status
   bash V secrets        Show saved admin/password/token hints
+  bash V sinusbot-reset Retry SinusBot admin password reset only
 
 Useful environment overrides:
   SINUSBOT_DIR=/opt/sinusbot
@@ -219,8 +220,11 @@ save_secret() {
 
 get_secret() {
   local key="$1"
+  local value=""
   [[ -f "$SECRETS_FILE" ]] || return 0
-  grep -m1 "^${key}=" "$SECRETS_FILE" 2>/dev/null | cut -d= -f2-
+  value="$(grep -m1 "^${key}=" "$SECRETS_FILE" 2>/dev/null | cut -d= -f2- || true)"
+  printf '%s' "$value"
+  return 0
 }
 
 get_vps_ip() {
@@ -840,6 +844,7 @@ case "$ACTION" in
   remove|uninstall) remove_all ;;
   status) need_root; show_status ;;
   secrets) need_root; show_secrets ;;
+  sinusbot-reset|reset-sinusbot) need_root; setup_logging; set_sinusbot_admin_password; systemctl restart sinusbot.service; show_secrets ;;
   help|-h|--help) usage ;;
   *) usage; die "Unknown action: $ACTION" ;;
 esac
