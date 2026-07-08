@@ -1,0 +1,777 @@
+#!/usr/bin/env bash
+# V - Purple Edition installer for TeamSpeak 6 Server + SinusBot
+# Sources used while building this installer:
+# - TS6 Server releases: https://github.com/teamspeak/teamspeak6-server/releases
+# - TS6 config docs: https://github.com/teamspeak/teamspeak6-server/blob/main/CONFIG.md
+# - SinusBot 1.1 custom build: https://github.com/tkrlot/Tkrtest/releases/download/sinus/sinusbot1.1.bz2
+
+set -Eeuo pipefail
+IFS=$'\n\t'
+
+V_VERSION="2026.07.08"
+
+SINUSBOT_USER="${SINUSBOT_USER:-sinusbot}"
+SINUSBOT_DIR="${SINUSBOT_DIR:-/opt/sinusbot}"
+SINUSBOT_PORT="${SINUSBOT_PORT:-8087}"
+SINUSBOT_URL="${SINUSBOT_URL:-https://github.com/tkrlot/Tkrtest/releases/download/sinus/sinusbot1.1.bz2}"
+SINUSBOT_ARCHIVE_NAME="${SINUSBOT_ARCHIVE_NAME:-sinusbot1.1.bz2}"
+SINUSBOT_SHA256="${SINUSBOT_SHA256:-0DEBFA6DD9B41C422F776803255D3317A69D143D98A802EE13BADB401114DC3B}"
+INSTALL_YTDLP="${INSTALL_YTDLP:-1}"
+RESET_SINUSBOT_PASSWORD="${RESET_SINUSBOT_PASSWORD:-0}"
+SYSTEM_UPGRADE="${SYSTEM_UPGRADE:-1}"
+
+TS6_USER="${TS6_USER:-ts6server}"
+TS6_DIR="${TS6_DIR:-/opt/ts6server}"
+TS6_VOICE_PORT="${TS6_VOICE_PORT:-9987}"
+TS6_FILE_PORT="${TS6_FILE_PORT:-30033}"
+TS6_QUERY_SSH_PORT="${TS6_QUERY_SSH_PORT:-10022}"
+TS6_QUERY_HTTP_PORT="${TS6_QUERY_HTTP_PORT:-10080}"
+TS6_QUERY_HTTPS_PORT="${TS6_QUERY_HTTPS_PORT:-10443}"
+TS6_ENABLE_QUERY="${TS6_ENABLE_QUERY:-0}"
+TS6_GITHUB_API="${TS6_GITHUB_API:-https://api.github.com/repos/teamspeak/teamspeak6-server/releases/latest}"
+
+TS3_CLIENT_VERSION="${TS3_CLIENT_VERSION:-3.6.2}"
+TS3_CLIENT_DIR="${TS3_CLIENT_DIR:-$SINUSBOT_DIR/teamspeak3-client}"
+
+ENABLE_FIREWALL="${ENABLE_FIREWALL:-1}"
+SECRETS_FILE="${SECRETS_FILE:-/root/V-install-secrets.txt}"
+LOG_FILE="${LOG_FILE:-/var/log/V-installer.log}"
+
+ACTION="${1:-install}"
+
+green() { printf '\033[32;1m%s\033[0m\n' "$*"; }
+cyan() { printf '\033[36;1m%s\033[0m\n' "$*"; }
+yellow() { printf '\033[33;1m%s\033[0m\n' "$*"; }
+red() { printf '\033[31;1m%s\033[0m\n' "$*" >&2; }
+blue() { printf '\033[34;1m%s\033[0m\n' "$*"; }
+purple() { printf '\033[35;1m%s\033[0m\n' "$*"; }
+die() { red "ERROR: $*"; exit 1; }
+
+banner() {
+  printf '\n\033[35;1m[V] %s\033[0m\n' "$*"
+}
+
+run_cmd() {
+  local label="$1"
+  shift
+  blue "CMD: $label"
+  "$@"
+  green "OK: $label"
+}
+
+intro() {
+  purple "[V] Purple Edition"
+  purple "Clean voice-stack installer"
+  cyan "TeamSpeak 6 + SinusBot 1.1 + TS3 client 3.6.2 + firewall + services + admin info"
+}
+
+on_error() {
+  local line="$1"
+  red "Installer stopped at line $line."
+  red "Log file: $LOG_FILE"
+}
+trap 'on_error $LINENO' ERR
+
+usage() {
+  cat <<EOF
+V $V_VERSION
+
+Usage:
+  bash V install        Install or repair everything
+  bash V update         Update TS6 + SinusBot files, keep data/config
+  bash V remove         Remove services and installed folders
+  bash V status         Show service status
+  bash V secrets        Show saved admin/password/token hints
+
+Useful environment overrides:
+  SINUSBOT_DIR=/opt/sinusbot
+  TS6_DIR=/opt/ts6server
+  ENABLE_FIREWALL=0
+  TS6_ENABLE_QUERY=1
+  RESET_SINUSBOT_PASSWORD=1
+  SYSTEM_UPGRADE=1
+  SINUSBOT_URL=https://github.com/tkrlot/Tkrtest/releases/download/sinus/sinusbot1.1.bz2
+  SINUSBOT_SHA256=0DEBFA6DD9B41C422F776803255D3317A69D143D98A802EE13BADB401114DC3B
+EOF
+}
+
+need_root() {
+  if [[ "${EUID:-$(id -u)}" -ne 0 ]]; then
+    die "Run this as root: sudo bash V install"
+  fi
+}
+
+setup_logging() {
+  mkdir -p "$(dirname "$LOG_FILE")"
+  touch "$LOG_FILE"
+  chmod 600 "$LOG_FILE"
+  exec > >(tee -a "$LOG_FILE") 2>&1
+}
+
+detect_os() {
+  [[ -r /etc/os-release ]] || die "Cannot detect Linux distribution."
+  # shellcheck disable=SC1091
+  . /etc/os-release
+  case "${ID:-}" in
+    debian|ubuntu) ;;
+    *)
+      case " ${ID_LIKE:-} " in
+        *" debian "*|*" ubuntu "*) ;;
+        *) die "This build supports Debian, Ubuntu, and Debian/Ubuntu-based systems only." ;;
+      esac
+      ;;
+  esac
+  command -v systemctl >/dev/null 2>&1 || die "systemd is required for this installer."
+}
+
+detect_arch() {
+  case "$(uname -m)" in
+    x86_64|amd64)
+      TS6_ARCH="amd64"
+      TS3_ARCH="amd64"
+      ;;
+    aarch64|arm64)
+      TS6_ARCH="arm64"
+      TS3_ARCH=""
+      ;;
+    *)
+      die "Unsupported CPU architecture: $(uname -m)"
+      ;;
+  esac
+}
+
+apt_install_existing() {
+  local pkg install_list=()
+  for pkg in "$@"; do
+    if apt-cache show "$pkg" >/dev/null 2>&1; then
+      install_list+=("$pkg")
+    else
+      yellow "Skipping unavailable package: $pkg"
+    fi
+  done
+  if ((${#install_list[@]})); then
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends "${install_list[@]}"
+  fi
+}
+
+install_packages() {
+  banner "System"
+  run_cmd "apt package index update" env DEBIAN_FRONTEND=noninteractive apt-get update
+
+  if [[ "$SYSTEM_UPGRADE" == "1" ]]; then
+    run_cmd "system package upgrade" env DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+  else
+    yellow "System upgrade skipped by SYSTEM_UPGRADE=0"
+  fi
+
+  apt_install_existing \
+    ca-certificates curl wget jq tar xz-utils bzip2 screen sudo rsync \
+    psmisc less python3 dbus iproute2 ufw cron file \
+    xvfb x11vnc x11-xkb-utils ffmpeg fonts-dejavu-core \
+    libasound2 libasound2t64 libatomic1 libdbus-1-3 libevent-2.1-7 \
+    libfontconfig libfontconfig1 libglib2.0-0 liblcms2-2 libnss3 libpci3 \
+    libxcb1 libxcb-cursor0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 \
+    libxcb-randr0 libxcb-render0 libxcb-render-util0 libxcb-shape0 \
+    libxcb-util1 libxcb-xinerama0 libxcb-xkb1 \
+    libx11-xcb1 libxcomposite1 libxcomposite-dev libxcursor1 libxi6 \
+    libxkbcommon0 libxkbcommon-x11-0 libxslt1.1 libxss1 libxtst6 \
+    libegl1 libegl-mesa0 libegl1-mesa libgl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+
+  update-ca-certificates >/dev/null 2>&1 || true
+  green "Required packages installed."
+}
+
+ensure_user() {
+  local user="$1"
+  local home="$2"
+  if id "$user" >/dev/null 2>&1; then
+    green "User exists: $user"
+  else
+    useradd --system --create-home --home-dir "$home" --shell /bin/bash "$user"
+    green "Created user: $user"
+  fi
+}
+
+random_secret() {
+  local secret=""
+  while [[ ${#secret} -lt 24 ]]; do
+    secret+="$(
+      tr -dc 'A-Za-z0-9' </dev/urandom | head -c 24 || true
+    )"
+  done
+  printf '%.24s' "$secret"
+}
+
+save_secret() {
+  local key="$1"
+  local value="$2"
+  mkdir -p "$(dirname "$SECRETS_FILE")"
+  touch "$SECRETS_FILE"
+  chmod 600 "$SECRETS_FILE"
+  if grep -q "^${key}=" "$SECRETS_FILE" 2>/dev/null; then
+    sed -i "s|^${key}=.*|${key}=${value}|" "$SECRETS_FILE"
+  else
+    printf '%s=%s\n' "$key" "$value" >>"$SECRETS_FILE"
+  fi
+}
+
+safe_chown() {
+  local user="$1"
+  local dir="$2"
+  [[ -n "$dir" && "$dir" == /opt/* ]] || die "Refusing to chown unsafe path: $dir"
+  chown -R "$user:$user" "$dir"
+}
+
+safe_remove_dir() {
+  local dir="$1"
+  [[ -n "$dir" && "$dir" == /opt/* && "$dir" != "/opt" ]] || die "Refusing to remove unsafe path: $dir"
+  rm -rf "$dir"
+}
+
+configure_firewall() {
+  [[ "$ENABLE_FIREWALL" == "1" ]] || { yellow "Firewall setup skipped by ENABLE_FIREWALL=0"; return; }
+  command -v ufw >/dev/null 2>&1 || { yellow "ufw not installed; firewall setup skipped."; return; }
+
+  banner "Firewall"
+  cyan "Opening firewall ports for SSH, TS6, and SinusBot..."
+  local ssh_port="${SSH_CONNECTION:-}"
+  if [[ -n "$ssh_port" ]]; then
+    ssh_port="$(awk '{print $4}' <<<"$ssh_port")"
+  else
+    ssh_port="$(ss -tlnp 2>/dev/null | awk '/sshd/ {split($4,a,":"); print a[length(a)]; exit}')"
+  fi
+  [[ -n "$ssh_port" ]] || ssh_port="22"
+
+  ufw allow "${ssh_port}/tcp" comment "SSH" >/dev/null || true
+  ufw allow "${TS6_VOICE_PORT}/udp" comment "TeamSpeak 6 voice" >/dev/null || true
+  ufw allow "${TS6_FILE_PORT}/tcp" comment "TeamSpeak 6 file transfer" >/dev/null || true
+  ufw allow "${SINUSBOT_PORT}/tcp" comment "SinusBot web" >/dev/null || true
+
+  if [[ "$TS6_ENABLE_QUERY" == "1" ]]; then
+    ufw allow "${TS6_QUERY_SSH_PORT}/tcp" comment "TeamSpeak 6 query SSH" >/dev/null || true
+    ufw allow "${TS6_QUERY_HTTP_PORT}/tcp" comment "TeamSpeak 6 query HTTP" >/dev/null || true
+    ufw allow "${TS6_QUERY_HTTPS_PORT}/tcp" comment "TeamSpeak 6 query HTTPS" >/dev/null || true
+  fi
+
+  ufw --force enable >/dev/null || true
+  green "Firewall rules applied with ufw."
+}
+
+download_file() {
+  local url="$1"
+  local out="$2"
+  curl -fL --retry 4 --retry-delay 2 --connect-timeout 20 -o "$out" "$url"
+}
+
+verify_sha256() {
+  local file="$1"
+  local expected="$2"
+  local actual
+  [[ -n "$expected" ]] || return 0
+  actual="$(sha256sum "$file" | awk '{print toupper($1)}')"
+  expected="$(printf '%s' "$expected" | tr '[:lower:]' '[:upper:]')"
+  if [[ "$actual" != "$expected" ]]; then
+    red "Expected SHA256: $expected"
+    red "Actual SHA256:   $actual"
+    die "Downloaded file checksum mismatch: $file"
+  fi
+  green "Verified SHA256: $actual"
+}
+
+check_runtime_libraries() {
+  local label="$1"
+  local binary="$2"
+  local missing
+  [[ -f "$binary" ]] || return 0
+  command -v ldd >/dev/null 2>&1 || return 0
+
+  missing="$(ldd "$binary" 2>/dev/null | awk '/not found/ {print $1}' | sort -u | xargs || true)"
+  if [[ -n "$missing" ]]; then
+    red "$label is missing runtime libraries: $missing"
+    die "Missing runtime libraries detected after dependency install."
+  fi
+  green "$label runtime libraries OK."
+}
+
+extract_sinusbot_archive() {
+  local archive="$1"
+  local tmp_unbz extracted=0
+
+  if tar -xjf "$archive" -C "$SINUSBOT_DIR" >/dev/null 2>&1; then
+    extracted=1
+  else
+    tmp_unbz="$(mktemp)"
+    if bunzip2 -c "$archive" >"$tmp_unbz" 2>/dev/null; then
+      if file "$tmp_unbz" | grep -qi 'tar archive'; then
+        tar -xf "$tmp_unbz" -C "$SINUSBOT_DIR"
+        rm -f "$tmp_unbz"
+      else
+        mv "$tmp_unbz" "$SINUSBOT_DIR/sinusbot"
+        chmod 755 "$SINUSBOT_DIR/sinusbot"
+      fi
+      extracted=1
+    else
+      rm -f "$tmp_unbz" 2>/dev/null || true
+    fi
+  fi
+
+  [[ "$extracted" == "1" ]] || die "Could not extract SinusBot archive: $archive"
+  [[ -f "$SINUSBOT_DIR/sinusbot" ]] || die "SinusBot binary was not found after extraction."
+}
+
+latest_ts6_release() {
+  local json asset
+  asset="teamspeak6-server-linux-${TS6_ARCH}.tar.xz"
+  json="$(curl -fsSL -H 'Accept: application/vnd.github+json' -H 'User-Agent: V-installer' "$TS6_GITHUB_API")"
+  TS6_TAG="$(jq -r '.tag_name' <<<"$json")"
+  TS6_URL="$(jq -r --arg name "$asset" '.assets[] | select(.name == $name) | .browser_download_url' <<<"$json")"
+  [[ -n "$TS6_TAG" && "$TS6_TAG" != "null" ]] || die "Could not detect latest TS6 version from GitHub."
+  [[ -n "$TS6_URL" && "$TS6_URL" != "null" ]] || die "Could not find TS6 asset for linux-${TS6_ARCH}."
+}
+
+install_ts6() {
+  banner "TeamSpeak 6"
+  ensure_user "$TS6_USER" "$TS6_DIR"
+  mkdir -p "$TS6_DIR"
+
+  latest_ts6_release
+  cyan "Installing TeamSpeak 6 Server $TS6_TAG for linux-$TS6_ARCH..."
+
+  systemctl stop ts6server.service >/dev/null 2>&1 || true
+
+  local tmp extract_dir
+  tmp="$(mktemp -d)"
+  extract_dir="$tmp/extract"
+  mkdir -p "$extract_dir"
+  download_file "$TS6_URL" "$tmp/ts6.tar.xz"
+  tar -xJf "$tmp/ts6.tar.xz" -C "$extract_dir"
+
+  mkdir -p "$TS6_DIR/backups"
+  if [[ -f "$TS6_DIR/tsserver" ]]; then
+    tar -C "$TS6_DIR" -czf "$TS6_DIR/backups/pre-update-$(date +%Y%m%d-%H%M%S).tar.gz" \
+      --exclude='./backups' . || true
+  fi
+
+  rsync_available=0
+  command -v rsync >/dev/null 2>&1 && rsync_available=1
+  if [[ "$rsync_available" == "1" ]]; then
+    rsync -a --delete \
+      --exclude='backups' \
+      --exclude='logs' \
+      --exclude='files' \
+      --exclude='licensekey.dat' \
+      --exclude='*.db' \
+      --exclude='*.sqlite*' \
+      "$extract_dir/" "$TS6_DIR/"
+  else
+    find "$extract_dir" -mindepth 1 -maxdepth 1 -exec cp -a {} "$TS6_DIR/" \;
+  fi
+  rm -rf "$tmp"
+
+  chmod +x "$TS6_DIR/tsserver"
+  mkdir -p "$TS6_DIR/logs" "$TS6_DIR/files" "$TS6_DIR/crashdumps"
+
+  cat >"$TS6_DIR/tsserver.yaml" <<EOF
+server:
+  license-path: .
+  default-voice-port: ${TS6_VOICE_PORT}
+  voice-ip:
+    - 0.0.0.0
+    - "::"
+  log-path: logs
+  filetransfer-port: ${TS6_FILE_PORT}
+  filetransfer-ip:
+    - 0.0.0.0
+    - "::"
+  accept-license: accept
+  crashdump-path: crashdumps
+  database:
+    plugin: sqlite3
+    sql-path: ${TS6_DIR}/sql/
+    sql-create-path: ${TS6_DIR}/sql/create_sqlite/
+    config:
+      name: ts6.sqlite
+  query:
+    ssh:
+      enable: ${TS6_ENABLE_QUERY}
+      port: ${TS6_QUERY_SSH_PORT}
+      ip:
+        - 0.0.0.0
+    http:
+      enable: ${TS6_ENABLE_QUERY}
+      port: ${TS6_QUERY_HTTP_PORT}
+      ip:
+        - 0.0.0.0
+    https:
+      enable: 0
+      port: ${TS6_QUERY_HTTPS_PORT}
+EOF
+
+  safe_chown "$TS6_USER" "$TS6_DIR"
+
+  cat >/etc/systemd/system/ts6server.service <<EOF
+[Unit]
+Description=TeamSpeak 6 Server
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=${TS6_USER}
+Group=${TS6_USER}
+WorkingDirectory=${TS6_DIR}
+Environment=TSSERVER_LICENSE_ACCEPTED=accept
+ExecStart=${TS6_DIR}/tsserver --config-file ${TS6_DIR}/tsserver.yaml
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=100000
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+  systemctl daemon-reload
+  systemctl enable ts6server.service >/dev/null
+  systemctl restart ts6server.service
+
+  save_secret "TS6_VERSION" "$TS6_TAG"
+  green "TeamSpeak 6 Server installed and started."
+}
+
+install_ts3_client_for_sinusbot() {
+  if [[ -z "$TS3_ARCH" ]]; then
+    yellow "Skipping TeamSpeak 3 client: SinusBot TS client mode is only prepared for amd64 here."
+    return
+  fi
+
+  local url installer tmp
+  url="https://files.teamspeak-services.com/releases/client/${TS3_CLIENT_VERSION}/TeamSpeak3-Client-linux_${TS3_ARCH}-${TS3_CLIENT_VERSION}.run"
+  tmp="$(mktemp -d)"
+  installer="$tmp/TeamSpeak3-Client.run"
+
+  banner "TeamSpeak 3 Runtime"
+  cyan "Installing TeamSpeak 3 client runtime for SinusBot..."
+  download_file "$url" "$installer"
+  chmod +x "$installer"
+
+  rm -rf "$TS3_CLIENT_DIR"
+  mkdir -p "$tmp/extract" "$TS3_CLIENT_DIR"
+
+  if "$installer" --accept --target "$tmp/extract" >/dev/null 2>&1; then
+    :
+  else
+    yellow "TS3 client installer did not accept silent mode; trying scripted license acceptance."
+    (cd "$tmp" && printf '\nq\ny\n' | "$installer") >/dev/null 2>&1 || die "Could not install TeamSpeak 3 client runtime."
+  fi
+
+  local found
+  found="$(find "$tmp" -maxdepth 4 -type f -name "ts3client_linux_${TS3_ARCH}" -printf '%h\n' | head -n 1)"
+  [[ -n "$found" ]] || die "TS3 client binary was not found after extraction."
+  cp -a "$found/." "$TS3_CLIENT_DIR/"
+
+  rm -f "$TS3_CLIENT_DIR/xcbglintegrations/libqxcb-glx-integration.so" 2>/dev/null || true
+  rm -rf "$tmp"
+  safe_chown "$SINUSBOT_USER" "$SINUSBOT_DIR"
+  check_runtime_libraries "TeamSpeak 3 client ${TS3_CLIENT_VERSION}" "$TS3_CLIENT_DIR/ts3client_linux_${TS3_ARCH}"
+  green "TeamSpeak 3 client runtime installed for SinusBot."
+}
+
+configure_sinusbot_ini() {
+  local cfg="$SINUSBOT_DIR/config.ini"
+  if [[ ! -f "$cfg" ]]; then
+    if [[ -f "$SINUSBOT_DIR/config.ini.dist" ]]; then
+      cp "$SINUSBOT_DIR/config.ini.dist" "$cfg"
+    else
+      touch "$cfg"
+    fi
+  fi
+
+  if grep -q '^ListenHost' "$cfg"; then
+    sed -i 's|^ListenHost.*|ListenHost = "0.0.0.0"|' "$cfg"
+  else
+    printf 'ListenHost = "0.0.0.0"\n' >>"$cfg"
+  fi
+
+  if grep -q '^ListenPort' "$cfg"; then
+    sed -i "s|^ListenPort.*|ListenPort = ${SINUSBOT_PORT}|" "$cfg"
+  else
+    printf 'ListenPort = %s\n' "$SINUSBOT_PORT" >>"$cfg"
+  fi
+
+  if [[ -n "$TS3_ARCH" && -f "$TS3_CLIENT_DIR/ts3client_linux_${TS3_ARCH}" ]]; then
+    if grep -q '^TS3Path' "$cfg"; then
+      sed -i "s|^TS3Path.*|TS3Path = \"${TS3_CLIENT_DIR}/ts3client_linux_${TS3_ARCH}\"|" "$cfg"
+    else
+      printf 'TS3Path = "%s/ts3client_linux_%s"\n' "$TS3_CLIENT_DIR" "$TS3_ARCH" >>"$cfg"
+    fi
+  fi
+
+  if [[ "$INSTALL_YTDLP" == "1" ]]; then
+    if grep -q '^YoutubeDLPath' "$cfg"; then
+      sed -i 's|^YoutubeDLPath.*|YoutubeDLPath = "/usr/local/bin/yt-dlp"|' "$cfg"
+    else
+      printf 'YoutubeDLPath = "/usr/local/bin/yt-dlp"\n' >>"$cfg"
+    fi
+  fi
+}
+
+install_sinusbot() {
+  banner "SinusBot"
+  ensure_user "$SINUSBOT_USER" "$SINUSBOT_DIR"
+  mkdir -p "$SINUSBOT_DIR"
+  safe_chown "$SINUSBOT_USER" "$SINUSBOT_DIR"
+
+  local fresh_install=0
+  [[ ! -x "$SINUSBOT_DIR/sinusbot" ]] && fresh_install=1
+
+  systemctl stop sinusbot.service >/dev/null 2>&1 || true
+
+  cyan "Installing SinusBot..."
+  purple "Using SinusBot 1.1 source: tkrlot/Tkrtest sinusbot1.1.bz2"
+  local tmp archive
+  tmp="$(mktemp -d)"
+  archive="$tmp/$SINUSBOT_ARCHIVE_NAME"
+  download_file "$SINUSBOT_URL" "$archive"
+  verify_sha256 "$archive" "$SINUSBOT_SHA256"
+  extract_sinusbot_archive "$archive"
+  rm -rf "$tmp"
+
+  chmod 755 "$SINUSBOT_DIR/sinusbot"
+  mkdir -p "$SINUSBOT_DIR/data" "$SINUSBOT_DIR/scripts"
+  check_runtime_libraries "SinusBot 1.1" "$SINUSBOT_DIR/sinusbot"
+
+  install_ts3_client_for_sinusbot
+
+  if [[ -f "$SINUSBOT_DIR/plugin/libsoundbot_plugin.so" && -d "$TS3_CLIENT_DIR" ]]; then
+    mkdir -p "$TS3_CLIENT_DIR/plugins"
+    cp "$SINUSBOT_DIR/plugin/libsoundbot_plugin.so" "$TS3_CLIENT_DIR/plugins/"
+  fi
+
+  if [[ "$INSTALL_YTDLP" == "1" ]]; then
+    cyan "Installing yt-dlp for SinusBot downloads..."
+    download_file "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp" "/usr/local/bin/yt-dlp"
+    chmod 755 /usr/local/bin/yt-dlp
+  fi
+
+  configure_sinusbot_ini
+  safe_chown "$SINUSBOT_USER" "$SINUSBOT_DIR"
+
+  cat >/etc/systemd/system/sinusbot.service <<EOF
+[Unit]
+Description=SinusBot
+Wants=network-online.target
+After=network-online.target sound.target
+
+[Service]
+Type=simple
+User=${SINUSBOT_USER}
+Group=${SINUSBOT_USER}
+WorkingDirectory=${SINUSBOT_DIR}
+ExecStart=${SINUSBOT_DIR}/sinusbot
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=65536
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+  systemctl daemon-reload
+  systemctl enable sinusbot.service >/dev/null
+
+  if [[ "$fresh_install" == "1" || "$RESET_SINUSBOT_PASSWORD" == "1" ]]; then
+    set_sinusbot_admin_password
+  else
+    yellow "Keeping existing SinusBot admin password. Use RESET_SINUSBOT_PASSWORD=1 to rotate it."
+  fi
+  systemctl restart sinusbot.service
+  green "SinusBot installed and started."
+}
+
+set_sinusbot_admin_password() {
+  [[ -x "$SINUSBOT_DIR/sinusbot" ]] || return
+  local pass log pid i
+  pass="$(random_secret)"
+  log="$(mktemp)"
+  cyan "Setting SinusBot admin password..."
+
+  runuser -u "$SINUSBOT_USER" -- bash -lc "cd '$SINUSBOT_DIR' && ./sinusbot --override-password '$pass'" >"$log" 2>&1 &
+  pid="$!"
+  for i in $(seq 1 20); do
+    if grep -q 'USER-PATCH \[admin\].*OK' "$log"; then
+      kill -INT "$pid" >/dev/null 2>&1 || true
+      wait "$pid" >/dev/null 2>&1 || true
+      rm -f "$log"
+      save_secret "SINUSBOT_ADMIN_USER" "admin"
+      save_secret "SINUSBOT_ADMIN_PASSWORD" "$pass"
+      green "SinusBot admin password saved to $SECRETS_FILE"
+      return
+    fi
+    sleep 1
+  done
+
+  kill -INT "$pid" >/dev/null 2>&1 || true
+  wait "$pid" >/dev/null 2>&1 || true
+  yellow "Could not confirm SinusBot password reset automatically. Check: journalctl -u sinusbot -n 100"
+  rm -f "$log"
+}
+
+collect_ts6_startup_tokens() {
+  banner "Admin Capture"
+  cyan "Looking for TS6 admin / privilege token in startup logs..."
+  sleep 4
+  local out
+  out="$(journalctl -u ts6server.service -n 250 --no-pager 2>/dev/null | grep -Ei 'token|privilege|serveradmin|password|apikey' || true)"
+  if [[ -n "$out" ]]; then
+    printf '%s\n' "$out" | tee "$TS6_DIR/TS6-FIRST-START-TOKENS.txt"
+    chmod 600 "$TS6_DIR/TS6-FIRST-START-TOKENS.txt"
+    chown root:root "$TS6_DIR/TS6-FIRST-START-TOKENS.txt"
+    save_secret "TS6_TOKEN_LOG" "$TS6_DIR/TS6-FIRST-START-TOKENS.txt"
+    green "TS6 token/admin lines saved to $TS6_DIR/TS6-FIRST-START-TOKENS.txt"
+  else
+    yellow "No TS6 token/admin line was found yet. Try: journalctl -u ts6server -n 250 --no-pager"
+  fi
+}
+
+write_readme() {
+  cat >"$TS6_DIR/V-README.txt" <<EOF
+V installed TeamSpeak 6 Server and SinusBot.
+
+Services:
+  systemctl status ts6server
+  systemctl status sinusbot
+  systemctl restart ts6server
+  systemctl restart sinusbot
+
+Web / connection:
+  TeamSpeak voice port: ${TS6_VOICE_PORT}/udp
+  TeamSpeak file port:  ${TS6_FILE_PORT}/tcp
+  SinusBot web:         http://SERVER-IP:${SINUSBOT_PORT}
+
+Secrets:
+  Root-only file: ${SECRETS_FILE}
+  TS6 token log: ${TS6_DIR}/TS6-FIRST-START-TOKENS.txt
+
+Firewall:
+  ufw rules were applied when ENABLE_FIREWALL=1.
+EOF
+  chmod 644 "$TS6_DIR/V-README.txt"
+}
+
+show_status() {
+  systemctl --no-pager --full status ts6server.service || true
+  systemctl --no-pager --full status sinusbot.service || true
+}
+
+show_secrets() {
+  if [[ -f "$SECRETS_FILE" ]]; then
+    cat "$SECRETS_FILE"
+  else
+    yellow "No secrets file found at $SECRETS_FILE"
+  fi
+  if [[ -f "$TS6_DIR/TS6-FIRST-START-TOKENS.txt" ]]; then
+    printf '\n--- TS6 token/admin log lines ---\n'
+    cat "$TS6_DIR/TS6-FIRST-START-TOKENS.txt"
+  fi
+}
+
+print_final_summary() {
+  banner "Final Info"
+  green "Services:"
+  printf '  TeamSpeak 6: %s\n' "$(systemctl is-active ts6server.service 2>/dev/null || true)"
+  printf '  SinusBot:    %s\n' "$(systemctl is-active sinusbot.service 2>/dev/null || true)"
+
+  green "Connection:"
+  printf '  TeamSpeak voice: SERVER-IP:%s/udp\n' "$TS6_VOICE_PORT"
+  printf '  TeamSpeak files: SERVER-IP:%s/tcp\n' "$TS6_FILE_PORT"
+  printf '  SinusBot panel:  http://SERVER-IP:%s\n' "$SINUSBOT_PORT"
+
+  if [[ -f "$SECRETS_FILE" ]]; then
+    green "Saved admin details:"
+    sed 's/^/  /' "$SECRETS_FILE"
+  else
+    yellow "No secrets file found yet: $SECRETS_FILE"
+  fi
+
+  if [[ -f "$TS6_DIR/TS6-FIRST-START-TOKENS.txt" ]]; then
+    green "TeamSpeak 6 admin / privilege token lines:"
+    sed 's/^/  /' "$TS6_DIR/TS6-FIRST-START-TOKENS.txt"
+  else
+    yellow "No TS6 admin/token lines found yet. Check: journalctl -u ts6server -n 250 --no-pager"
+  fi
+
+  green "Logs:"
+  printf '  Installer log: %s\n' "$LOG_FILE"
+  printf '  Output log if using tee: /root/V-install-output.log\n'
+}
+
+remove_all() {
+  need_root
+  setup_logging
+  yellow "Removing services and installed folders..."
+
+  systemctl stop sinusbot.service ts6server.service >/dev/null 2>&1 || true
+  systemctl disable sinusbot.service ts6server.service >/dev/null 2>&1 || true
+  rm -f /etc/systemd/system/sinusbot.service /etc/systemd/system/ts6server.service
+  systemctl daemon-reload
+
+  safe_remove_dir "$SINUSBOT_DIR"
+  safe_remove_dir "$TS6_DIR"
+
+  yellow "Users were kept for safety: $SINUSBOT_USER, $TS6_USER"
+  green "Removed V-managed services and folders."
+}
+
+install_all() {
+  need_root
+  setup_logging
+  detect_os
+  detect_arch
+
+  intro
+  green "V $V_VERSION starting full install/repair."
+  install_packages
+  install_ts6
+  install_sinusbot
+  configure_firewall
+  collect_ts6_startup_tokens
+  write_readme
+  print_final_summary
+
+  green "Done."
+  printf '\nSinusBot web: http://SERVER-IP:%s\n' "$SINUSBOT_PORT"
+  printf 'Secrets file: %s\n' "$SECRETS_FILE"
+  printf 'Run status:   systemctl status ts6server sinusbot\n'
+}
+
+update_all() {
+  need_root
+  setup_logging
+  detect_os
+  detect_arch
+
+  intro
+  green "V $V_VERSION starting update."
+  install_packages
+  install_ts6
+  install_sinusbot
+  configure_firewall
+  collect_ts6_startup_tokens
+  write_readme
+  print_final_summary
+  green "Update complete."
+}
+
+case "$ACTION" in
+  install) install_all ;;
+  update) update_all ;;
+  remove|uninstall) remove_all ;;
+  status) need_root; show_status ;;
+  secrets) need_root; show_secrets ;;
+  help|-h|--help) usage ;;
+  *) usage; die "Unknown action: $ACTION" ;;
+esac
