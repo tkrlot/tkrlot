@@ -19,6 +19,7 @@ SINUSBOT_SHA256="${SINUSBOT_SHA256:-0DEBFA6DD9B41C422F776803255D3317A69D143D98A8
 INSTALL_YTDLP="${INSTALL_YTDLP:-1}"
 RESET_SINUSBOT_PASSWORD="${RESET_SINUSBOT_PASSWORD:-0}"
 SYSTEM_UPGRADE="${SYSTEM_UPGRADE:-1}"
+SINUSBOT_BOOTSTRAP_PASSWORD_MODE="${SINUSBOT_BOOTSTRAP_PASSWORD_MODE:-1}"
 
 TS6_USER="${TS6_USER:-ts6server}"
 TS6_DIR="${TS6_DIR:-/opt/ts6server}"
@@ -85,6 +86,7 @@ Usage:
   bash V status         Show service status
   bash V secrets        Show saved admin/password/token hints
   bash V sinusbot-reset Retry SinusBot admin password reset only
+  bash V sinusbot-normal Remove bootstrap password mode after setting a permanent SinusBot password
 
 Useful environment overrides:
   SINUSBOT_DIR=/opt/sinusbot
@@ -93,6 +95,7 @@ Useful environment overrides:
   TS6_ENABLE_QUERY=1
   RESET_SINUSBOT_PASSWORD=1
   SYSTEM_UPGRADE=1
+  SINUSBOT_BOOTSTRAP_PASSWORD_MODE=1
   SINUSBOT_URL=https://github.com/tkrlot/Tkrtest/releases/download/sinus/sinusbot1.1.bz2
   SINUSBOT_SHA256=0DEBFA6DD9B41C422F776803255D3317A69D143D98A802EE13BADB401114DC3B
 EOF
@@ -329,6 +332,40 @@ check_runtime_libraries() {
     die "Missing runtime libraries detected after dependency install."
   fi
   green "$label runtime libraries OK."
+}
+
+enable_sinusbot_bootstrap_password() {
+  local pass="$1"
+  [[ "$SINUSBOT_BOOTSTRAP_PASSWORD_MODE" == "1" ]] || return 0
+
+  mkdir -p /etc/sinusbot /etc/systemd/system/sinusbot.service.d
+  cat >/etc/sinusbot/bootstrap-password.conf <<EOF
+SINUSBOT_BOOTSTRAP_PASSWORD=${pass}
+EOF
+  chmod 600 /etc/sinusbot/bootstrap-password.conf
+
+  cat >/etc/systemd/system/sinusbot.service.d/10-bootstrap-password.conf <<EOF
+[Service]
+EnvironmentFile=/etc/sinusbot/bootstrap-password.conf
+ExecStart=
+ExecStart=${SINUSBOT_DIR}/sinusbot --override-password=\${SINUSBOT_BOOTSTRAP_PASSWORD}
+EOF
+
+  systemctl daemon-reload
+  save_secret "SINUSBOT_ADMIN_USER" "admin"
+  save_secret "SINUSBOT_ADMIN_PASSWORD" "$pass"
+  save_secret "SINUSBOT_PASSWORD_MODE" "bootstrap-rescue"
+  save_secret "SINUSBOT_PASSWORD_NOTE" "Login works while bootstrap mode is enabled. After setting a permanent password in the SinusBot web panel, run: $SCRIPT_PATH sinusbot-normal"
+  green "SinusBot bootstrap admin password saved to $SECRETS_FILE"
+}
+
+disable_sinusbot_bootstrap_password() {
+  rm -f /etc/systemd/system/sinusbot.service.d/10-bootstrap-password.conf
+  rm -f /etc/sinusbot/bootstrap-password.conf
+  rmdir /etc/systemd/system/sinusbot.service.d 2>/dev/null || true
+  systemctl daemon-reload
+  save_secret "SINUSBOT_PASSWORD_MODE" "normal"
+  green "SinusBot bootstrap password mode disabled."
 }
 
 extract_sinusbot_archive() {
@@ -638,19 +675,21 @@ set_sinusbot_admin_password() {
   cyan "Setting SinusBot admin password..."
 
   timeout --signal=INT --kill-after=5s 25s \
-    runuser -u "$SINUSBOT_USER" -- bash -lc "cd '$SINUSBOT_DIR' && ./sinusbot --override-password '$pass'" \
+    runuser -u "$SINUSBOT_USER" -- bash -lc "cd '$SINUSBOT_DIR' && ./sinusbot --override-password='$pass'" \
     >"$log" 2>&1 || true
 
   if grep -q 'USER-PATCH \[admin\].*OK' "$log"; then
     save_secret "SINUSBOT_ADMIN_USER" "admin"
     save_secret "SINUSBOT_ADMIN_PASSWORD" "$pass"
+    save_secret "SINUSBOT_PASSWORD_MODE" "permanent-confirmed"
     green "SinusBot admin password saved to $SECRETS_FILE"
     rm -f "$log"
     return
   fi
 
-  yellow "Could not confirm SinusBot password reset automatically."
-  yellow "SinusBot will still start; check its logs with: journalctl -u sinusbot -n 100 --no-pager"
+  yellow "Could not confirm a permanent SinusBot password reset automatically."
+  yellow "Enabling SinusBot bootstrap password mode so the web login works."
+  enable_sinusbot_bootstrap_password "$pass"
   yellow "Password reset attempt log:"
   sed 's/^/  /' "$log" | tail -n 30 || true
   rm -f "$log"
@@ -739,6 +778,8 @@ show_secrets() {
   print_pair "35;1" "Web panel" "http://${vps_ip}:${SINUSBOT_PORT}"
   print_pair "35;1" "Admin user" "$(get_secret SINUSBOT_ADMIN_USER)"
   print_pair "35;1" "Admin password" "$(get_secret SINUSBOT_ADMIN_PASSWORD)"
+  print_pair "35;1" "Password mode" "$(get_secret SINUSBOT_PASSWORD_MODE)"
+  print_pair "35;1" "Password note" "$(get_secret SINUSBOT_PASSWORD_NOTE)"
 
   yellow "Files"
   print_pair "33;1" "Secrets file" "$SECRETS_FILE"
@@ -774,6 +815,8 @@ print_final_summary() {
   print_pair "35;1" "Web panel" "http://${vps_ip}:${SINUSBOT_PORT}"
   print_pair "35;1" "Admin user" "$(get_secret SINUSBOT_ADMIN_USER)"
   print_pair "35;1" "Admin password" "$(get_secret SINUSBOT_ADMIN_PASSWORD)"
+  print_pair "35;1" "Password mode" "$(get_secret SINUSBOT_PASSWORD_MODE)"
+  print_pair "35;1" "Password note" "$(get_secret SINUSBOT_PASSWORD_NOTE)"
 
   yellow "Logs and saved files"
   print_pair "33;1" "Secrets file" "$SECRETS_FILE"
@@ -845,6 +888,7 @@ case "$ACTION" in
   status) need_root; show_status ;;
   secrets) need_root; show_secrets ;;
   sinusbot-reset|reset-sinusbot) need_root; setup_logging; set_sinusbot_admin_password; systemctl restart sinusbot.service; show_secrets ;;
+  sinusbot-normal|normal-sinusbot) need_root; setup_logging; disable_sinusbot_bootstrap_password; systemctl restart sinusbot.service; show_secrets ;;
   help|-h|--help) usage ;;
   *) usage; die "Unknown action: $ACTION" ;;
 esac
