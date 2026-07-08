@@ -594,29 +594,27 @@ EOF
 
 set_sinusbot_admin_password() {
   [[ -x "$SINUSBOT_DIR/sinusbot" ]] || return
-  local pass log pid i
+  local pass log
   pass="$(random_secret)"
   log="$(mktemp)"
   cyan "Setting SinusBot admin password..."
 
-  runuser -u "$SINUSBOT_USER" -- bash -lc "cd '$SINUSBOT_DIR' && ./sinusbot --override-password '$pass'" >"$log" 2>&1 &
-  pid="$!"
-  for i in $(seq 1 20); do
-    if grep -q 'USER-PATCH \[admin\].*OK' "$log"; then
-      kill -INT "$pid" >/dev/null 2>&1 || true
-      wait "$pid" >/dev/null 2>&1 || true
-      rm -f "$log"
-      save_secret "SINUSBOT_ADMIN_USER" "admin"
-      save_secret "SINUSBOT_ADMIN_PASSWORD" "$pass"
-      green "SinusBot admin password saved to $SECRETS_FILE"
-      return
-    fi
-    sleep 1
-  done
+  timeout --signal=INT --kill-after=5s 25s \
+    runuser -u "$SINUSBOT_USER" -- bash -lc "cd '$SINUSBOT_DIR' && ./sinusbot --override-password '$pass'" \
+    >"$log" 2>&1 || true
 
-  kill -INT "$pid" >/dev/null 2>&1 || true
-  wait "$pid" >/dev/null 2>&1 || true
-  yellow "Could not confirm SinusBot password reset automatically. Check: journalctl -u sinusbot -n 100"
+  if grep -q 'USER-PATCH \[admin\].*OK' "$log"; then
+    save_secret "SINUSBOT_ADMIN_USER" "admin"
+    save_secret "SINUSBOT_ADMIN_PASSWORD" "$pass"
+    green "SinusBot admin password saved to $SECRETS_FILE"
+    rm -f "$log"
+    return
+  fi
+
+  yellow "Could not confirm SinusBot password reset automatically."
+  yellow "SinusBot will still start; check its logs with: journalctl -u sinusbot -n 100 --no-pager"
+  yellow "Password reset attempt log:"
+  sed 's/^/  /' "$log" | tail -n 30 || true
   rm -f "$log"
 }
 
