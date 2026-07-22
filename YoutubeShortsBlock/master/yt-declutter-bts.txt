@@ -131,8 +131,8 @@ youtube.com##ytd-topbar-menu-button-renderer
 ! youtube.com##tp-yt-app-drawer
 !
 ! Hide topic chips across the top of feeds/search:
-! youtube.com##ytd-feed-filter-chip-bar-renderer
-! youtube.com##yt-chip-cloud-renderer
+youtube.com##ytd-feed-filter-chip-bar-renderer
+youtube.com##yt-chip-cloud-renderer
 !
 ! ============================================================
 ! SECTION 7 - Emergency exceptions
