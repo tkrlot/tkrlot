@@ -1,6 +1,6 @@
 ! Title: yt-declutter-bts - YouTube Desktop Declutter
 ! Description: BTS/ARMY-inspired YouTube desktop cleanup filter. Hides Shorts and noisy clutter while keeping videos smooth like Butter.
-! Version: 07.22-butter.4
+! Version: 07.22-butter.5
 ! Last modified: 07.22
 ! Expires: 1 day
 ! License: MIT - free for ARMY personal use, remixing, and GitHub updates
@@ -154,7 +154,7 @@ youtube.com##ytd-topbar-menu-button-renderer
 !
 ! Hide topic chips across the top of feeds/search:
 youtube.com##ytd-feed-filter-chip-bar-renderer
-youtube.com##yt-chip-cloud-renderer
+! youtube.com##yt-chip-cloud-renderer
 !
 ! ============================================================
 ! SECTION 7 - Emergency exceptions
