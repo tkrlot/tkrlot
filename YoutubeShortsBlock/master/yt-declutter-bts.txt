@@ -1,6 +1,6 @@
 ! Title: yt-declutter-bts - YouTube Desktop Declutter
 ! Description: BTS/ARMY-inspired YouTube desktop cleanup filter. Hides Shorts and noisy clutter while keeping videos smooth like Butter.
-! Version: 07.22-butter.1
+! Version: 07.22-butter.2
 ! Last modified: 07.22
 ! Expires: 1 day
 ! License: MIT - free for ARMY personal use, remixing, and GitHub updates
@@ -88,10 +88,34 @@ youtube.com#?#ytd-rich-item-renderer:has(ytd-backstage-post-thread-renderer)
 youtube.com#?#ytd-item-section-renderer:has(ytd-backstage-post-thread-renderer)
 youtube.com#?#yt-lockup-view-model:has(ytd-post-renderer)
 !
-! Explore / trending / gaming links in the guide menu
+! Top topic chips across home/search
+youtube.com##ytd-feed-filter-chip-bar-renderer
+youtube.com##yt-chip-cloud-renderer
+!
+! Guide/sidebar cleanup: sign-in promo, Explore, More from YouTube, footer clutter
+youtube.com##ytd-guide-signin-promo-renderer
 youtube.com#?#ytd-guide-entry-renderer:has(a[href="/feed/explore"])
 youtube.com#?#ytd-guide-entry-renderer:has(a[href="/feed/trending"])
 youtube.com#?#ytd-guide-entry-renderer:has(a[href="/gaming"])
+youtube.com#?#ytd-guide-entry-renderer:has(a[href="/feed/live"])
+youtube.com#?#ytd-guide-entry-renderer:has(a[href="/live"])
+youtube.com#?#ytd-guide-entry-renderer:has(a[href="/sports"])
+youtube.com#?#ytd-guide-entry-renderer:has(a[href="/paid_memberships"])
+youtube.com#?#ytd-guide-entry-renderer:has(a[href="/reporthistory"])
+youtube.com#?#ytd-guide-entry-renderer:has(a[href*="/premium"])
+youtube.com#?#ytd-guide-entry-renderer:has(a[href*="music.youtube.com"])
+youtube.com#?#ytd-guide-entry-renderer:has(a[href*="/kids"])
+youtube.com#?#ytd-guide-section-renderer:has(ytd-guide-entry-renderer a[href*="/premium"])
+youtube.com#?#ytd-guide-section-renderer:has(ytd-guide-entry-renderer a[href*="music.youtube.com"])
+youtube.com#?#ytd-guide-section-renderer:has(ytd-guide-entry-renderer a[href*="/kids"])
+youtube.com##ytd-guide-renderer #footer
+!
+! Text fallback for the visible Explore rows in English UI
+youtube.com#?#ytd-guide-entry-renderer:has(yt-formatted-string:contains(Music))
+youtube.com#?#ytd-guide-entry-renderer:has(yt-formatted-string:contains(Live))
+youtube.com#?#ytd-guide-entry-renderer:has(yt-formatted-string:contains(Sports))
+youtube.com#?#ytd-guide-entry-renderer:has(yt-formatted-string:contains(Memberships))
+youtube.com#?#ytd-guide-entry-renderer:has(yt-formatted-string:contains(Report history))
 !
 ! Mild top bar cleanup
 youtube.com###voice-search-button
@@ -113,26 +137,24 @@ youtube.com##ytd-watch-metadata ytd-badge-supported-renderer[aria-label*="paid"]
 youtube.com#?#ytd-watch-next-secondary-results-renderer ytd-compact-video-renderer:has(a[href^="/shorts/"])
 youtube.com#?#ytd-watch-next-secondary-results-renderer ytd-reel-shelf-renderer
 !
+! Live chat cleanup: hide chat and gently center the video area without removing recommendations
+youtube.com##ytd-live-chat-frame
+youtube.com#$?#ytd-watch-flexy:has(ytd-live-chat-frame) #columns { justify-content: center !important; }
+youtube.com#$?#ytd-watch-flexy:has(ytd-live-chat-frame) #primary { margin-left: auto !important; margin-right: auto !important; transition: margin 220ms ease, max-width 220ms ease !important; }
+!
 ! ============================================================
 ! SECTION 6 - Optional stronger cleanup
 ! Remove the leading "! " from a rule below if you want it enabled.
 ! ============================================================
 !
-! Hide live chat:
-youtube.com##ytd-live-chat-frame
+Hide notification bell:
+! youtube.com##ytd-notification-topbar-button-renderer
 !
-! Hide notification bell:
-youtube.com##ytd-notification-topbar-button-renderer
-!
-! Hide create/upload button:
-youtube.com##ytd-topbar-menu-button-renderer
+Hide create/upload button:
+! youtube.com##ytd-topbar-menu-button-renderer
 !
 ! Hide the entire left guide menu:
 ! youtube.com##tp-yt-app-drawer
-!
-! Hide topic chips across the top of feeds/search:
-youtube.com##ytd-feed-filter-chip-bar-renderer
-youtube.com##yt-chip-cloud-renderer
 !
 ! ============================================================
 ! SECTION 7 - Emergency exceptions
