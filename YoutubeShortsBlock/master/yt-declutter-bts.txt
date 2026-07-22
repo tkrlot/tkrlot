@@ -1,0 +1,151 @@
+! Title: yt-declutter-bts - YouTube Desktop Declutter
+! Description: BTS/ARMY-inspired YouTube desktop cleanup filter. Hides Shorts and noisy clutter while keeping videos smooth like Butter.
+! Version: 07.22-butter.1
+! Last modified: 07.22
+! Expires: 1 day
+! License: MIT - free for ARMY personal use, remixing, and GitHub updates
+! For: ARMY desktop setups - AdGuard for Windows + Chrome/Chromium
+!
+! Safety note:
+! This list is cosmetic-first. It avoids blocking YouTube media/player network
+! requests so normal videos, comments, search, and watch pages should keep working.
+! If YouTube changes its layout, disable the newest section first, then re-test.
+!
+! ============================================================
+! SECTION 1 - Shorts killer: sidebar, homepage, search, related
+! ============================================================
+!
+! Left sidebar / mini sidebar Shorts buttons
+youtube.com#?#ytd-mini-guide-entry-renderer:has(a[href="/shorts"])
+youtube.com#?#ytd-guide-entry-renderer:has(a[href="/shorts"])
+youtube.com#?#tp-yt-paper-item:has(a[href="/shorts"])
+youtube.com#?#yt-chip-cloud-chip-renderer:has(a[href*="shorts"])
+!
+! Shorts shelves and containers
+youtube.com##ytd-reel-shelf-renderer
+youtube.com##ytd-rich-shelf-renderer[is-shorts]
+youtube.com##ytd-shorts
+youtube.com##ytd-reel-video-renderer
+youtube.com###shorts-container
+youtube.com#?#ytd-item-section-renderer:has(ytd-reel-shelf-renderer)
+youtube.com#?#ytd-rich-section-renderer:has(a[href^="/shorts/"])
+youtube.com#?#ytd-shelf-renderer:has(a[href^="/shorts/"])
+!
+! Shorts cards across home, subscriptions, search, channel pages, playlists, related videos
+youtube.com#?#ytd-rich-item-renderer:has(a[href^="/shorts/"])
+youtube.com#?#ytd-video-renderer:has(a[href^="/shorts/"])
+youtube.com#?#ytd-grid-video-renderer:has(a[href^="/shorts/"])
+youtube.com#?#ytd-compact-video-renderer:has(a[href^="/shorts/"])
+youtube.com#?#ytd-playlist-panel-video-renderer:has(a[href^="/shorts/"])
+youtube.com#?#ytd-notification-renderer:has(a[href^="/shorts/"])
+youtube.com#?#yt-lockup-view-model:has(a[href^="/shorts/"])
+youtube.com#?#ytm-shorts-lockup-view-model:has(a[href^="/shorts/"])
+!
+! ============================================================
+! SECTION 2 - Ads, sponsored cards, surveys, promo banners
+! ============================================================
+!
+youtube.com###masthead-ad
+youtube.com###player-ads
+youtube.com##ytd-ad-slot-renderer
+youtube.com##ytd-display-ad-renderer
+youtube.com##ytd-in-feed-ad-layout-renderer
+youtube.com##ytd-promoted-sparkles-web-renderer
+youtube.com##ytd-promoted-video-renderer
+youtube.com##ytd-companion-slot-renderer
+youtube.com##ytd-player-legacy-desktop-watch-ads-renderer
+youtube.com##ytd-watch-next-secondary-results-renderer ytd-ad-slot-renderer
+youtube.com##ytd-banner-promo-renderer
+youtube.com##ytd-background-promo-renderer
+youtube.com##ytd-statement-banner-renderer
+youtube.com##ytd-mealbar-promo-renderer
+youtube.com##yt-mealbar-promo-renderer
+youtube.com#?#tp-yt-paper-dialog:has(a[href*="/premium"])
+youtube.com#?#ytd-popup-container tp-yt-paper-dialog:has(a[href*="/premium"])
+youtube.com##ytd-inline-survey-renderer
+youtube.com##ytd-single-option-survey-renderer
+!
+! ============================================================
+! SECTION 3 - Shopping, merch, offers, fundraisers
+! ============================================================
+!
+youtube.com##ytd-merch-shelf-renderer
+youtube.com##ytd-product-carousel-renderer
+youtube.com##ytd-offer-module-renderer
+youtube.com##ytd-shopping-renderer
+youtube.com#?#ytd-engagement-panel-section-list-renderer:has(ytd-merch-shelf-renderer)
+youtube.com#?#ytd-rich-item-renderer:has(ytd-product-carousel-renderer)
+youtube.com#?#ytd-rich-item-renderer:has(ytd-shopping-renderer)
+youtube.com#?#ytd-compact-video-renderer:has(ytd-product-carousel-renderer)
+!
+! ============================================================
+! SECTION 4 - Homepage / feed cleanup
+! ============================================================
+!
+! Community posts and non-video cards in the main feed
+youtube.com#?#ytd-rich-item-renderer:has(ytd-post-renderer)
+youtube.com#?#ytd-rich-item-renderer:has(ytd-backstage-post-thread-renderer)
+youtube.com#?#ytd-item-section-renderer:has(ytd-backstage-post-thread-renderer)
+youtube.com#?#yt-lockup-view-model:has(ytd-post-renderer)
+!
+! Explore / trending / gaming links in the guide menu
+youtube.com#?#ytd-guide-entry-renderer:has(a[href="/feed/explore"])
+youtube.com#?#ytd-guide-entry-renderer:has(a[href="/feed/trending"])
+youtube.com#?#ytd-guide-entry-renderer:has(a[href="/gaming"])
+!
+! Mild top bar cleanup
+youtube.com###voice-search-button
+youtube.com##ytd-notification-topbar-button-renderer tp-yt-paper-tooltip
+!
+! ============================================================
+! SECTION 5 - Watch page clutter that does not control playback
+! ============================================================
+!
+! End-screen cards, teaser cards, watermark, paid promo banners
+youtube.com##.ytp-ce-element
+youtube.com##.ytp-cards-teaser
+youtube.com##.ytp-cards-button
+youtube.com##.ytp-paid-content-overlay
+youtube.com##.ytp-watermark
+youtube.com##ytd-watch-metadata ytd-badge-supported-renderer[aria-label*="paid"]
+!
+! Shorts in the right-side recommendations on normal videos
+youtube.com#?#ytd-watch-next-secondary-results-renderer ytd-compact-video-renderer:has(a[href^="/shorts/"])
+youtube.com#?#ytd-watch-next-secondary-results-renderer ytd-reel-shelf-renderer
+!
+! ============================================================
+! SECTION 6 - Optional stronger cleanup
+! Remove the leading "! " from a rule below if you want it enabled.
+! ============================================================
+!
+! Hide live chat:
+youtube.com##ytd-live-chat-frame
+!
+! Hide notification bell:
+youtube.com##ytd-notification-topbar-button-renderer
+!
+! Hide create/upload button:
+youtube.com##ytd-topbar-menu-button-renderer
+!
+! Hide the entire left guide menu:
+! youtube.com##tp-yt-app-drawer
+!
+! Hide topic chips across the top of feeds/search:
+! youtube.com##ytd-feed-filter-chip-bar-renderer
+! youtube.com##yt-chip-cloud-renderer
+!
+! ============================================================
+! SECTION 7 - Emergency exceptions
+! Keep these commented unless something breaks after a YouTube update.
+! These lines do nothing while they start with "! ".
+! ============================================================
+!
+! Emergency off switch:
+! Remove the "! " below if YouTube layout/video pages break badly.
+! It disables cosmetic hiding on YouTube while keeping normal blocking active.
+! @@||youtube.com^$elemhide
+!
+! Single-rule exception example:
+! Remove the "! " below if the Shorts shelf rule becomes too aggressive.
+! It only cancels this one cosmetic rule, not the full filter list.
+! youtube.com#@#ytd-reel-shelf-renderer
