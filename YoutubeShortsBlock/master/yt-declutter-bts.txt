@@ -1,7 +1,7 @@
 [Adblock Plus 2.0]
 ! Title: yt-declutter-bts - YouTube Desktop Declutter
 ! Description: BTS/ARMY-inspired YouTube desktop cleanup filter. Hides Shorts and noisy clutter while keeping videos smooth like Butter.
-! Version: 07.23-butter.2
+! Version: 07.23-butter.3
 ! Last modified: 07.23
 ! Expires: 1 day
 ! License: MIT - free for ARMY personal use, remixing, and GitHub updates
@@ -43,13 +43,18 @@ youtube.com#?#ytd-rich-section-renderer:has(yt-formatted-string:contains(Shorts)
 youtube.com#?#ytd-shelf-renderer:has(yt-formatted-string:contains(Shorts))
 !
 ! Search-page Shorts shelf/header wrapper
-youtube.com#?#ytd-search ytd-horizontal-card-list-renderer:has(yt-formatted-string:contains(Shorts))
-youtube.com#?#ytd-search ytd-reel-shelf-renderer:has(yt-formatted-string:contains(Shorts))
-youtube.com#?#ytd-search ytd-item-section-renderer:has(ytd-horizontal-card-list-renderer yt-formatted-string:contains(Shorts))
-youtube.com#?#ytd-search ytd-item-section-renderer:has(ytd-reel-shelf-renderer yt-formatted-string:contains(Shorts))
-youtube.com#?#ytd-search ytd-item-section-renderer:has(yt-formatted-string[title="Shorts"])
-youtube.com#?#ytd-search ytd-item-section-renderer:has([aria-label="Shorts"])
-youtube.com#?#ytd-search ytd-item-section-renderer:has(yt-icon[icon*="shorts"])
+www.youtube.com##ytd-reel-shelf-renderer
+youtube.com##ytd-reel-shelf-renderer
+www.youtube.com#?#ytd-search ytd-video-renderer [overlay-style="SHORTS"]:upward(ytd-video-renderer)
+youtube.com#?#ytd-search ytd-video-renderer [overlay-style="SHORTS"]:upward(ytd-video-renderer)
+www.youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton.ytd-item-section-renderer.ytGridShelfViewModelHost:nth-of-type(1)
+www.youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton.ytd-item-section-renderer.ytGridShelfViewModelHost:nth-of-type(2)
+www.youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton.ytd-item-section-renderer.ytGridShelfViewModelHost:nth-of-type(3)
+youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton.ytd-item-section-renderer.ytGridShelfViewModelHost:nth-of-type(1)
+youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton.ytd-item-section-renderer.ytGridShelfViewModelHost:nth-of-type(2)
+youtube.com##grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton.ytd-item-section-renderer.ytGridShelfViewModelHost:nth-of-type(3)
+www.youtube.com##grid-shelf-view-model:nth-of-type(1)
+youtube.com##grid-shelf-view-model:nth-of-type(1)
 !
 ! Shorts cards across home, subscriptions, search, channel pages, playlists, related videos
 youtube.com#?#ytd-rich-item-renderer:has(a[href^="/shorts/"])
