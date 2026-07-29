@@ -2362,13 +2362,13 @@ svg[name="Activity"] {
   animation: popoutanim 300ms cubic-bezier(.4, 0, 0, 1), opacity 100ms ease 100ms backwards;
 }
 
-#app-mount .messagesPopoutWrap_e8b59c,
+#app-mount .messagesPopoutWrap__432f4,
 .container__2692d {
   background: var(--quatro) var(--stars) top left !important;
   background-attachment: fixed;
 }
 
-#app-mount .messagesPopout_e8b59c {
+#app-mount .messagesPopout__432f4 {
   background: transparent;
 }
 
@@ -2391,13 +2391,13 @@ svg[name="Activity"] {
   left: 0px;
 }
 
-#app-mount .header_e8b59c,
+#app-mount .header__432f4,
 #app-mount .themedPopout-25DgLi .footer-SRC48P {
   background: var(--veil) var(--stars) top left !important;
   background-attachment: fixed;
 }
 
-#app-mount .messageGroupWrapper_e8b59c {
+#app-mount .messageGroupWrapper__432f4 {
   background: var(--sheer) var(--stars) top left !important;
   background-attachment: fixed;
   border-color: var(--quatro);
@@ -2414,7 +2414,7 @@ svg[name="Activity"] {
   border-color: var(--quatro);
 }
 
-#app-mount .messageGroupWrapper_e8b59c:hover .actionButtons_e131a9 {
+#app-mount .messageGroupWrapper__432f4:hover .actionButtons_e131a9 {
   background-color: var(--veil);
   box-shadow: 0 0 6px 4px var(--veil);
 }
