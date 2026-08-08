@@ -1012,8 +1012,8 @@ body {
 }
 
     /* 1. Embeds, Code Blocks, and Invites */
-   /*OLD CODE*/
-/*#app-mount .markup__75297 pre,
+   /* OLD CODE
+#app-mount .markup__75297 pre,
 #app-mount .wrapper_d5f3cd,
 #app-mount .embedInner-1-fpTo,
 #app-mount .messageGroupBlocked_e72673 .messageGroupBlockedBtn__60e77,
@@ -1023,6 +1023,7 @@ body {
   background-attachment: fixed;
   border-color: var(--tres)
 }
+*/
 
 /* NEW CODE */
 #app-mount .markup__75297 code,
