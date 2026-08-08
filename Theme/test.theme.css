@@ -908,7 +908,7 @@ body {
   border: 1px solid var(--quatro);
 }
 
-#app-mount .messagesWrapper-3lZDfY {
+#app-mount .messagesWrapper__36d07 {
   background-color: transparent;
 }
 
@@ -958,7 +958,7 @@ body {
 .chat_f75fb0 .textArea__74017 {
   background-color: transparent !important;
   line-height: 1.25rem !important;
-  margin-top: 8px;
+  margin-top: 0px;
 }
 
 .buttons-205you {
@@ -1022,7 +1022,7 @@ body {
   background: var(--uno) var(--stars) top left;
   background-attachment: fixed;
   border-color: var(--tres)
-}*/
+}
 
 /* NEW CODE */
 #app-mount .markup__75297 code,
@@ -1091,7 +1091,7 @@ body {
 }
 
 
-.smallCarousel_cbfa93 {
+.smallCarousel__03498 {
   background: var(--sheer);
   border-radius: 5px;
 }
@@ -1278,8 +1278,6 @@ body {
 /* Change the transparency of the chat text bar */
 .scrollableContainer__74017,
 .sidebar__5e434,
-.member__5d473,
-.member_c8ffbb
 .bar_c38106 {    
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
@@ -1378,7 +1376,7 @@ body {
 #app-mount .body_fedacc,
 #app-mount .news-2GDtLJ,
 #app-mount .wrapper_f316dd,
-#app-mount .embedContainer_cbfa93,
+#app-mount .embedContainer__03498,
 #app-mount .carousel-2WxMes,
 #app-mount .paginationItem-2lUq0s,
 #app-mount .info-3NKfPL,
@@ -1386,15 +1384,15 @@ body {
 #app-mount .tierHeaderLocked_a36dee,
 #app-mount .tierBody_a36dee,
 #app-mount .guildHeader-3nh5RK,
-.wrapper__4106a,
-.wrapper__4106a,
+.wrapper__0d1ef,
+.wrapper__0d1ef,
 .cardFolder-3H4uH4,
 .item__344e6,
-.fieldList_a9178b {
+.fieldList__1fed1 {
   background-color: transparent;
 }
 
-.background_a9178b,
+.background__1fed1,
 .accountList-305sx3,
 .connection-107AGH,
 .bumpBox_cacd02,
@@ -1418,7 +1416,7 @@ body {
 .addMemberRow__01dab.selectedRow__01dab,
 .reaction_f8896c,
 .container-7Unqij,
-.accountProfileCard_a9178b {
+.accountProfileCard__1fed1 {
   background-color: var(--sheer);
 }
 
@@ -1625,7 +1623,7 @@ body {
   background-attachment: fixed;
 }
 
-#app-mount .nowPlaying_b53c4e {
+#app-mount .nowPlaying_cc46f0 {
   background: var(--online-sheer) var(--stars) top left fixed;
 }
 
@@ -1658,8 +1656,8 @@ body {
   border-radius: 0;
 }
 
-#app-mount .nowPlaying_b53c4e .gameNameInput_b53c4e:focus, 
-#app-mount .nowPlaying_b53c4e .gameNameInput_b53c4e:hover,
+#app-mount .nowPlaying_cc46f0 .gameNameInput_cc46f0:focus, 
+#app-mount .nowPlaying_cc46f0 .gameNameInput_cc46f0:hover,
 #app-mount .tierHeaderLocked_a36dee,
 #app-mount .guildGraphicBackground-wbfC17, 
 #app-mount .guildGraphicContainer-_IAetM,
@@ -1708,7 +1706,7 @@ body {
   background: linear-gradient(to right, transparent, var(--online-sheer)),var(--uno) var(--stars) top left fixed;
 }
 
-#app-mount .purchaseUnitOperatingSystem__347b4,
+#app-mount .purchaseUnitOperatingSystem_f28827,
 #app-mount .background_c44edb {
   color: #111;
 }
@@ -2362,13 +2360,13 @@ svg[name="Activity"] {
   animation: popoutanim 300ms cubic-bezier(.4, 0, 0, 1), opacity 100ms ease 100ms backwards;
 }
 
-#app-mount .messagesPopoutWrap__432f4,
+#app-mount .messagesPopoutWrap_e8b59c,
 .container__2692d {
   background: var(--quatro) var(--stars) top left !important;
   background-attachment: fixed;
 }
 
-#app-mount .messagesPopout__432f4 {
+#app-mount .messagesPopout_e8b59c {
   background: transparent;
 }
 
@@ -2391,13 +2389,13 @@ svg[name="Activity"] {
   left: 0px;
 }
 
-#app-mount .header__432f4,
+#app-mount .header_e8b59c,
 #app-mount .themedPopout-25DgLi .footer-SRC48P {
   background: var(--veil) var(--stars) top left !important;
   background-attachment: fixed;
 }
 
-#app-mount .messageGroupWrapper__432f4 {
+#app-mount .messageGroupWrapper_e8b59c {
   background: var(--sheer) var(--stars) top left !important;
   background-attachment: fixed;
   border-color: var(--quatro);
@@ -2414,7 +2412,7 @@ svg[name="Activity"] {
   border-color: var(--quatro);
 }
 
-#app-mount .messageGroupWrapper__432f4:hover .actionButtons_e131a9 {
+#app-mount .messageGroupWrapper_e8b59c:hover .actionButtons_e131a9 {
   background-color: var(--veil);
   box-shadow: 0 0 6px 4px var(--veil);
 }
@@ -3525,7 +3523,7 @@ background-attachment: fixed;
 /* XIV. Addon Optimization */
 
 /* Hide the mod view button, etc for a member when click at their profile */
-.wrapper__4106a {
+.wrapper__0d1ef {
     display: none !important;
 }
 
@@ -3559,6 +3557,7 @@ background-attachment: fixed;
 
 /* Hide chat bar buttons */
 [aria-label="Send a gift"],
+[aria-label="Give a Gift"],
 [aria-label="Open GIF picker"],
 [aria-label="Open sticker picker"],
 [aria-label="Add Emoji"] {
@@ -3756,8 +3755,8 @@ background-attachment: fixed;
 }
 
 /* Change color of username when speaking */
-.theme-dark [class*=usernameSpeaking_] {
-    color: #333; /* Replace with your desired color code */
+.theme-dark .usernameSpeaking__07f91 {
+    color: #333 !important;
 }
 
 /* Classic Quick user actions */
@@ -3777,7 +3776,7 @@ background-attachment: fixed;
     border-radius: 4px;
 }
 .accountProfilePopoutWrapper__37e49 > div,
-.accountProfilePopoutWrapper__37e49 .menu_ad5fac .submenu_c1e9c4 {
+.accountProfilePopoutWrapper__37e49 .menu_ad5fac .subc1e9c47c23f12ca3-menu {
     border-radius: 4px;
     width: 220px;
 }
@@ -3897,7 +3896,7 @@ background-attachment: fixed;
 .inner__74017 {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
-    --overlay-opacity: 0.2; Adjust overlay opacity (0 to 1)
+    --overlay-opacity: 0.2; /* Adjust overlay opacity (0 to 1) 
 
     background: 
         linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
@@ -3906,7 +3905,7 @@ background-attachment: fixed;
     background-size: auto;
     background-attachment: fixed;
     background-position: center;
-}*/
+}
 
 /*Make the shop background same as my main theme*/
 .pageWrapper__6db1d {
@@ -3939,7 +3938,7 @@ background-attachment: fixed;
 }
 
 /* Background for my account settings */
-.background_a9178b,
+.background__1fed1,
 .contentRegionScroller__23e6b,
 .sidebar__23e6b,
 .sidebarRegionScroller__23e6b.thin_d125d2.scrollerBase_d125d2.fade_d125d2 {
@@ -3998,21 +3997,21 @@ background-attachment: fixed;
 .scrollerBase_d125d2 {
     --black-hole: url(https://images.all-free-download.com/images/graphicthumb/starry_night_192398.jpg);
     --stars: url(https://www.freeiconspng.com/uploads/twinkle-star-png-stars-9.png);
-    --overlay-opacity: 0.12; Adjust overlay opacity (0 to 1)
+    --overlay-opacity: 0.12; /* Adjust overlay opacity (0 to 1) */
 
-    background: 
+    /*background: 
         linear-gradient(rgba(127, 127, 127, var(--overlay-opacity)), rgba(127, 127, 127, var(--overlay-opacity))),
         var(--black-hole) center/cover fixed,
         var(--stars) repeat;
     background-size: auto;
     background-attachment: fixed;
     background-position: center;
-}*/
+}
 
 /* Hide embeds and certain elements
-div[class*="messageContent_c19a55"] div[class*="embedWrapper_"],
-div[class*="messageContent_c19a55"] a[class*="anchor_"][href^="https://twitter.com/"],
-div[class*="messageContent_c19a55"] a[href^="https://fxtwitter.com/"] {
+div[class*="c19a557985eb7793-messageContent"] div[class*="embedWrapper_"],
+div[class*="c19a557985eb7793-messageContent"] a[class*="anchor_"][href^="https://twitter.com/"],
+div[class*="c19a557985eb7793-messageContent"] a[href^="https://fxtwitter.com/"] {
     display: none !important;
 } */
 
@@ -4083,7 +4082,7 @@ div[class*="messageContent_c19a55"] a[href^="https://fxtwitter.com/"] {
 .sidebar__5e434:not(:hover) .containerDefault__29444 .children__2ea32,
 .sidebar__5e434:not(:hover) .header_f37cb1 > :not(div) {
   display: none;
-}*/
+}
 
 /*Minifiedmemberlist*/
 /*.members_c8ffbb,
@@ -4305,7 +4304,7 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 
 /*badge for account list transparent */
 .container__8061a,
-.badgeList_a9178b {
+.badgeList__1fed1 {
     background: TRANSPARENT;
 }
 
@@ -4333,15 +4332,14 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 .pill_dfa8b6,
 .role__48c1c,
 .rolePill_fa2f72,
-[class="button_b709ea button__201d5 lookFilled__201d5 colorPrimary__201d5 sizeSmall__201d5 grow__201d5"],
-[class="button_b709ea button__201d5 lookFilled__201d5 colorBrand__201d5 sizeSmall__201d5 grow__201d5"],
-[class="button__7d567 button__201d5 lookFilled__201d5 buttonColor_f00225 buttonSize__7d567 fullWidth__201d5 grow__201d5"] {
+[class="button_b709ea _201d5e8a3c09670a-button _201d5e8a3c09670a-lookFilled _201d5e8a3c09670a-colorPrimary _201d5e8a3c09670a-sizeSmall _201d5e8a3c09670a-grow"],
+[class="button_b709ea _201d5e8a3c09670a-button _201d5e8a3c09670a-lookFilled _201d5e8a3c09670a-colorBrand _201d5e8a3c09670a-sizeSmall _201d5e8a3c09670a-grow"],
+[class="button__7d567 _201d5e8a3c09670a-button _201d5e8a3c09670a-lookFilled buttonColor_f00225 buttonSize__7d567 _201d5e8a3c09670a-fullWidth _201d5e8a3c09670a-grow"] {
   background-color: #030007 !important;
-  Adjust other styles as needed
-} */
+  /* Adjust other styles as needed */
+}
 
 /* Match Status Bubble color with Profile Primary Color */
-@media not all {
 .custom-profile-theme [class^=statusBubble_] {
   background-color: var(--profile-gradient-primary-color);
 }
@@ -4350,7 +4348,6 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 }
 .custom-profile-theme [class^=statusBubbleOuter_]:after {
   background-color: var(--profile-gradient-primary-color);
-}
 }
 
 /* Match Send Friend Request Button color with the Profile Color */
@@ -4535,10 +4532,10 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
     display: none !important;
 }
 
-@media not all {
-.buttonSection__1405b .staticButton_f1ceac:has([d*="M-0.6899999976158142,0.6899999976158142 C0.6679999828338623,2.0480000972747803 1.5089999437332153,3.5239999294281006 1.840000033378601,4.736000061035156 C2.187999963760376,6.011000156402588 1.8919999599456787,6.564000129699707 1.7280000448226929,6.728000164031982 C1.5640000104904175,6.892000198364258 1.0110000371932983"]) {
+.buttonSection__1405b {
+  .staticButton_f1ceac:has([d*="M-0.6899999976158142,0.6899999976158142 C0.6679999828338623,2.0480000972747803 1.5089999437332153,3.5239999294281006 1.840000033378601,4.736000061035156 C2.187999963760376,6.011000156402588 1.8919999599456787,6.564000129699707 1.7280000448226929,6.728000164031982 C1.5640000104904175,6.892000198364258 1.0110000371932983"]) {
     display: none;
-}
+  }
 }
 
 [aria-label="Disconnect"],
@@ -4595,7 +4592,7 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
     background:transparent !important;
 }
 /* hide the nameplate */
-.container_df39b2 {
+.container__4bbc6 {
     display: none !important;
 }
 
@@ -4652,5 +4649,15 @@ div.listItem__650eb:has(div[aria-label="Explore Discoverable Servers"]), div.tut
 
 /* Remove the EMOJI buutton in chatbar */
 .emojiButtonNormal__04eed  {
+    display: none !important;
+}
+
+/* Remove the TOP left Arrows for Back page and next page */
+.backForwardButtons__63abb  {
+    display: none !important;
+}
+/* Remove the Gray from above the chatbar */
+.chatGradient__36d07,
+.chatGradientBase__36d07 {
     display: none !important;
 }
